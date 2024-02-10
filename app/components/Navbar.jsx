@@ -15,7 +15,7 @@ const Navbar = () => {
   ]
 
   return (
-    <div className="flex justify-between p-4 fixed w-full">
+    <div className="flex justify-between p-4 fixed w-full backdrop-blur-md">
       {linkList.map((item) => (
         <NavLink key={item.title} title={item.title} path={item.path} />
       ))}
