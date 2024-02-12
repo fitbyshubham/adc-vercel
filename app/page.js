@@ -2,6 +2,7 @@ import Button from './components/Button'
 import Card from './components/Card'
 import Filters from './components/Filters'
 import Marquee from './components/Marquee'
+import MarqueeChildren from './components/MarqueeChildren'
 import './style.css'
 
 export default function Home() {
@@ -13,12 +14,31 @@ export default function Home() {
     'People',
   ]
 
+  const marquee4Content = [
+    'Jetzt',
+    {
+      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+    },
+    {
+      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+    },
+    {
+      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+    },
+    'anmelden',
+    {
+      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+      single: true,
+    },
+    'Zum YCA Warm-Up Event',
+  ]
+
   return (
     <main>
       <div className="gradient-background">
         <div className="flex justify-center items-center h-[45rem]">
           <Marquee scrollamount={15} textSize={220}>
-            ZEIGEN WIE’s GEHT
+            <MarqueeChildren content={'ZEIGEN WIE’s GEHT'} />
           </Marquee>
           <div className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex flex-col justify-center items-center gap-5 absolute bg-black text-white">
             <div className="uppercase text-[22px] max-md:text-[14px] text-center">
@@ -60,7 +80,7 @@ export default function Home() {
       <div className="border-b-[1px] border-t-[1px] border-black mt-10">
         <div className="p-1">
           <Marquee scrollamount={15} textSize={150}>
-            Jetzt anmelden zum YCA Warm-Up Event
+            <MarqueeChildren content={'Jetzt anmelden zum YCA Warm-Up Event'} />
           </Marquee>
         </div>
       </div>
@@ -116,14 +136,14 @@ export default function Home() {
       <div className="border-b-[1px] border-t-[1px] border-black mt-10">
         <div className="p-1">
           <Marquee scrollamount={15} textSize={150}>
-            Jetzt anmelden zum YCA Warm-Up Event
+            <MarqueeChildren content={'Jetzt anmelden zum YCA Warm-Up Event'} />
           </Marquee>
         </div>
       </div>
       <div className="border-b-[1px] border-black mb-20">
         <div className="p-1">
           <Marquee scrollamount={15} textSize={150}>
-            Jetzt anmelden zum YCA Warm-Up Event
+            <MarqueeChildren content={marquee4Content} />
           </Marquee>
         </div>
       </div>
