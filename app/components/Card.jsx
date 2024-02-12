@@ -26,7 +26,7 @@ const Card = ({
   return (
     <div
       style={componentStyle}
-      className={'flex flex-col gap-5 ' + coverCardAddedStyles}
+      className={'flex flex-col gap-5 min-h-[26rem] ' + coverCardAddedStyles}
     >
       <div className="flex justify-between">
         {date ? <div className="text-[12px]">{date}</div> : null}

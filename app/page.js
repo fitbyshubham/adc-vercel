@@ -20,19 +20,19 @@ export default function Home() {
           <Marquee scrollamount={15} textSize={220}>
             ZEIGEN WIE’s GEHT
           </Marquee>
-          <div className="w-[205px] h-[205px] p-10 top-[23rem] right-[18rem] rounded-full flex flex-col justify-center items-center gap-5 absolute bg-black text-white">
-            <div className="uppercase text-[22px] text-center">
+          <div className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex flex-col justify-center items-center gap-5 absolute bg-black text-white">
+            <div className="uppercase text-[22px] max-md:text-[14px] text-center">
               Creative Days 2024
             </div>
-            <div className="text-sm">MEHR ERFAHREN</div>
+            <div className="text-sm max-sm:text-[8px]">MEHR ERFAHREN</div>
           </div>
         </div>
       </div>
-      <div>
+      <div className="max-sm:hidden">
         <Filters filters={filters} />
       </div>
-      <div className="grid grid-cols-2 gap-20 p-32">
-        <div className="row-start-2 row-span-1">
+      <div className="grid grid-cols-2 gap-20 p-32 max-sm:grid-cols-1 max-sm:p-10 max-sm:gap-5">
+        <div className="lg:row-start-2 lg:row-span-1">
           <Card
             title={'Die einem nur im Traum einfällt'}
             content={
@@ -41,7 +41,7 @@ export default function Home() {
             buttonText={'Weiterlesen'}
           />
         </div>
-        <div className="row-start-1 row-end-4">
+        <div className="lg:row-start-1 lg:row-end-4">
           <Card
             title={'Mode, die einem nur im Traum einfällt'}
             content={
@@ -66,7 +66,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
         <div>NEWS & EVENTS</div>
-        <div className="flex justify-around gap-8">
+        <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-8">
           <Card
             title={'ADC Switzerland: Acht neue Mitglieder'}
             date={'19.12.2023'}
