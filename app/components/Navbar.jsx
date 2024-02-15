@@ -1,23 +1,30 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+import Menu from './Menu'
+import NavLink from './NavLink'
 
-const NavLink = ({ title, path }) => {
-  return (
-    <a className="font-semibold text-[20px]" href={path}>
-      {title}
-    </a>
-  )
-}
 const Navbar = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleClick = () => setOpen(!open)
+
   const linkList = [
     { title: 'ADC', path: '#' },
     { title: 'START', path: '#' },
-    { title: 'MENU', path: '#' },
+    { title: open ? 'CLOSE' : 'MENU', path: '#', handleClick },
   ]
 
-  return (
+  return open ? (
+    <Menu open={open} handleClose={handleClick} />
+  ) : (
     <div className="flex justify-between p-4 fixed w-full backdrop-blur-md">
       {linkList.map((item) => (
-        <NavLink key={item.title} title={item.title} path={item.path} />
+        <NavLink
+          key={item.title}
+          title={item.title}
+          path={item.path}
+          handleClick={item?.handleClick}
+        />
       ))}
     </div>
   )

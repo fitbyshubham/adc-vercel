@@ -1,29 +1,29 @@
 import Image from 'next/image'
 
-const MarqueeChildren = ({ content }) => {
-  if (Array.isArray(content)) {
+const MarqueeChildren = ({ data }) => {
+  if (!data?.visible) return null
+
+  if (data?.mixedContent) {
     return (
       <div className="flex items-center gap-2">
-        {content.map((item, i) => (
-          <MarqueeChildren key={i} content={item} />
+        {data.mixedContent.map((item, i) => (
+          <MarqueeChildren key={i} data={item} />
         ))}
       </div>
     )
   }
 
-  if (content.img) {
-    return (
-      <Image
-        src={content.img}
-        alt="Img"
-        width={10}
-        height={10}
-        className={content.single ? 'w-28 h-28 ml-6 mr-6' : 'w-28 h-28'}
-      />
-    )
-  }
+  if (data?.content) return <div>{data.content}</div>
 
-  return <div>{content}</div>
+  return (
+    <Image
+      src={data?.image}
+      alt="Img"
+      width={10}
+      height={10}
+      className={data?.single ? 'w-28 h-28 ml-6 mr-6' : 'w-28 h-28'}
+    />
+  )
 }
 
 export default MarqueeChildren

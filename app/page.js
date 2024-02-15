@@ -1,11 +1,27 @@
+'use client'
+import { useEffect, useState } from 'react'
 import Button from './components/Button'
 import Card from './components/Card'
 import Filters from './components/Filters'
 import Marquee from './components/Marquee'
 import MarqueeChildren from './components/MarqueeChildren'
+import Api from './api'
 import './style.css'
 
 export default function Home() {
+  const [pageData, setPageData] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    Api.getHomePage()
+      .then((res) => {
+        const data = res.data.attributes
+        setPageData(data)
+        setLoading(false)
+      })
+      .catch(console.log)
+  }, [])
+
   const filters = [
     'INSIGHTS',
     'Learning',
@@ -14,37 +30,55 @@ export default function Home() {
     'People',
   ]
 
-  const marquee4Content = [
-    'Jetzt',
-    {
-      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
-    },
-    {
-      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
-    },
-    {
-      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
-    },
-    'anmelden',
-    {
-      img: 'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
-      single: true,
-    },
-    'Zum YCA Warm-Up Event',
-  ]
+  const marquee4Content = {
+    mixedContent: [
+      { content: 'Jetzt', visible: true },
+      {
+        image:
+          'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+        visible: true,
+      },
+      {
+        image:
+          'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+        visible: true,
+      },
+      {
+        image:
+          'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+        visible: true,
+      },
+      { content: 'anmelden', visible: true },
+      {
+        image:
+          'https://i.ibb.co/6rSJLCb/Bildschirmfoto-2023-12-18-um-11-12.png',
+        visible: true,
+        single: true,
+      },
+      { content: 'Zum YCA Warm-Up Event', visible: true },
+    ],
+    visible: true,
+  }
 
+  if (loading) return null
+  console.log(pageData)
   return (
     <main>
       <div className="gradient-background">
         <div className="flex justify-center items-center h-[45rem]">
           <Marquee scrollamount={15} textSize={220}>
-            <MarqueeChildren content={'ZEIGEN WIE’s GEHT'} />
+            <MarqueeChildren data={pageData.headline1} />
           </Marquee>
-          <div className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex flex-col justify-center items-center gap-5 absolute bg-black text-white">
+          <div
+            className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex-col justify-center items-center gap-5 absolute bg-black text-white"
+            style={{ display: pageData.poster1.visible ? 'flex' : 'none' }}
+          >
             <div className="uppercase text-[22px] max-md:text-[14px] text-center">
-              Creative Days 2024
+              {pageData.poster1.title}
             </div>
-            <div className="text-sm max-sm:text-[8px]">MEHR ERFAHREN</div>
+            <div className="text-sm max-sm:text-[8px]">
+              {pageData.poster1.subTitle}
+            </div>
           </div>
         </div>
       </div>
@@ -52,23 +86,26 @@ export default function Home() {
         <Filters filters={filters} />
       </div>
       <div className="grid grid-cols-2 gap-20 p-32 max-sm:grid-cols-1 max-sm:p-10 max-sm:gap-5">
-        <div className="lg:row-start-2 lg:row-span-1">
+        <div
+          className="lg:row-start-2 lg:row-span-1"
+          style={{ display: pageData.cards1[0].visible ? 'flex' : 'none' }}
+        >
           <Card
-            title={'Die einem nur im Traum einfällt'}
-            content={
-              'Bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee.'
-            }
-            buttonText={'Weiterlesen'}
+            title={pageData.cards1[0].title}
+            content={pageData.cards1[0].description}
+            buttonText={pageData.cards1[0].button.title}
+            size={pageData.cards1[0].size}
           />
         </div>
-        <div className="lg:row-start-1 lg:row-end-4">
+        <div
+          className="lg:row-start-1 lg:row-end-4"
+          style={{ display: pageData.cards1[1].visible ? 'flex' : 'none' }}
+        >
           <Card
-            title={'Mode, die einem nur im Traum einfällt'}
-            content={
-              'Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee.'
-            }
-            size={'large'}
-            buttonText={'Weiterlesen'}
+            title={pageData.cards1[1].title}
+            content={pageData.cards1[1].description}
+            buttonText={pageData.cards1[1].button.title}
+            size={pageData.cards1[1].size}
           />
         </div>
       </div>
@@ -80,7 +117,12 @@ export default function Home() {
       <div className="border-b-[1px] border-t-[1px] border-black mt-10">
         <div className="p-1">
           <Marquee scrollamount={15} textSize={150}>
-            <MarqueeChildren content={'Jetzt anmelden zum YCA Warm-Up Event'} />
+            <MarqueeChildren
+              data={{
+                content: 'Jetzt anmelden zum YCA Warm-Up Event',
+                visible: true,
+              }}
+            />
           </Marquee>
         </div>
       </div>
@@ -136,14 +178,19 @@ export default function Home() {
       <div className="border-b-[1px] border-t-[1px] border-black mt-10">
         <div className="p-1">
           <Marquee scrollamount={15} textSize={150}>
-            <MarqueeChildren content={'Jetzt anmelden zum YCA Warm-Up Event'} />
+            <MarqueeChildren
+              data={{
+                content: 'Jetzt anmelden zum YCA Warm-Up Event',
+                visible: true,
+              }}
+            />
           </Marquee>
         </div>
       </div>
       <div className="border-b-[1px] border-black mb-20">
         <div className="p-1">
           <Marquee scrollamount={15} textSize={150}>
-            <MarqueeChildren content={marquee4Content} />
+            <MarqueeChildren data={marquee4Content} />
           </Marquee>
         </div>
       </div>
