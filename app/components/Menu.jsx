@@ -3,30 +3,51 @@ import Text from './Text'
 import NavLink from './NavLink'
 
 const Menu = ({ open, handleClose }) => {
-  const linkList = [
-    { title: 'ADC', path: '#' },
-    { title: open ? 'CLOSE' : 'MENU', path: '#', handleClick: handleClose },
+  const menuLinkList = [
+    { title: 'News & EVENTS', path: '#' },
+    { title: 'BECOMe A MEMBER', path: '#' },
+    { title: 'PARTNER WITH US', path: '#' },
+    { title: 'Shop', path: '#' },
+    { title: 'CONTACT', path: '#' },
   ]
 
-  const twClass = open ? 'bg-white fixed w-full z-10' : 'hidden'
+  const twClass = open ? 'bg-white fixed w-full z-50' : 'hidden'
   return (
     <div className={twClass}>
       <div className="flex justify-between p-4 pb-10">
-        {linkList.map((item) => (
+        <NavLink title={'ADC'} path={''} />
+        <div className="flex items-center gap-20">
+          <div>
+            <div className="flex gap-4">
+              {menuLinkList.map((item) => (
+                <NavLink
+                  key={item.title}
+                  title={item.title}
+                  fontSize={12}
+                  path={item.path}
+                />
+              ))}
+            </div>
+            <div className="text-center pt-10">
+              <Text twClassName={'text-[54px]'}>INSIGHTS</Text>
+              <Text twClassName={'text-[54px]'}>LEARNING</Text>
+              <Text twClassName={'text-[54px]'}>Creative Days</Text>
+              <Text twClassName={'text-[54px]'}>ADC AWARDs</Text>
+              <Text twClassName={'text-[54px]'}>PEOPLE</Text>
+            </div>
+          </div>
+          {/* <div className="flex gap-10">
+            <div>FR</div>
+            <div>LOGIN</div>
+          </div> */}
+        </div>
+        <div className="flex">
           <NavLink
-            key={item.title}
-            title={item.title}
-            path={item.path}
-            handleClick={item?.handleClick}
+            title={open ? 'CLOSE' : 'MENU'}
+            path={''}
+            handleClick={handleClose}
           />
-        ))}
-      </div>
-      <div className="text-center">
-        <Text twClassName={'text-[54px]'}>INSIGHTS</Text>
-        <Text twClassName={'text-[54px]'}>LEARNING</Text>
-        <Text twClassName={'text-[54px]'}>Creative Days</Text>
-        <Text twClassName={'text-[54px]'}>ADC AWARDs</Text>
-        <Text twClassName={'text-[54px]'}>PEOPLE</Text>
+        </div>
       </div>
     </div>
   )

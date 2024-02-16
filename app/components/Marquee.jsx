@@ -1,14 +1,15 @@
-import React from 'react'
+import FastMarquee from 'react-fast-marquee'
 
-const Marquee = ({ children, textSize, scrollamount }) => {
+const Marquee = ({ children, textSize, speed, delay }) => {
   return (
-    <marquee
+    <FastMarquee
       style={{ fontSize: `${textSize}px` }}
-      scrollamount={String(scrollamount)}
-      className={`font-semibold`}
+      speed={speed}
+      delay={delay || 1}
+      className={'font-semibold'}
     >
       {children}
-    </marquee>
+    </FastMarquee>
   )
 }
 

@@ -3,7 +3,7 @@ import './globals.css'
 import Navbar from './components/Navbar'
 import Footter from './components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'ADC',
@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Navbar />
         {children}
         <Footter />

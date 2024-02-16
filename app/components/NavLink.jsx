@@ -1,8 +1,15 @@
-const NavLink = ({ title, path, handleClick }) => {
+import Link from 'next/link'
+
+const NavLink = ({ title, path, handleClick, fontSize }) => {
   return (
-    <a className="font-semibold text-[20px]" href={path} onClick={handleClick}>
+    <Link
+      className="font-semibold text-[20px]"
+      style={{ fontSize }}
+      href={path}
+      onClick={handleClick}
+    >
       {title}
-    </a>
+    </Link>
   )
 }
 

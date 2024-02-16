@@ -61,16 +61,16 @@ export default function Home() {
   }
 
   if (loading) return null
-  console.log(pageData)
+
   return (
     <main>
       <div className="gradient-background">
         <div className="flex justify-center items-center h-[45rem]">
-          <Marquee scrollamount={15} textSize={220}>
+          <Marquee speed={200} textSize={220}>
             <MarqueeChildren data={pageData.headline1} />
           </Marquee>
           <div
-            className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex-col justify-center items-center gap-5 absolute bg-black text-white"
+            className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex-col justify-center items-center gap-5 absolute bg-black text-white z-10"
             style={{ display: pageData.poster1.visible ? 'flex' : 'none' }}
           >
             <div className="uppercase text-[22px] max-md:text-[14px] text-center">
@@ -85,16 +85,51 @@ export default function Home() {
       <div className="max-sm:hidden">
         <Filters filters={filters} />
       </div>
-      <div className="grid grid-cols-2 gap-20 p-32 max-sm:grid-cols-1 max-sm:p-10 max-sm:gap-5">
-        <div
-          className="lg:row-start-2 lg:row-span-1"
-          style={{ display: pageData.cards1[0].visible ? 'flex' : 'none' }}
+      <div className=" container mx-auto px-4">
+        <div className="grid grid-cols-12 gap-4">
+          <div
+            className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6"
+            style={{ display: pageData.cards1[1].visible ? 'flex' : 'none' }}
+          >
+            <Card
+              title={pageData.cards1[1].title}
+              content={pageData.cards1[1].description}
+              buttonText={pageData.cards1[1].button.title}
+              size={pageData.cards1[1].size}
+            />
+          </div>
+          <div
+            className="col-span-3 md:col-span-3 lg:col-span-3"
+            style={{ display: pageData.cards1[0].visible ? 'flex' : 'none' }}
+          >
+            <Card
+              title={pageData.cards1[0].title}
+              content={pageData.cards1[0].description}
+              buttonText={pageData.cards1[0].button.title}
+              size={pageData.cards1[0].size}
+            />
+          </div>
+          <div
+            className="col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5"
+            style={{ display: pageData.cards1[2].visible ? 'flex' : 'none' }}
+          >
+            <Card
+              title={pageData.cards1[2].title}
+              content={pageData.cards1[2].description}
+              buttonText={pageData.cards1[2].button.title}
+              size={pageData.cards1[2].size}
+            />
+          </div>
+
+          {/* <div
+          className="lg:row-start-1 lg:row-end-4"
+          style={{ display: pageData.cards1[1].visible ? 'flex' : 'none' }}
         >
           <Card
-            title={pageData.cards1[0].title}
-            content={pageData.cards1[0].description}
-            buttonText={pageData.cards1[0].button.title}
-            size={pageData.cards1[0].size}
+            title={pageData.cards1[1].title}
+            content={pageData.cards1[1].description}
+            buttonText={pageData.cards1[1].button.title}
+            size={pageData.cards1[1].size}
           />
         </div>
         <div
@@ -107,6 +142,7 @@ export default function Home() {
             buttonText={pageData.cards1[1].button.title}
             size={pageData.cards1[1].size}
           />
+        </div> */}
         </div>
       </div>
       <div className="flex justify-center p-20">
@@ -116,7 +152,7 @@ export default function Home() {
       </div>
       <div className="border-b-[1px] border-t-[1px] border-black mt-10">
         <div className="p-1">
-          <Marquee scrollamount={15} textSize={150}>
+          <Marquee speed={200} textSize={150}>
             <MarqueeChildren
               data={{
                 content: 'Jetzt anmelden zum YCA Warm-Up Event',
@@ -177,7 +213,7 @@ export default function Home() {
       </div>
       <div className="border-b-[1px] border-t-[1px] border-black mt-10">
         <div className="p-1">
-          <Marquee scrollamount={15} textSize={150}>
+          <Marquee speed={200} textSize={150}>
             <MarqueeChildren
               data={{
                 content: 'Jetzt anmelden zum YCA Warm-Up Event',
@@ -189,7 +225,7 @@ export default function Home() {
       </div>
       <div className="border-b-[1px] border-black mb-20">
         <div className="p-1">
-          <Marquee scrollamount={15} textSize={150}>
+          <Marquee speed={200} textSize={150}>
             <MarqueeChildren data={marquee4Content} />
           </Marquee>
         </div>

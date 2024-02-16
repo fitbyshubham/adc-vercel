@@ -1,3 +1,14 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Circular+Std:wght@400;500;700&display=swap'); */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Circular Std';
+  src: url('/fonts/circular-std-6.ttf');
+}
+
+body {
+  font-family: 'Circular Std';
+}

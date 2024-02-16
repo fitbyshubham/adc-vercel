@@ -17,11 +17,12 @@ const Navbar = () => {
   return open ? (
     <Menu open={open} handleClose={handleClick} />
   ) : (
-    <div className="flex justify-between p-4 fixed w-full backdrop-blur-md">
+    <div className="flex justify-between p-4 fixed w-full backdrop-blur-md z-50">
       {linkList.map((item) => (
         <NavLink
           key={item.title}
           title={item.title}
+          fontSize={20}
           path={item.path}
           handleClick={item?.handleClick}
         />

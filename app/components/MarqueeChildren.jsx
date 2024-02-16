@@ -13,7 +13,7 @@ const MarqueeChildren = ({ data }) => {
     )
   }
 
-  if (data?.content) return <div>{data.content}</div>
+  if (data?.content) return <div>{data.content.toUpperCase()}</div>
 
   return (
     <Image
