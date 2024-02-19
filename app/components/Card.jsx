@@ -4,12 +4,13 @@ import Button from './Button'
 
 const Card = ({
   title,
-  date,
-  content,
+  headline,
+  description,
   imageUrl,
   buttonText,
   onButtonClick,
   size,
+  width,
   covered,
   componentStyle,
   btnHeight,
@@ -17,6 +18,7 @@ const Card = ({
   btnBgColor,
   btnTextColor,
   imageCard = true,
+  btnWidth,
 }) => {
   const large = size === 'large' && !covered
   const coverCardAddedStyles = covered
@@ -25,11 +27,11 @@ const Card = ({
 
   return (
     <div
-      style={componentStyle}
+      style={{ width, componentStyle }}
       className={'flex flex-col gap-5 min-h-[26rem] ' + coverCardAddedStyles}
     >
       <div className="flex justify-between">
-        {date ? <div className="text-[12px]">{date}</div> : null}
+        {headline ? <div className="text-[12px]">{headline}</div> : null}
         {imageCard ? (
           <Image
             src={imageUrl || no_image_found}
@@ -43,26 +45,32 @@ const Card = ({
         ) : null}
       </div>
       <div className="flex flex-col gap-5">
-        <div
-          className={
-            covered ? 'text-[26px]' : large ? 'text-[55px]' : 'text-[30px]'
-          }
-        >
-          {title}
-        </div>
-        {content ? (
-          <div className={large ? 'text-[26px]' : 'text-[15px]'}>{content}</div>
+        {title ? (
+          <div
+            className={
+              covered ? 'text-[26px]' : large ? 'text-[55px]' : 'text-[30px]'
+            }
+          >
+            {title}
+          </div>
         ) : null}
-        <Button
-          onButtonClick={onButtonClick}
-          width={130}
-          height={btnHeight}
-          primaryBtn={primaryBtn}
-          bgColor={btnBgColor}
-          textColor={btnTextColor}
-        >
-          {buttonText}
-        </Button>
+        {description ? (
+          <div className={large ? 'text-[26px]' : 'text-[15px]'}>
+            {description}
+          </div>
+        ) : null}
+        {buttonText ? (
+          <Button
+            onButtonClick={onButtonClick}
+            width={btnWidth || 130}
+            height={btnHeight}
+            primaryBtn={primaryBtn}
+            bgColor={btnBgColor}
+            textColor={btnTextColor}
+          >
+            {buttonText}
+          </Button>
+        ) : null}
       </div>
     </div>
   )

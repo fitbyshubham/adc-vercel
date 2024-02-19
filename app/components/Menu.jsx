@@ -1,6 +1,7 @@
 import React from 'react'
 import Text from './Text'
 import NavLink from './NavLink'
+import Link from 'next/link'
 
 const Menu = ({ open, handleClose }) => {
   const menuLinkList = [
@@ -22,18 +23,28 @@ const Menu = ({ open, handleClose }) => {
               {menuLinkList.map((item) => (
                 <NavLink
                   key={item.title}
-                  title={item.title}
+                  title={item.title.toUpperCase()}
                   fontSize={12}
                   path={item.path}
                 />
               ))}
             </div>
             <div className="text-center pt-10">
-              <Text twClassName={'text-[54px]'}>INSIGHTS</Text>
-              <Text twClassName={'text-[54px]'}>LEARNING</Text>
-              <Text twClassName={'text-[54px]'}>Creative Days</Text>
-              <Text twClassName={'text-[54px]'}>ADC AWARDs</Text>
-              <Text twClassName={'text-[54px]'}>PEOPLE</Text>
+              <Text twClassName={'text-[54px]'}>
+                <Link href={'/insights'}>INSIGHTS</Link>
+              </Text>
+              <Text twClassName={'text-[54px]'}>
+                <Link href={'/learning'}>LEARNING</Link>
+              </Text>
+              <Text twClassName={'text-[54px]'}>
+                <Link href={'/creative-days'}>Creative Days</Link>
+              </Text>
+              <Text twClassName={'text-[54px]'}>
+                <Link href={'/awards'}>ADC AWARDs</Link>
+              </Text>
+              <Text twClassName={'text-[54px]'}>
+                <Link href={'/people'}>PEOPLE</Link>
+              </Text>
             </div>
           </div>
           {/* <div className="flex gap-10">

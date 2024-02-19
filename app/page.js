@@ -85,7 +85,7 @@ export default function Home() {
       <div className="max-sm:hidden">
         <Filters filters={filters} />
       </div>
-      <div className=" container mx-auto px-4">
+      <div className=" container mx-auto px-4 pt-10">
         <div className="grid grid-cols-12 gap-4">
           <div
             className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6"
@@ -93,7 +93,7 @@ export default function Home() {
           >
             <Card
               title={pageData.cards1[1].title}
-              content={pageData.cards1[1].description}
+              description={pageData.cards1[1].description}
               buttonText={pageData.cards1[1].button.title}
               size={pageData.cards1[1].size}
             />
@@ -104,7 +104,7 @@ export default function Home() {
           >
             <Card
               title={pageData.cards1[0].title}
-              content={pageData.cards1[0].description}
+              description={pageData.cards1[0].description}
               buttonText={pageData.cards1[0].button.title}
               size={pageData.cards1[0].size}
             />
@@ -115,7 +115,7 @@ export default function Home() {
           >
             <Card
               title={pageData.cards1[2].title}
-              content={pageData.cards1[2].description}
+              description={pageData.cards1[2].description}
               buttonText={pageData.cards1[2].button.title}
               size={pageData.cards1[2].size}
             />
@@ -167,7 +167,7 @@ export default function Home() {
         <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-8">
           <Card
             title={'ADC Switzerland: Acht neue Mitglieder'}
-            date={'19.12.2023'}
+            headline={'19.12.2023'}
             covered={true}
             buttonText={'Weiterlesen'}
             btnBgColor={'#ffffff'}
@@ -175,7 +175,7 @@ export default function Home() {
           />
           <Card
             title={'Fertig lustig?'}
-            date={'19.12.2023'}
+            headline={'19.12.2023'}
             covered={true}
             imageCard={false}
             buttonText={'Weiterlesen'}
@@ -186,7 +186,7 @@ export default function Home() {
             title={
               'ADC Young Creatives Award 2024 – Pre-Selection Cannes Young Lions Competition'
             }
-            date={'19.12.2023'}
+            headline={'19.12.2023'}
             covered={true}
             imageCard={false}
             buttonText={'Weiterlesen'}
@@ -197,7 +197,7 @@ export default function Home() {
             title={
               'ADCE Awards 2023: 13 Trophäen für die Schweiz, Gold für Wirz'
             }
-            date={'19.12.2023'}
+            headline={'19.12.2023'}
             covered={true}
             imageCard={false}
             buttonText={'Weiterlesen'}

@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleClick = () => setOpen(!open)
 
   const linkList = [
-    { title: 'ADC', path: '#' },
+    { title: 'ADC', path: '/' },
     { title: 'START', path: '#' },
     { title: open ? 'CLOSE' : 'MENU', path: '#', handleClick },
   ]
