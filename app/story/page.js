@@ -6,7 +6,7 @@ import Card from '../components/Card'
 
 const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
   return (
-    <div className="flex  max-sm:flex-col justify-between max-sm:gap-10">
+    <div className="flex  max-sm:flex-col justify-between max-md:gap-5 max-sm:gap-10">
       <div
         className={
           'text-[24px] max-md:text-[22px] w-[750px] max-md:w-[460px] max-sm:w-[335px]'
@@ -20,7 +20,7 @@ const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
         title={cardTitle}
         titleStyle={{ fontSize: '16px' }}
         descriptionStyle={{ fontSize: '15px' }}
-        className={'max-md:w-[200px]'}
+        className={'w-[262px] max-md:w-[200px]'}
         size={size}
         description={cardDescription}
       />
@@ -110,7 +110,7 @@ const StoryDetail = () => {
             </Button>
           </div>
         </div>
-        <div className="">
+        <div className="sm:hidden">
           <Button primaryBtn={true} bgColor={'#000000'} width={120}>
             concious
           </Button>
