@@ -19,19 +19,29 @@ const Card = ({
   btnTextColor,
   imageCard = true,
   btnWidth,
+  headlineStyle,
+  titleStyle,
+  descriptionStyle,
+  columnSpan,
+  className,
 }) => {
   const large = size === 'large' && !covered
   const coverCardAddedStyles = covered
-    ? 'bg-[#EAEAEA] w-[295px] rounded-xl p-8 justify-between'
-    : ''
+    ? 'bg-[#EAEAEA] w-[295px] rounded-xl p-8 justify-between ' + className
+    : className
 
   return (
     <div
-      style={{ width, componentStyle }}
+      style={{ width, ...componentStyle }}
       className={'flex flex-col gap-5 min-h-[26rem] ' + coverCardAddedStyles}
+      columnSpan={columnSpan}
     >
       <div className="flex justify-between">
-        {headline ? <div className="text-[12px]">{headline}</div> : null}
+        {headline ? (
+          <div className="text-[12px]" style={headlineStyle}>
+            {headline}
+          </div>
+        ) : null}
         {imageCard ? (
           <Image
             src={imageUrl || no_image_found}
@@ -50,12 +60,16 @@ const Card = ({
             className={
               covered ? 'text-[26px]' : large ? 'text-[55px]' : 'text-[30px]'
             }
+            style={titleStyle}
           >
             {title}
           </div>
         ) : null}
         {description ? (
-          <div className={large ? 'text-[26px]' : 'text-[15px]'}>
+          <div
+            className={large ? 'text-[26px]' : 'text-[15px]'}
+            style={descriptionStyle}
+          >
             {description}
           </div>
         ) : null}

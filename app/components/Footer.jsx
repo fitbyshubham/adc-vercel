@@ -45,12 +45,12 @@ const Footter = () => {
         <Image
           src={img1}
           alt="Supports"
-          className="w-[70rem] max-md:w-[12rem]"
+          className="w-[70rem] max-md:w-[5rem]"
         />
         <Image
           src={img2}
           alt="Supports"
-          className="w-[20rem] max-md:w-[10rem]"
+          className="w-[20rem] max-md:w-[5rem]"
         />
       </div>
     </div>
