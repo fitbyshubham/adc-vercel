@@ -57,7 +57,7 @@ const NewsAndEvents = () => {
       <div className="p-20 pt-28">
         <Search />
       </div>
-      <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-8">
+      <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
         {cards1.map((card) => (
           <Card
             key={card.id}

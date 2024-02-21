@@ -5,10 +5,8 @@ const People = () => {
   const filters = [
     'All',
     'Youngsters',
+    'Newbies',
     'Jury Members',
-    'Board',
-    'Legends',
-    'Friends',
     'Board',
     'Legends',
     'Friends',
@@ -17,10 +15,10 @@ const People = () => {
   return (
     <div className="pt-20 flex flex-col items-center">
       <Filters filters={filters} />
-      <div className="p-20">
+      <div className="p-20 max-md:p-8">
         <Search />
       </div>
-      <div className="text-center text-[55px] pb-10">
+      <div className="text-center text-[55px] max-md:text-[24px] pb-10">
         <div>Marietta Albinus</div>
         <div>Lena Altorfe</div>
         <div>Martina Anderberg</div>
