@@ -27,7 +27,8 @@ const Card = ({
 }) => {
   const large = size === 'large' && !covered
   const coverCardAddedStyles = covered
-    ? 'bg-[#EAEAEA] w-[295px] rounded-xl p-8 justify-between ' + className
+    ? 'bg-[#EAEAEA] w-[295px] min-w-[295px] rounded-xl p-8 justify-between ' +
+      className
     : className
 
   return (

@@ -30,19 +30,19 @@ const Menu = ({ open, handleClose }) => {
               ))}
             </div>
             <div className="text-center pt-10">
-              <Text twClassName={'text-[54px]'}>
+              <Text twClassName={'text-[54px]'} onClick={handleClose}>
                 <Link href={'/insights'}>INSIGHTS</Link>
               </Text>
-              <Text twClassName={'text-[54px]'}>
+              <Text twClassName={'text-[54px]'} onClick={handleClose}>
                 <Link href={'/learning'}>LEARNING</Link>
               </Text>
-              <Text twClassName={'text-[54px]'}>
+              <Text twClassName={'text-[54px]'} onClick={handleClose}>
                 <Link href={'/creative-days'}>Creative Days</Link>
               </Text>
-              <Text twClassName={'text-[54px]'}>
+              <Text twClassName={'text-[54px]'} onClick={handleClose}>
                 <Link href={'/awards'}>ADC AWARDs</Link>
               </Text>
-              <Text twClassName={'text-[54px]'}>
+              <Text twClassName={'text-[54px]'} onClick={handleClose}>
                 <Link href={'/people'}>PEOPLE</Link>
               </Text>
             </div>
