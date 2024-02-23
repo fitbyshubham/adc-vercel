@@ -19,7 +19,7 @@ export default {
       axiosInstance(config.token)
         .get(
           config.HOMEPAGE.BASE.concat(
-            '?populate=headline1, poster1, cards1.button, cards1.image'
+            '?populate=heading,heading.poster,cards1,cards1.button,cards1.image.url,headline1.images,headline1.images.url,cards2.button,cards2.image,cards2.image.url,headline2.images.url,headline3.images,headline3.images.url'
           )
         )
         .then((res) => resolve(res.data))

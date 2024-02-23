@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import no_image_found from '@/assets/images/bildschirmfoto.png'
 import Button from './Button'
+import config from '@/app/apiConfig'
 
 const Card = ({
   title,
-  headline,
+  heading,
   description,
   imageUrl,
   buttonText,
@@ -19,7 +20,7 @@ const Card = ({
   btnTextColor,
   imageCard = true,
   btnWidth,
-  headlineStyle,
+  headingStyle,
   titleStyle,
   descriptionStyle,
   columnSpan,
@@ -31,21 +32,22 @@ const Card = ({
       className
     : className
 
+  const concatedImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
     <div
       style={{ width, ...componentStyle }}
       className={'flex flex-col gap-5 min-h-[26rem] ' + coverCardAddedStyles}
-      columnSpan={columnSpan}
+      columnspan={columnSpan}
     >
       <div className="flex justify-between">
-        {headline ? (
-          <div className="text-[12px]" style={headlineStyle}>
-            {headline}
+        {heading ? (
+          <div className="text-[12px]" style={headingStyle}>
+            {heading}
           </div>
         ) : null}
         {imageCard ? (
           <Image
-            src={imageUrl || no_image_found}
+            src={concatedImageUrl || no_image_found}
             alt="Card img"
             width={100}
             height={100}

@@ -1,16 +1,26 @@
 .gradient-background {
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle,
-    #d65177,
+    ,
     #dadee7,
     #8a95e8,
     #e188a0,
     #a9c2f5,
     #f3a2a6,
     #d7496f
-  );
+  ); */
+  /* background: linear-gradient(#d65177, transparent),
+    linear-gradient(to top left, #dadee7, transparent),
+    linear-gradient(to top right, #8a95e8, transparent);
+  background-blend-mode: screen;
   background-size: 360% 360%;
-  animation: gradient-animation 6s ease infinite;
+  animation: gradient-animation 6s ease infinite; */
+  background: linear-gradient(#d65177, transparent),
+    linear-gradient(to top left, lime, transparent),
+    linear-gradient(to top right, blue, transparent);
+  background-blend-mode: screen;
+  background-size: 200% 200%; /* Make sure the size is large enough to cover the animation area */
+  animation: gradient-animation 15s linear infinite;
 }
 
 .creative-gradient-background {
@@ -49,19 +59,17 @@
 }
 
 @keyframes gradient-animation {
-  0% {
-    background-position: 0% 0%;
+  0%,
+  100% {
+    background-position: 0% 0%, 0% 0%, 0% 0%; /* Starting positions for each gradient */
   }
   25% {
-    background-position: 25% 75%;
+    background-position: 100% 100%, 25% 75%, 50% 25%; /* Transition positions */
   }
   50% {
-    background-position: 50% 25%;
+    background-position: 0% 0%, 50% 25%, 75% 50%; /* Transition positions */
   }
   75% {
-    background-position: 75% 50%;
-  }
-  100% {
-    background-position: 100% 100%;
+    background-position: 100% 100%, 75% 50%, 100% 100%; /* Transition positions */
   }
 }

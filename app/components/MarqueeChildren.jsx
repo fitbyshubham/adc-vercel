@@ -1,29 +1,27 @@
 import Image from 'next/image'
+import config from '../apiConfig'
 
-const MarqueeChildren = ({ data }) => {
-  if (!data?.visible) return null
+const MarqueeChildren = ({ content, images, visible = true }) => {
+  if (!visible) return null
 
-  if (data?.mixedContent) {
+  if (content)
     return (
-      <div className="flex items-center gap-2">
-        {data.mixedContent.map((item, i) => (
-          <MarqueeChildren key={i} data={item} />
-        ))}
+      <div className="flex gap-4 items-center pr-28">
+        <div>{content.toUpperCase()}</div>
+        <div className="flex gap-3">
+          {images?.map((image) => (
+            <Image
+              key={image.id}
+              src={config.IMAGE_API_URL.concat(image.url?.data?.attributes.url)}
+              alt="Img"
+              width={10}
+              height={10}
+              className={'w-28 h-28'}
+            />
+          ))}
+        </div>
       </div>
     )
-  }
-
-  if (data?.content) return <div>{data.content.toUpperCase()}</div>
-
-  return (
-    <Image
-      src={data?.image}
-      alt="Img"
-      width={10}
-      height={10}
-      className={data?.single ? 'w-28 h-28 ml-6 mr-6' : 'w-28 h-28'}
-    />
-  )
 }
 
 export default MarqueeChildren
