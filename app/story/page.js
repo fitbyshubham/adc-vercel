@@ -94,7 +94,7 @@ const StoryDetail = () => {
           {title}
         </Text>
         <Text
-          smallCase={true}
+          capitalize={true}
           twClassName={
             'text-[34px] max-md:text-[22px] w-[53rem] max-md:w-[41rem] max-sm:w-[335px]'
           }

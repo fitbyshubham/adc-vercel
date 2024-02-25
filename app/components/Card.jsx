@@ -25,6 +25,9 @@ const Card = ({
   descriptionStyle,
   columnSpan,
   className,
+  imageStyle,
+  name,
+  nameStyle,
 }) => {
   const large = size === 'large' && !covered
   const coverCardAddedStyles = covered
@@ -54,10 +57,16 @@ const Card = ({
             className={
               covered ? 'w-[105px] pb-12' : large ? 'w-[400px]' : 'w-[200px]'
             }
+            style={imageStyle}
           />
         ) : null}
       </div>
       <div className="flex flex-col gap-5">
+        {name ? (
+          <div className="text-[15px] uppercase" style={nameStyle}>
+            {name}
+          </div>
+        ) : null}
         {title ? (
           <div
             className={

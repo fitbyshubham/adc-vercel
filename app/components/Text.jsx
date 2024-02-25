@@ -2,13 +2,13 @@ import React from 'react'
 
 const Text = ({
   children,
-  smallCase,
+  capitalize,
   fontSize,
   twClassName,
   onClick,
   style,
 }) => {
-  const twStyle = smallCase ? twClassName : 'uppercase ' + twClassName
+  const twStyle = capitalize ? twClassName : 'uppercase ' + twClassName
 
   return (
     <div className={twStyle} onClick={onClick} style={{ fontSize, ...style }}>
