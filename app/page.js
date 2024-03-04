@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import Button from './components/Button'
 import Card from './components/Card'
 import Filters from './components/Filters'
@@ -76,11 +77,11 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="flex justify-center p-20">
+      <Link href="/insights" className="flex justify-center p-20">
         <Button primaryBtn={true} width={200}>
-          MITGLIED WERDEN
+          WEITER zu insights
         </Button>
-      </div>
+      </Link>
       <div
         className={
           pageData?.headline1?.visible
@@ -115,11 +116,11 @@ export default function Home() {
             />
           ))}
         </div>
-        <div>
+        <Link href="/news&events">
           <Button primaryBtn={true} width={180}>
             ALLE ANZEIGEN
           </Button>
-        </div>
+        </Link>
       </div>
       <div
         className={
