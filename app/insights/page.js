@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Filters from '../components/Filters'
 import Card from '../components/Card'
@@ -164,7 +165,7 @@ const Insights = () => {
       </div>
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
         <div>KATEGORIEN</div>
-        <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-8">
+        <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
           {cards2.map((card) => (
             <Card
               key={card.id}
@@ -183,7 +184,7 @@ const Insights = () => {
       <div>
         <div className="flex flex-col items-center">
           <div className="pb-20">Weitere Artikel</div>
-          <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-24">
+          <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
             {cards3.map((card) => (
               <Card
                 key={card.id}

@@ -3,6 +3,7 @@ import Text from '@/app/components/Text'
 import Image from 'next/image'
 import speaker_img_not_found from '@/assets/images/speaker.png'
 import Card from '@/app/components/Card'
+import Link from 'next/link'
 
 const ProgramView = () => {
   const header = 'CREATIVE SELFDIRECTION'
@@ -31,10 +32,12 @@ const ProgramView = () => {
     Die Platzzahl am Workshop ist limitiert: First come, first served.`
 
   return (
-    <div className="p-20">
+    <div className="p-20 max-md:p-5">
       <div className="pt-28 text-center">BACK</div>
-      <div className="text-center">
-        <Text fontSize={120}>{header}</Text>
+      <div className="text-center max-sm:text-left">
+        <Text twClassName="text-[120px] max-md:text-[55px] max-sm:text-[30px]">
+          {header}
+        </Text>
         <Text>{date}</Text>
         <p>{info}</p>
         <div className="pt-10">
@@ -43,13 +46,20 @@ const ProgramView = () => {
           </Button>
         </div>
       </div>
-      <div className="flex justify-between pt-20">
-        <Image
-          src={speaker_img_not_found}
-          alt="Speaker"
-          className="w-[360px] h-[360px]"
-        />
-        <div className="w-[752px]">
+      <div className="flex max-sm:flex-col justify-between max-md:gap-5 pt-20">
+        <div>
+          <Image
+            src={speaker_img_not_found}
+            alt="Speaker"
+            className="w-[360px] h-[360px] max-md:w-[229px] max-md:h-[229px] max-sm:w-[335px] max-sm:h-[335px]"
+          />
+          <div className="flex gap-3 text-[12px] pt-3">
+            <Link href="#">{'LinkedIn'.toUpperCase()}</Link>
+            <Link href="#">{'website'.toUpperCase()}</Link>
+            <Link href="#">{'Instagram'.toUpperCase()}</Link>
+          </div>
+        </div>
+        <div className="w-[752px] max-md:w-[479px] max-sm:w-[300px]">
           <Text fontSize={30} twClassName="leading-tight">
             {speakerName}
           </Text>
@@ -59,7 +69,7 @@ const ProgramView = () => {
           <p className="text-[22px]">{speakerMoreInfo}</p>
         </div>
       </div>
-      <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 w-[752px] mt-20">
+      <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 w-[752px] max-md:w-full mt-20">
         <Text>ADC Forward</Text>
         <Text fontSize={15} capitalize={true}>
           {cardInfo}
@@ -75,10 +85,10 @@ const ProgramView = () => {
       </div>
       <div className="flex flex-col items-center gap-10 pt-20">
         <Text>ALLE SPEAKERS</Text>
-        <div className="grid grid-cols-3 gap-28">
+        <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-28 max-md:gap-14">
           <Card
             imageCard={true}
-            width={308}
+            className="w-[308px] max-md:w-[200px]"
             name={'Pascal geissbühler'}
             title={'«Playful Exploration in Midjourney»'}
             description={'Donnerstag, 8. Juni // 15 – 17 UHR'}
@@ -87,7 +97,7 @@ const ProgramView = () => {
           />
           <Card
             imageCard={true}
-            width={308}
+            className="w-[308px] max-md:w-[200px]"
             name={'Pascal geissbühler'}
             title={'«Playful Exploration in Midjourney»'}
             description={'Donnerstag, 8. Juni // 15 – 17 UHR'}
@@ -96,7 +106,7 @@ const ProgramView = () => {
           />
           <Card
             imageCard={true}
-            width={308}
+            className="w-[308px] max-md:w-[200px]"
             name={'Pascal geissbühler'}
             title={'«Playful Exploration in Midjourney»'}
             description={'Donnerstag, 8. Juni // 15 – 17 UHR'}

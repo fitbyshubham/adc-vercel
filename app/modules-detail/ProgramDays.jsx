@@ -17,11 +17,11 @@ const ProgramDays = ({ data }) => {
   }
 
   return (
-    <div className="w-[751px]">
+    <div className="w-[751px] max-md:w-[420px] max-sm:w-[300px]">
       {data.map((items) => {
         return (
           <div key={items.id}>
-            <div className="border-b-2 border-black pb-5 flex justify-between">
+            <div className="border-b-2 border-black pb-5 pt-5 flex justify-between">
               <Text>{items.date}</Text>
               {openedProgram === items.id ? (
                 <div

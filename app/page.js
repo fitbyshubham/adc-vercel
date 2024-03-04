@@ -7,6 +7,9 @@ import Marquee from './components/Marquee'
 import MarqueeChildren from './components/MarqueeChildren'
 import Api from './api'
 import './style.css'
+import Poster from './components/Poster'
+import Text from './components/Text'
+import Loading from './components/Loading'
 
 export default function Home() {
   const [pageData, setPageData] = useState(null)
@@ -16,7 +19,6 @@ export default function Home() {
     Api.getHomePage()
       .then((res) => {
         const data = res.data.attributes
-        console.log(data)
         setPageData(data)
         setLoading(false)
       })
@@ -37,43 +39,38 @@ export default function Home() {
     'col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5',
   ]
 
-  if (loading) return null
+  if (loading)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loading size="lg" />
+      </div>
+    )
 
   return (
     <main>
       <div className="gradient-background">
         <div className="flex justify-center items-center h-[45rem]">
           <Marquee speed={200} textSize={220}>
-            <MarqueeChildren content={pageData.heading.content} />
+            <MarqueeChildren content={pageData?.hero?.headline?.text} />
           </Marquee>
-          <div
-            className="w-[205px] h-[205px] max-md:w-[150px] max-md:h-[150px] p-10 top-[23rem] right-[18rem] max-md:right-[2rem] rounded-full flex-col justify-center items-center gap-5 absolute bg-black text-white z-10"
-            style={{
-              display: pageData.heading.poster.visible ? 'flex' : 'none',
-            }}
-          >
-            <div className="uppercase text-[22px] max-md:text-[14px] text-center">
-              {pageData.heading.poster.title}
-            </div>
-            <div className="text-sm max-sm:text-[8px]">
-              {pageData.heading.poster.subTitle}
-            </div>
-          </div>
         </div>
+        <Poster
+          visible={pageData?.hero?.poster?.visible}
+          title={pageData?.hero?.poster?.title}
+          subTitle={pageData?.hero?.poster?.subTitle}
+        />
       </div>
-      <div className="max-sm:hidden">
-        <Filters filters={filters} />
-      </div>
+      <Filters filters={filters} />
       <div className=" container mx-auto px-4 pt-10">
-        <div className="grid grid-cols-12 gap-4">
-          {pageData.cards1.map((card, index) => (
-            <div className={cardsClassName[index]} key={card.id}>
+        <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">
+          {pageData.insights.map((insight, index) => (
+            <div className={cardsClassName[index]} key={insight.id}>
               <Card
-                title={card.title}
-                description={card.description}
-                buttonText={card.button.title}
-                imageUrl={card.image.url.data.attributes.url}
-                size={card.size}
+                title={insight?.title}
+                description={insight?.description}
+                buttonText="Weiterlesen"
+                imageUrl={insight?.image?.path.data.attributes.url}
+                size={insight?.size}
               />
             </div>
           ))}
@@ -94,25 +91,25 @@ export default function Home() {
         <div className="p-1">
           <Marquee speed={200} textSize={150}>
             <MarqueeChildren
-              content={pageData.headline1.content}
-              images={pageData.headline1.images}
-              visible={pageData.headline1.visible}
+              content={pageData?.headline1?.headline?.text}
+              images={pageData?.headline1?.headline?.images}
+              visible={pageData?.headline1?.visible}
             />
           </Marquee>
         </div>
       </div>
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
-        <div>NEWS & EVENTS</div>
-        <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-8">
-          {pageData.cards2.map((card) => (
+        <Text>NEWS & EVENTS</Text>
+        <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
+          {pageData.highlightedEvents.map((event) => (
             <Card
-              key={card.id}
-              title={card.title}
-              imageCard={Boolean(card.image)}
-              imageUrl={card.image?.url.data.attributes.url}
-              heading={card.heading}
+              key={event.id}
+              title={event?.title}
+              imageCard={Boolean(event.image)}
+              imageUrl={event.image?.path.data.attributes.url}
+              heading={event.heading}
               covered={true}
-              buttonText={card.button.title}
+              buttonText="WEITERLESEN"
               btnBgColor={'#ffffff'}
               btnTextColor={'#000000'}
             />
@@ -134,9 +131,9 @@ export default function Home() {
         <div className="p-1">
           <Marquee speed={200} textSize={150}>
             <MarqueeChildren
-              content={pageData.headline2.content}
-              images={pageData.headline2.images}
-              visible={pageData.headline2.visible}
+              content={pageData?.headline2?.headline?.text}
+              images={pageData?.headline2?.headline.images}
+              visible={pageData?.headline2?.visible}
             />
           </Marquee>
         </div>
@@ -151,9 +148,9 @@ export default function Home() {
         <div className="p-1">
           <Marquee speed={200} textSize={150}>
             <MarqueeChildren
-              content={pageData.headline3.content}
-              images={pageData.headline3.images}
-              visible={pageData.headline3.visible}
+              content={pageData?.headline3?.headline.text}
+              images={pageData?.headline3?.headline.images}
+              visible={pageData?.headline3?.visible}
             />
           </Marquee>
         </div>

@@ -1,9 +1,10 @@
+'use client'
 import Image from 'next/image'
 import Button from './Button'
 import img1 from '@/assets/images/adc_logos_footer 2.png'
 import img2 from '@/assets/images/adc_logos_footer 3.png'
 
-const Footter = () => {
+const Footer = () => {
   return (
     <div className="bg-black">
       <div className="flex justify-between p-5 text-white max-md:hidden">
@@ -57,4 +58,4 @@ const Footter = () => {
   )
 }
 
-export default Footter
+export default Footer

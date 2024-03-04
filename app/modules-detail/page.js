@@ -1,7 +1,11 @@
+'use client'
 import Card from '../components/Card'
 import Filters from '../components/Filters'
 import Text from '../components/Text'
 import ProgramDays from './ProgramDays'
+import Image from 'next/image'
+import no_image_found from '@/assets/images/bildschirmfoto.png'
+import Button from '../components/Button'
 
 const ModulesDetail = () => {
   const filters = ['Program', 'Speakers', 'Tickets', 'Location']
@@ -53,20 +57,42 @@ const ModulesDetail = () => {
   ]
 
   return (
-    <div className="pt-20">
-      <Filters filters={filters} />
-      <div className="p-20">
-        <Text fontSize={120} style={{ textAlign: 'center' }}>
-          Programm
-        </Text>
-        <div className="flex justify-between pt-16">
-          <ProgramDays data={programList} />
-          <div>
-            <Card
-              description={'Festival Pass'.toUpperCase()}
-              size={'small'}
-              buttonText={'JETZT KAUFEN'}
-            />
+    <div className="max-md:flex max-md:justify-center">
+      <div className="pt-20">
+        <div>
+          <Filters filters={filters} />
+        </div>
+        <div className="p-20 max-md:p-5">
+          <Text
+            style={{ textAlign: 'center' }}
+            twClassName={
+              'text-center text-[120px] max-md:text-[55px] max-sm:text-[30px]'
+            }
+          >
+            Program
+          </Text>
+          <div className="flex max-sm:flex-col justify-between max-md:gap-8 pt-16 max-sm:pt-4">
+            <div className="sm:hidden flex gap-5">
+              <Image
+                src={no_image_found}
+                alt="Image"
+                className="w-[98px] h-[98px]"
+              />
+              <div className="flex flex-col gap-4">
+                <Text>{'Festival Pass'}</Text>
+                <Button onButtonClick={() => {}} width={130}>
+                  {'JETZT KAUFEN'}
+                </Button>
+              </div>
+            </div>
+            <ProgramDays data={programList} />
+            <div className="max-sm:hidden">
+              <Card
+                description={'Festival Pass'.toUpperCase()}
+                size={'small'}
+                buttonText={'JETZT KAUFEN'}
+              />
+            </div>
           </div>
         </div>
       </div>

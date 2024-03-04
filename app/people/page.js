@@ -1,7 +1,19 @@
+'use client'
+import Api from '../api'
+import Button from '../components/Button'
 import Filters from '../components/Filters'
+import Loading from '../components/Loading'
 import Search from '../components/Search'
+import { useEffect, useState } from 'react'
+import Text from '../components/Text'
 
 const People = () => {
+  const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [text, setText] = useState('')
+  const [people, setPeople] = useState(null)
+  const [meta, setMeta] = useState({})
+
   const filters = [
     'All',
     'Youngsters',
@@ -12,31 +24,59 @@ const People = () => {
     'Friends',
   ]
 
+  const fetchPeopleData = (searchText, page, prevPeopleData = []) => {
+    setLoading(true)
+    Api.getPeoplePage(searchText, page, 10)
+      .then((res) => {
+        if (prevPeopleData) {
+          setPeople([...prevPeopleData, ...res.data])
+        } else setPeople(res.data)
+        setMeta(res.meta)
+        setLoading(false)
+      })
+      .catch(console.log)
+  }
+
+  useEffect(() => {
+    fetchPeopleData('', 1)
+  }, [])
+
+  const handleSearch = (text) => {
+    setPage(1)
+    fetchPeopleData(text, 1)
+  }
+
+  const handleShowMore = () => {
+    setPage(page + 1)
+    fetchPeopleData(text, page + 1, people)
+  }
+
   return (
     <div className="pt-20 flex flex-col items-center">
       <Filters filters={filters} />
       <div className="p-20 max-md:p-8">
-        <Search />
+        <Search text={text} setText={setText} handleSearch={handleSearch} />
       </div>
-      <div className="text-center text-[55px] max-md:text-[24px] pb-10">
-        <div>Marietta Albinus</div>
-        <div>Lena Altorfe</div>
-        <div>Martina Anderberg</div>
-        <div>Marcel Benz</div>
-        <div>Rainer Bühle</div>
-        <div>Petra Dreyfu</div>
-        <div>Tino Elsene</div>
-        <div>Roman Emund</div>
-        <div>Martin Frank</div>
-        <div>Kathrin Hasenböhler Viollie</div>
-        <div>Valerie Hefermehl</div>
-        <div>Kathleen Heimst Grimstad</div>
-        <div>Isabelle Hettel</div>
-        <div>Nicolas Hostettle</div>
-        <div>Pam Hügli</div>
-        <div>Susan Isko</div>
-        <div>Markus Kammermann</div>
-        <div>Saskia Kathmann</div>
+      <div className="text-center text-[55px] max-md:text-[24px] pb-10 min-h-[20rem] flex flex-col justify-center items-center">
+        {people &&
+          people.map((item) => <div key={item.id}>{item.attributes.name}</div>)}
+        {people && people.length === 0 ? (
+          <Text fontSize={18}>No result found!</Text>
+        ) : (
+          <div
+            className={`p-5 ${
+              meta?.pagination?.pageCount === page ? 'hidden' : ''
+            }`}
+          >
+            {loading ? (
+              <Loading size="md" />
+            ) : (
+              <Button onButtonClick={handleShowMore} width={200}>
+                <Text>weitere anzeigen</Text>
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )

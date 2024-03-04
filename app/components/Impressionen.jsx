@@ -9,7 +9,7 @@ const Impressionen = () => {
       <div className="text-center text-white text-[24px] relative top-[18rem]">
         IMPRESSIONEN 2023
       </div>
-      <div className="flex">
+      <div className="flex max-md:flex-col max-sm:flex-col">
         <Image src={i3} alt="Im3" />
         <Image src={i2} alt="Im2" />
         <Image src={i1} alt="Im1" />

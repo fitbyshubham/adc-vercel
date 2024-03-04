@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import no_image_found from '@/assets/images/bildschirmfoto.png'
 import Button from './Button'
@@ -35,7 +36,7 @@ const Card = ({
       className
     : className
 
-  const concatedImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
+  const concatImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
     <div
       style={{ width, ...componentStyle }}
@@ -50,7 +51,7 @@ const Card = ({
         ) : null}
         {imageCard ? (
           <Image
-            src={concatedImageUrl || no_image_found}
+            src={concatImageUrl || no_image_found}
             alt="Card img"
             width={100}
             height={100}

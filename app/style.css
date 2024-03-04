@@ -1,20 +1,4 @@
 .gradient-background {
-  /* background: radial-gradient(
-    circle,
-    ,
-    #dadee7,
-    #8a95e8,
-    #e188a0,
-    #a9c2f5,
-    #f3a2a6,
-    #d7496f
-  ); */
-  /* background: linear-gradient(#d65177, transparent),
-    linear-gradient(to top left, #dadee7, transparent),
-    linear-gradient(to top right, #8a95e8, transparent);
-  background-blend-mode: screen;
-  background-size: 360% 360%;
-  animation: gradient-animation 6s ease infinite; */
   background: linear-gradient(#d65177, transparent),
     linear-gradient(to top left, lime, transparent),
     linear-gradient(to top right, blue, transparent);

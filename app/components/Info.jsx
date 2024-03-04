@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Button from './Button'
 
@@ -28,7 +29,7 @@ const Info = ({
 }) => {
   return (
     <div
-      className="bg-[#EAEAEA] flex flex-col gap-10 w-[52rem]"
+      className="bg-[#EAEAEA] flex flex-col gap-10 w-[52rem] max-md:w-[35rem] max-sm:w-[18rem]"
       style={componentStyle}
     >
       {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}

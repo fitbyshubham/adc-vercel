@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Button = ({
   children,
   onButtonClick,
@@ -22,6 +20,7 @@ const Button = ({
         color: textColor,
         ...style,
       }}
+      onClick={onButtonClick}
     >
       {children}
     </button>

@@ -3,16 +3,16 @@ import config from '../apiConfig'
 
 const MarqueeChildren = ({ content, images, visible = true }) => {
   if (!visible) return null
-
+  console.log(images)
   if (content)
     return (
       <div className="flex gap-4 items-center pr-28">
         <div>{content.toUpperCase()}</div>
         <div className="flex gap-3">
-          {images?.map((image) => (
+          {images?.data?.map((image) => (
             <Image
               key={image.id}
-              src={config.IMAGE_API_URL.concat(image.url?.data?.attributes.url)}
+              src={config.IMAGE_API_URL.concat(image?.attributes.url)}
               alt="Img"
               width={10}
               height={10}

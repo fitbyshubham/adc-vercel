@@ -11,7 +11,7 @@ const Learning = () => {
     <div className="pt-20">
       <Filters filters={filters} />
       <div className=" container mx-auto px-4 pt-10 pb-10">
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">
           <div className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
             <Card
               title={'Fünf Kreative und ihre BÜrosessel'}
@@ -42,7 +42,7 @@ const Learning = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center p-28">
+      <div className="flex justify-center p-28 max-sm:p-5">
         <Info
           title={'für die nächste generation'}
           description={
