@@ -29,11 +29,30 @@ export const insightPageFilters = [
 ]
 
 export const peoplePageFilters = [
-  { text: 'All', path: '/' },
-  { text: 'Youngsters', path: '/' },
-  { text: 'Newbies', path: '/' },
-  { text: 'Jury Members', path: '/' },
-  { text: 'Board', path: '/' },
-  { text: 'Legends', path: '/' },
-  { text: 'Friends', path: '/' },
+  { id: 'all', text: 'All', path: '/' },
+  { id: 'youngsters', text: 'Youngsters', path: '/' },
+  { id: 'newbies', text: 'Newbies', path: '/' },
+  { id: 'jury-members', text: 'Jury Members', path: '/' },
+  { id: 'board', text: 'Board', path: '/' },
+  { id: 'legends', text: 'Legends', path: '/' },
+  { id: 'friends', text: 'Friends', path: '/' },
+]
+
+export const creativeDaysFilters = [
+  { id: 'program', text: 'Program', path: '/creative-days/category?type=' },
+  { id: 'speakers', text: 'Speakers', path: '/creative-days/category?type=' },
+  { id: 'tickets', text: 'Tickets', path: '/creative-days/category?type=' },
+  { id: 'location', text: 'Location', path: '/creative-days/category?type=' },
+]
+
+export const awardsFilters = [
+  { id: 'winners', text: 'WINNERS', path: '/awards/group?type=' },
+  { id: 'ranking', text: 'Ranking', path: '/awards/group?type=' },
+  { id: 'guidelines', text: 'Guidelines', path: '/awards/group?type=' },
+  {
+    id: 'young-creatives',
+    text: 'Young Creatives',
+    path: '/awards/group?type=',
+  },
+  { id: 'adc-europe', text: 'ADC EUROPE', path: '/awards/group?type=' },
 ]

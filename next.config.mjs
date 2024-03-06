@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ['localhost', 'i.ibb.co'],
-  },
-}
+	images: {
+		remotePatterns: [
+			{
+				hostname: 'localhost',
+			},
+			{
+				hostname: 'i.ibb.co',
+			},
+		],
+	},
+};
 
-export default nextConfig
+export default nextConfig;

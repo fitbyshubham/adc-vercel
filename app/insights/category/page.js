@@ -6,6 +6,7 @@ import { insightPageFilters } from '../../utils/filters'
 import { notFound } from 'next/navigation'
 import Button from '@/app/components/Button'
 import Card from '@/app/components/Card'
+import { chunkArray } from '@/app/utils/arrayChunks'
 
 const mapPage = {
   all: {
@@ -420,26 +421,25 @@ const Category = () => {
     <div className="pt-20">
       <Filters filters={insightPageFilters} activeFilter={type} />
       <Text twClassName="text-center text-[55px]">{pageFixedData.header}</Text>
-      {/* <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24 pt-20"> */}
-      <div className="flex flex-wrap items-center justify-center w-full">
-        {cards3.map((card, index) => (
-          <div
-            key={index}
-            className={`${index % 7 < 4 ? 'w-1/4 px-2' : 'w-1/3 px-2'}`}
-          >
-            <Card
-              description={card.description}
-              size={card.size}
-              componentStyle={{ width: 250, minHeight: 250 }}
-            />
+      <div className="flex flex-col items-center gap-20 pt-16">
+        {chunkArray(cards3).map((items, index) => (
+          <div key={index} className="flex gap-10">
+            {items.map((card, index) => (
+              <div key={index}>
+                <Card
+                  description={card.description}
+                  size={card.size}
+                  componentStyle={{ width: 250, minHeight: 250 }}
+                />
+              </div>
+            ))}
           </div>
         ))}
-      </div>
-      {/* </div> */}
-      <div className="p-20">
-        <Button onButtonClick={() => {}} width={160}>
-          WEITERE LADEN
-        </Button>
+        <div className="py-10">
+          <Button onButtonClick={() => {}} width={160}>
+            WEITERE LADEN
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -5,16 +5,9 @@ import Info from '../components/Info'
 import Marquee from '../components/Marquee'
 import MarqueeChildren from '../components/MarqueeChildren'
 import '../style.css'
+import { awardsFilters } from '../utils/filters'
 
 const CreativeDays = () => {
-  const filters = [
-    'WINNERS',
-    'Ranking',
-    'Guidelines',
-    'Young CreativeS',
-    'ADC EUROPE',
-  ]
-
   const des = `Die Call for Entries für die ADC Awards 2023 sind ab sofort eröffnet. Dieses Mal gibt es drei spannende Premieren: die Kategorien «Spatial Experience» und «Creative Effectiveness» sowie den Sonderpreis ADCESG Award. Einsendeschluss ist der NEU der 22. März 2023.
   Für die nächsten ADC Awards, die im Mai/Juni 2023 stattfinden, freut sich der ADC Switzerland auf Einsendungen. Unter anderem auch für die neu geschaffene Kategorie «Spatial Experience», die Einreichungen in den Bereichen «Events», «Exhibitions», «Public Space» und «Digital Space» umfasst. Damit können neu auch szenographische Ideen eingereicht werden, die Flächen bzw. Räume dreidimensional physisch und/oder digital bespielen.`
   return (
@@ -38,7 +31,7 @@ const CreativeDays = () => {
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <Filters filters={filters} />
+        <Filters filters={awardsFilters} />
         <div className="pt-20 pb-20">
           <Info
             description={des}
