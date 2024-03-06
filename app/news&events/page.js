@@ -6,6 +6,7 @@ import Button from '../components/Button'
 import Api from '../api'
 import Text from '../components/Text'
 import Loading from '../components/Loading'
+import moment from 'moment'
 
 const NewsAndEvents = () => {
   const [loading, setLoading] = useState(true)
@@ -26,7 +27,7 @@ const NewsAndEvents = () => {
 
   const fetchNewsEventsData = (searchText, page, prevNewsEventsData = []) => {
     setLoading(true)
-    Api.getNewsEventsPage(searchText, page, 8)
+    Api.getNewsEvents(searchText, page, 8)
       .then((res) => {
         if (prevNewsEventsData) {
           setNewsEvents([...prevNewsEventsData, ...res.data])
@@ -63,7 +64,7 @@ const NewsAndEvents = () => {
             <Card
               key={attributes.id}
               title={attributes.title}
-              heading={attributes.heading}
+              heading={moment(attributes.date).format('DD.MM.YYYY')}
               covered={true}
               imageCard={Boolean(attributes?.image)}
               imageUrl={attributes?.image?.path.data.attributes.url}

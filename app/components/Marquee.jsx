@@ -7,6 +7,7 @@ const Marquee = ({ children, textSize, speed, delay, style }) => {
         fontSize: `${textSize}px`,
         ...style,
       }}
+      autoFill={true}
       speed={speed}
       delay={delay || 1}
       className={'font-semibold'}

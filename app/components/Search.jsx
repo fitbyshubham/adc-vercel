@@ -14,6 +14,12 @@ const Search = ({ text, setText, handleSearch }) => {
     setText(currentValue)
   }
 
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      handleSearch(text)
+    }
+  }
+
   const handleActiveStatus = () => {
     if (isActive) {
       setText('')
@@ -22,8 +28,9 @@ const Search = ({ text, setText, handleSearch }) => {
 
     setIsActive(!isActive)
   }
+
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center max-sm:justify-center gap-10">
       <button
         className="bg-[#EAEAEA] w-[50px] h-[50px] rounded-full p-4 flex justify-center items-center cursor-pointer"
         onClick={handleActiveStatus}
@@ -35,12 +42,15 @@ const Search = ({ text, setText, handleSearch }) => {
         )}
       </button>
       <div
-        className={`border-b-2 border-black p-1  ${isActive ? '' : 'hidden'}`}
+        className={`flex items-center gap-2 border-b-2 border-black p-1  ${
+          isActive ? '' : 'hidden'
+        }`}
       >
         <input
           placeholder="Search..."
           value={text}
-          className={`outline-none w-[478px] max-sm:w-[335px]  text-[12px] pb-4`}
+          className={`outline-none w-[478px] max-sm:w-[280px] text-[12px]`}
+          onKeyPress={handleKeyPress}
           onChange={handleCurrentSearch}
         />
         <Button

@@ -11,9 +11,12 @@ import './style.css'
 import Poster from './components/Poster'
 import Text from './components/Text'
 import Loading from './components/Loading'
+import moment from 'moment'
+import { homeFilters } from './utils/filters'
 
 export default function Home() {
   const [pageData, setPageData] = useState(null)
+  const [highlightedNewsEvents, setHighlightedNewsEvents] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -21,18 +24,16 @@ export default function Home() {
       .then((res) => {
         const data = res.data.attributes
         setPageData(data)
-        setLoading(false)
+        Api.getNewsEvents('', 1, 4)
+          .then((res) => {
+            const data = res.data
+            setHighlightedNewsEvents(data)
+            setLoading(false)
+          })
+          .catch(console.log)
       })
       .catch(console.log)
   }, [])
-
-  const filters = [
-    'INSIGHTS',
-    'Learning',
-    'Creative Days',
-    'ADC Awards',
-    'People',
-  ]
 
   const cardsClassName = [
     'col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6',
@@ -61,7 +62,7 @@ export default function Home() {
           subTitle={pageData?.hero?.poster?.subTitle}
         />
       </div>
-      <Filters filters={filters} />
+      <Filters filters={homeFilters} />
       <div className=" container mx-auto px-4 pt-10">
         <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">
           {pageData.insights.map((insight, index) => (
@@ -102,19 +103,22 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
         <Text>NEWS & EVENTS</Text>
         <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
-          {pageData.highlightedEvents.map((event) => (
-            <Card
-              key={event.id}
-              title={event?.title}
-              imageCard={Boolean(event.image)}
-              imageUrl={event.image?.path.data.attributes.url}
-              heading={event.heading}
-              covered={true}
-              buttonText="WEITERLESEN"
-              btnBgColor={'#ffffff'}
-              btnTextColor={'#000000'}
-            />
-          ))}
+          {highlightedNewsEvents
+            ? highlightedNewsEvents.map(({ attributes }) => (
+                <Card
+                  key={attributes.id}
+                  title={attributes.title}
+                  heading={moment(attributes.date).format('DD.MM.YYYY')}
+                  covered={true}
+                  imageCard={Boolean(attributes?.image)}
+                  imageUrl={attributes?.image?.path.data.attributes.url}
+                  buttonText="WEITERLESEN"
+                  btnWidth={150}
+                  btnBgColor={'#ffffff'}
+                  btnTextColor={'#000000'}
+                />
+              ))
+            : null}
         </div>
         <Link href="/news&events">
           <Button primaryBtn={true} width={180}>

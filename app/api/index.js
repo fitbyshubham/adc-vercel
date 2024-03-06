@@ -19,7 +19,7 @@ export default {
       axiosInstance(config.token)
         .get(
           config.HOMEPAGE.BASE.concat(
-            '?populate=hero.headline,hero.poster,insights.image.path,headline1.headline.images,headline1.poster,headline2.headline.images,headline2.poster,headline3.headline.images,headline3.poster,highlightedEvents.image.path'
+            '?populate=hero.headline,hero.poster,insights.image.path,headline1.headline.images,headline1.poster,headline2.headline.images,headline2.poster,headline3.headline.images,headline3.poster'
           )
         )
         .then((res) => resolve(res.data))
@@ -38,7 +38,7 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getNewsEventsPage(name, page, pageSize = 10) {
+  getNewsEvents(name, page, pageSize = 10) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(

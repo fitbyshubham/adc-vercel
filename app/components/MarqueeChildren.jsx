@@ -3,7 +3,7 @@ import config from '../apiConfig'
 
 const MarqueeChildren = ({ content, images, visible = true }) => {
   if (!visible) return null
-  console.log(images)
+
   if (content)
     return (
       <div className="flex gap-4 items-center pr-28">

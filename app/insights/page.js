@@ -3,41 +3,9 @@ import React from 'react'
 import Filters from '../components/Filters'
 import Card from '../components/Card'
 import Button from '../components/Button'
+import { insightPageFilters } from '../utils/filters'
 
 const Insights = () => {
-  const filters = [
-    'All',
-    'Sparks',
-    'Impulse',
-    'Conscious',
-    'Queens & Kings',
-    'Point of View',
-    'Picky',
-  ]
-
-  const cards1 = [
-    {
-      title: 'Fünf Kreative und ihre BÜrosessel',
-      description: 'Sesselwechsel auch ohne Jobwechsel.',
-      buttonText: 'Weiterlesen',
-      size: 'small',
-    },
-    {
-      title: 'Heureka',
-      description:
-        'Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee.',
-      buttonText: 'Weiterlesen',
-      size: 'large',
-    },
-    {
-      title: 'Heureka',
-      description:
-        'Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee.',
-      buttonText: 'Weiterlesen',
-      size: 'small',
-    },
-  ]
-
   const cards2 = [
     {
       id: 1,
@@ -130,7 +98,7 @@ const Insights = () => {
 
   return (
     <div className="pt-20">
-      <Filters filters={filters} />
+      <Filters filters={insightPageFilters} />
       <div className=" container mx-auto px-4 pt-10 pb-10">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
