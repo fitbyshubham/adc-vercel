@@ -1,10 +1,10 @@
-'use client'
-import Image from 'next/image'
-import search_icon from '@/assets/icons/search.png'
-import close_icon from '@/assets/icons/close.png'
-import { useState } from 'react'
-import Button from './Button'
-import Text from './Text'
+"use client"
+import Image from "next/image"
+import search_icon from "@/assets/icons/search.png"
+import close_icon from "@/assets/icons/close.png"
+import { useState } from "react"
+import Button from "./Button"
+import Text from "./Text"
 
 const Search = ({ text, setText, handleSearch }) => {
   const [isActive, setIsActive] = useState(false)
@@ -15,15 +15,15 @@ const Search = ({ text, setText, handleSearch }) => {
   }
 
   function handleKeyPress(event) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleSearch(text)
     }
   }
 
   const handleActiveStatus = () => {
     if (isActive) {
-      setText('')
-      handleSearch('')
+      setText("")
+      handleSearch("")
     }
 
     setIsActive(!isActive)
@@ -43,7 +43,7 @@ const Search = ({ text, setText, handleSearch }) => {
       </button>
       <div
         className={`flex items-center gap-2 border-b-2 border-black p-1  ${
-          isActive ? '' : 'hidden'
+          isActive ? "" : "hidden"
         }`}
       >
         <input
@@ -55,7 +55,7 @@ const Search = ({ text, setText, handleSearch }) => {
         />
         <Button
           width={74}
-          style={{ padding: '5px' }}
+          style={{ padding: "5px" }}
           onButtonClick={() => handleSearch(text)}
         >
           <Text fontSize={12}>Suchen</Text>

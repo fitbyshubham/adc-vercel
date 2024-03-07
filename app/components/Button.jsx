@@ -8,11 +8,11 @@ const Button = ({
   textColor,
   style,
 }) => {
-  const selectedStyle = primaryBtn ? 'bg-black text-[#ffffff]' : 'bg-[#EAEAEA]'
+  const selectedStyle = primaryBtn ? "bg-black text-[#ffffff]" : "bg-[#EAEAEA]"
 
   return (
     <button
-      className={'uppercase  text-sm p-2 rounded-full ' + selectedStyle}
+      className={"uppercase  text-sm p-2 rounded-full " + selectedStyle}
       style={{
         width,
         height,

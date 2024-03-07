@@ -1,6 +1,6 @@
-'use client'
-import React from 'react'
-import Button from './Button'
+"use client"
+import React from "react"
+import Button from "./Button"
 
 const Description = ({ data }) => {
   if (Array.isArray(data)) {
@@ -36,11 +36,11 @@ const Info = ({
       <Description data={description} />
       <div>
         <Button
-          bgColor={btnBgColor || '#FFFFFF'}
+          bgColor={btnBgColor || "#FFFFFF"}
           width={btnWidth}
           primaryBtn={primaryBtn}
         >
-          {btnTitle || 'Weitere Informationen'}
+          {btnTitle || "Weitere Informationen"}
         </Button>
       </div>
     </div>

@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Circular Std';
-  src: url('/fonts/circular-std-6.ttf');
+  font-family: "Circular Std";
+  src: url("/fonts/circular-std-6.ttf");
 }
 
 body {
-  font-family: 'Circular Std';
+  font-family: "Circular Std";
 }

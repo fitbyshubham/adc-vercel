@@ -8,52 +8,47 @@
 }
 
 .creative-gradient-background {
-  background: radial-gradient(
-    circle,
-    #85a58d,
-    #536233,
-    #a4d5af,
-    #3e524c,
-    #82924f,
-    #b3dfc5,
-    #476a64,
-    #63776d,
-    #63776d
-  );
-  background-size: 360% 360%;
-  animation: gradient-animation 6s ease infinite;
+  background: linear-gradient(#000000, transparent),
+    linear-gradient(to top left, #468487, transparent),
+    linear-gradient(to top right, #77873b, transparent);
+  background-blend-mode: screen;
+  background-size: 200% 200%; /* Make sure the size is large enough to cover the animation area */
+  animation: gradient-animation 15s linear infinite;
 }
 
 .awards-gradient-background {
-  background: radial-gradient(
-    circle,
-    #bcb0ad,
-    #fb4f2e,
-    #ea9b89,
-    #f5775c,
-    #9aa7a6,
-    #ce907e,
-    #f55b4c,
-    #ca7c74,
-    #fc7c44,
-    #ca7c74
-  );
-  background-size: 360% 360%;
-  animation: gradient-animation 6s ease infinite;
+  background: linear-gradient(#fb2b02, transparent),
+    linear-gradient(to top left, #939292, transparent),
+    linear-gradient(to top right, #050505, transparent);
+  background-blend-mode: screen;
+  background-size: 200% 200%; /* Make sure the size is large enough to cover the animation area */
+  animation: gradient-animation 15s linear infinite;
 }
 
 @keyframes gradient-animation {
   0%,
   100% {
-    background-position: 0% 0%, 0% 0%, 0% 0%; /* Starting positions for each gradient */
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%; /* Starting positions for each gradient */
   }
   25% {
-    background-position: 100% 100%, 25% 75%, 50% 25%; /* Transition positions */
+    background-position:
+      100% 100%,
+      25% 75%,
+      50% 25%; /* Transition positions */
   }
   50% {
-    background-position: 0% 0%, 50% 25%, 75% 50%; /* Transition positions */
+    background-position:
+      0% 0%,
+      50% 25%,
+      75% 50%; /* Transition positions */
   }
   75% {
-    background-position: 100% 100%, 75% 50%, 100% 100%; /* Transition positions */
+    background-position:
+      100% 100%,
+      75% 50%,
+      100% 100%; /* Transition positions */
   }
 }
