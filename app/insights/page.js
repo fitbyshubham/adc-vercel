@@ -97,11 +97,11 @@ const Insights = () => {
   ]
 
   return (
-    <div className="pt-10">
+    <div className="pt-32">
       <Filters filters={insightPageFilters} />
       <div className=" container mx-auto px-4 pt-10 pb-10">
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
+          <div className="col-span-12 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
             <Card
               title={"Fünf Kreative und ihre BÜrosessel"}
               description={"Sesselwechsel auch ohne Jobwechsel."}
@@ -109,7 +109,7 @@ const Insights = () => {
               size={"small"}
             />
           </div>
-          <div className="col-span-3 md:col-span-3 lg:col-span-3">
+          <div className="col-span-12 md:col-span-3 lg:col-span-3">
             <Card
               title={"Heureka"}
               description={
@@ -133,7 +133,7 @@ const Insights = () => {
       </div>
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
         <div>KATEGORIEN</div>
-        <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
+        <div className="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8">
           {cards2.map((card) => (
             <Card
               key={card.id}

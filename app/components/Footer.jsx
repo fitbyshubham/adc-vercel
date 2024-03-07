@@ -19,9 +19,23 @@ const Footer = () => {
       <div className="flex justify-between max-md:items-center p-5 pt-20 max-md:flex-col">
         <div className="flex flex-col gap-10">
           <ADCLogo isDarkMode={true} width={164} height={44} />
-          <Button onButtonClick={() => {}} width={250}>
-            Subscribe to Newsletter
-          </Button>
+          <div className="flex flex-col gap-y-4 mb-2">
+            <p className="text-sm text-white">
+              Get News & Insights directly to your inbox
+            </p>
+            <div className="px-4 py-2 rounded-full ring-1 ring-zinc-700 flex gap-x-2">
+              <input
+                type="text"
+                name="email"
+                id="email"
+                className="bg-transparent outline-none focus:outline-none text-white placeholder:uppercase text-xs sm:w-[250px] w-full"
+                placeholder="E-mail Address"
+              />
+              <Button width={100} onButtonClick={() => {}}>
+                <p className="text-xs font-bold">Subscribe</p>
+              </Button>
+            </div>
+          </div>
         </div>
         <div className="uppercase flex flex-col gap-5 lg:items-end w-[250px]">
           <p className="text-[#5D5D5D] text-end max-md:text-center ">

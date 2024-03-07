@@ -19,7 +19,7 @@ const ProgramView = () => {
   const type = param.get("type")
 
   return (
-    <div className="pt-[200px] max-md:pt-[100px] flex flex-col md:gap-y-[100px]">
+    <div className="pt-32 max-md:pt-[100px] flex flex-col md:gap-y-[100px]">
       <div className="flex justify-start items-center p-[30px]">
         <Filters filters={creativeDaysFilters} activeFilter={type} />
       </div>

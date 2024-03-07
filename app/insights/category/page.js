@@ -418,12 +418,12 @@ const Category = () => {
   ]
 
   return (
-    <div className="pt-20">
+    <div className="pt-32">
       <Filters filters={insightPageFilters} activeFilter={type} />
       <Text twClassName="text-center text-[55px]">{pageFixedData.header}</Text>
       <div className="flex flex-col items-center gap-20 pt-16">
         {chunkArray(cards3).map((items, index) => (
-          <div key={index} className="flex gap-10">
+          <div key={index} className="flex flex-wrap justify-evenly gap-10">
             {items.map((card, index) => (
               <div key={index}>
                 <Card

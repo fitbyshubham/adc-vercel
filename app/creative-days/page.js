@@ -36,7 +36,7 @@ const CreativeDays = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-10">
         <Filters filters={filters} />
         <div className="pt-20 pb-20">
           <Info
