@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Button from './Button'
 import img1 from '@/assets/images/adc_logos_footer 2.png'
 import img2 from '@/assets/images/adc_logos_footer 3.png'
+import ADCLogo from './ADCLogo'
 
 const Footer = () => {
   return (
@@ -16,15 +17,13 @@ const Footer = () => {
         <div>PEOPLE</div>
       </div>
       <div className="flex justify-between max-md:items-center p-5 pt-20 max-md:flex-col">
-        <div>
+        <div className="flex flex-col gap-10">
+          <ADCLogo isDarkMode={true} width={164} height={44} />
           <Button onButtonClick={() => {}} width={250}>
             Subscribe to Newsletter
           </Button>
         </div>
         <div className="uppercase flex flex-col gap-5 lg:items-end w-[250px]">
-          <div className="text-[#ffffff] text-[48px] max-md:text-center">
-            ADC
-          </div>
           <p className="text-[#5D5D5D] text-end max-md:text-center ">
             ADC Switzerland Zentralstrasse 18, 8003 Zürich +41 44 262 00 33
           </p>
