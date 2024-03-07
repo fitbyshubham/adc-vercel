@@ -1,8 +1,8 @@
-'use client'
-import Image from 'next/image'
-import no_image_found from '@/assets/images/bildschirmfoto.png'
-import Button from './Button'
-import config from '@/app/apiConfig'
+"use client"
+import Image from "next/image"
+import no_image_found from "@/assets/images/bildschirmfoto.png"
+import Button from "./Button"
+import config from "@/app/apiConfig"
 
 const Card = ({
   title,
@@ -30,9 +30,9 @@ const Card = ({
   name,
   nameStyle,
 }) => {
-  const large = size === 'large' && !covered
+  const large = size === "large" && !covered
   const coverCardAddedStyles = covered
-    ? 'bg-[#EAEAEA] w-[295px] min-w-[295px] rounded-xl p-8 justify-between ' +
+    ? "bg-[#EAEAEA] w-[295px] min-w-[295px] rounded-xl p-8 justify-between " +
       className
     : className
 
@@ -40,7 +40,7 @@ const Card = ({
   return (
     <div
       style={{ width, ...componentStyle }}
-      className={'flex flex-col gap-5 min-h-[26rem] ' + coverCardAddedStyles}
+      className={"flex flex-col gap-5 min-h-[26rem] " + coverCardAddedStyles}
       columnspan={columnSpan}
     >
       <div className="flex justify-between">
@@ -56,7 +56,7 @@ const Card = ({
             width={100}
             height={100}
             className={
-              covered ? 'w-[105px] pb-12' : large ? 'w-[400px]' : 'w-[200px]'
+              covered ? "w-[105px] pb-12" : large ? "w-[400px]" : "w-[200px]"
             }
             style={imageStyle}
           />
@@ -71,7 +71,7 @@ const Card = ({
         {title ? (
           <div
             className={
-              covered ? 'text-[26px]' : large ? 'text-[55px]' : 'text-[30px]'
+              covered ? "text-[26px]" : large ? "text-[55px]" : "text-[30px]"
             }
             style={titleStyle}
           >
@@ -80,7 +80,7 @@ const Card = ({
         ) : null}
         {description ? (
           <div
-            className={large ? 'text-[26px]' : 'text-[15px]'}
+            className={large ? "text-[26px]" : "text-[15px]"}
             style={descriptionStyle}
           >
             {description}

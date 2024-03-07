@@ -1,9 +1,9 @@
-'use client'
-import Image from 'next/image'
-import Button from './Button'
-import img1 from '@/assets/images/adc_logos_footer 2.png'
-import img2 from '@/assets/images/adc_logos_footer 3.png'
-import ADCLogo from './ADCLogo'
+"use client"
+import Image from "next/image"
+import Button from "./Button"
+import img1 from "@/assets/images/adc_logos_footer 2.png"
+import img2 from "@/assets/images/adc_logos_footer 3.png"
+import ADCLogo from "./ADCLogo"
 
 const Footer = () => {
   return (
@@ -41,17 +41,9 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="flex p-5 mt-20">
-        <Image
-          src={img1}
-          alt="Supports"
-          className="w-[70rem] max-md:w-[5rem]"
-        />
-        <Image
-          src={img2}
-          alt="Supports"
-          className="w-[20rem] max-md:w-[5rem]"
-        />
+      <div className="flex p-5 mt-20 overflow-hidden">
+        <Image src={img1} alt="Supports" className="w-full" />
+        <Image src={img2} alt="Supports" className="w-full" />
       </div>
     </div>
   )

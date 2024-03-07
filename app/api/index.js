@@ -1,13 +1,13 @@
-import axios from 'axios'
-import config from '../apiConfig'
+import axios from "axios"
+import config from "../apiConfig"
 
 const axiosInstance = function (token) {
   return axios.create({
     baseURL: config.API_URL,
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      Accept: 'application/json, text/plain, */*',
+      "Content-Type": "application/json",
+      Accept: "application/json, text/plain, */*",
     },
   })
 }
@@ -19,7 +19,7 @@ export default {
       axiosInstance(config.token)
         .get(
           config.HOMEPAGE.BASE.concat(
-            '?populate=hero.headline,hero.poster,insights.image.path,headline1.headline.images,headline1.poster,headline2.headline.images,headline2.poster,headline3.headline.images,headline3.poster'
+            "?populate=hero.headline,hero.poster,insights.image.path,headline1.headline.images,headline1.poster,headline2.headline.images,headline2.poster,headline3.headline.images,headline3.poster"
           )
         )
         .then((res) => resolve(res.data))

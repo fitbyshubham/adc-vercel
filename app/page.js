@@ -1,18 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import Button from './components/Button'
-import Card from './components/Card'
-import Filters from './components/Filters'
-import Marquee from './components/Marquee'
-import MarqueeChildren from './components/MarqueeChildren'
-import Api from './api'
-import './style.css'
-import Poster from './components/Poster'
-import Text from './components/Text'
-import Loading from './components/Loading'
-import moment from 'moment'
-import { homeFilters } from './utils/filters'
+"use client"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import Button from "./components/Button"
+import Card from "./components/Card"
+import Filters from "./components/Filters"
+import Marquee from "./components/Marquee"
+import MarqueeChildren from "./components/MarqueeChildren"
+import Api from "./api"
+import "./style.css"
+import Poster from "./components/Poster"
+import Text from "./components/Text"
+import Loading from "./components/Loading"
+import moment from "moment"
+import { homeFilters } from "./utils/filters"
 
 export default function Home() {
   const [pageData, setPageData] = useState(null)
@@ -24,7 +24,7 @@ export default function Home() {
       .then((res) => {
         const data = res.data.attributes
         setPageData(data)
-        Api.getNewsEvents('', 1, 4)
+        Api.getNewsEvents("", 1, 4)
           .then((res) => {
             const data = res.data
             setHighlightedNewsEvents(data)
@@ -36,9 +36,9 @@ export default function Home() {
   }, [])
 
   const cardsClassName = [
-    'col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6',
-    'col-span-3 md:col-span-3 lg:col-span-3',
-    'col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5',
+    "col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6",
+    "col-span-3 md:col-span-3 lg:col-span-3",
+    "col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5",
   ]
 
   if (loading)
@@ -86,8 +86,8 @@ export default function Home() {
       <div
         className={
           pageData?.headline1?.visible
-            ? 'border-b-[1px] border-t-[1px] border-black mt-10'
-            : ''
+            ? "border-b-[1px] border-t-[1px] border-black mt-10"
+            : ""
         }
       >
         <div className="p-1">
@@ -108,14 +108,14 @@ export default function Home() {
                 <Card
                   key={attributes.id}
                   title={attributes.title}
-                  heading={moment(attributes.date).format('DD.MM.YYYY')}
+                  heading={moment(attributes.date).format("DD.MM.YYYY")}
                   covered={true}
                   imageCard={Boolean(attributes?.image)}
                   imageUrl={attributes?.image?.path.data.attributes.url}
                   buttonText="WEITERLESEN"
                   btnWidth={150}
-                  btnBgColor={'#ffffff'}
-                  btnTextColor={'#000000'}
+                  btnBgColor={"#ffffff"}
+                  btnTextColor={"#000000"}
                 />
               ))
             : null}
@@ -129,8 +129,8 @@ export default function Home() {
       <div
         className={
           pageData?.headline2?.visible
-            ? 'border-b-[1px] border-t-[1px] border-black mt-10'
-            : 'border-b-[1px] border-black '
+            ? "border-b-[1px] border-t-[1px] border-black mt-10"
+            : "border-b-[1px] border-black "
         }
       >
         <div className="p-1">
@@ -146,8 +146,8 @@ export default function Home() {
       <div
         className={
           pageData?.headline3?.visible
-            ? 'border-b-[1px] border-black mb-20'
-            : 'mb-20'
+            ? "border-b-[1px] border-black mb-20"
+            : "mb-20"
         }
       >
         <div className="p-1">
