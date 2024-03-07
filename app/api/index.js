@@ -50,4 +50,16 @@ export default {
         .catch((error) => reject(error))
     })
   },
+  getArticles(page = 1, pageSize = 7) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.ARTICLES.BASE.concat(
+            `?populate=image.path,header.title&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+          )
+        )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
 }

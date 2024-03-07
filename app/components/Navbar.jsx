@@ -1,16 +1,21 @@
 "use client"
 import React, { useState } from "react"
+import { usePathname } from "next/navigation"
+
 import Menu from "./Menu"
 import NavLink from "./NavLink"
+import useParentPage from "../hooks/useParentPage"
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const fullPath = usePathname()
+  const { name, path } = useParentPage(fullPath)
 
   const handleClick = () => setOpen(!open)
 
   const linkList = [
-    { title: "ADC", path: "/" },
-    { title: "START", path: "#" },
+    { logo: true, path: "/" },
+    { title: name.toUpperCase(), path },
     { title: open ? "CLOSE" : "MENU", path: "#", handleClick },
   ]
 
@@ -21,6 +26,7 @@ const Navbar = () => {
       {linkList.map((item) => (
         <NavLink
           key={item.title}
+          logo={item.logo}
           title={item.title}
           fontSize={20}
           path={item.path}

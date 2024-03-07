@@ -1,8 +1,9 @@
 import Image from "next/image"
 import no_image_found from "@/assets/images/bildschirmfoto.png"
-import Text from "../components/Text"
-import Button from "../components/Button"
-import Card from "../components/Card"
+import Text from "../../../components/Text"
+import Button from "../../../components/Button"
+import Card from "../../../components/Card"
+import ArticlesLayout from "@/app/components/ArticlesLayout"
 
 const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
   return (
@@ -136,26 +137,8 @@ const StoryDetail = () => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col items-center">
-        <Text fontSize={24}>Weitere Artikel</Text>
-        <div className="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 gap-24 max-md:gap-16 max-sm:gap-8 pt-20 max-sm:pt-10">
-          {cards2.map((card) => (
-            <div key={card.id}>
-              <Card
-                description={card.description}
-                size={card.size}
-                componentStyle={{ minHeight: 200 }}
-                className={"w-[250px] max-md:w-[105px]"}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="p-20">
-          <Button primaryBtn={true} bgColor={"#000000"} width={180}>
-            weiter zu insights
-          </Button>
-        </div>
-      </div>
+
+      <ArticlesLayout items={cards2} />
     </div>
   )
 }
