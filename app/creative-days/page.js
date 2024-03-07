@@ -15,7 +15,7 @@ const CreativeDays = () => {
 	];
 
 	return (
-		<div>
+		<>
 			<div className='creative-gradient-background flex flex-col h-[90rem]'>
 				<Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
 					<MarqueeChildren
@@ -51,7 +51,7 @@ const CreativeDays = () => {
 				</div>
 				<Impressionen />
 			</div>
-		</div>
+		</>
 	);
 };
 
