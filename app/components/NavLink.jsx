@@ -1,6 +1,7 @@
 import Link from "next/link"
+import ADCLogo from "./ADCLogo"
 
-const NavLink = ({ title, path, handleClick, fontSize }) => {
+const NavLink = ({ title, logo, path, handleClick, fontSize }) => {
   return (
     <Link
       className="font-semibold"
@@ -8,7 +9,7 @@ const NavLink = ({ title, path, handleClick, fontSize }) => {
       href={path}
       onClick={handleClick}
     >
-      {title}
+      {logo ? <ADCLogo /> : <div>{title}</div>}
     </Link>
   )
 }

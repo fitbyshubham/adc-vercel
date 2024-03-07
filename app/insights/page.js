@@ -1,11 +1,30 @@
 "use client"
-import React from "react"
+import Link from "next/link"
 import Filters from "../components/Filters"
 import Card from "../components/Card"
 import Button from "../components/Button"
 import { insightPageFilters } from "../utils/filters"
+import { useState, useEffect } from "react"
+import Api from "../api"
+import Loading from "../components/Loading"
 
 const Insights = () => {
+  const [loading, setLoading] = useState(true)
+  const [articles, setArticles] = useState(null)
+
+  const fetchArticles = async (page = 1) => {
+    Api.getArticles(page, 8)
+      .then((res) => {
+        setArticles(res.data)
+        setLoading(false)
+      })
+      .catch(console.log)
+  }
+
+  useEffect(() => {
+    fetchArticles()
+  }, [])
+
   const cards2 = [
     {
       id: 1,
@@ -50,49 +69,6 @@ const Insights = () => {
       btnWidth: 150,
       btnBgColor: "#ffffff",
       btnTextColor: "#000000",
-    },
-  ]
-
-  const cards3 = [
-    {
-      id: 1,
-      description: "Mode, die einem nur im Traum einfällt",
-      size: "small",
-    },
-    {
-      id: 2,
-      description: "Fünf Kreative und ihre Bürosessel",
-      size: "small",
-    },
-    {
-      id: 3,
-      description: "Sesselwechsel auch ohne Jobwechsel.",
-      size: "small",
-    },
-    {
-      id: 4,
-      description: "Origineller mit Yoga",
-      size: "small",
-    },
-    {
-      id: 5,
-      description: "Origineller mit Yoga",
-      size: "small",
-    },
-    {
-      id: 6,
-      description: "Origineller mit Yoga",
-      size: "small",
-    },
-    {
-      id: 7,
-      description: "Mode, die einem nur im Traum einfällt",
-      size: "small",
-    },
-    {
-      id: 8,
-      description: "Mode, die einem nur im Traum einfällt",
-      size: "small",
     },
   ]
 
@@ -152,16 +128,24 @@ const Insights = () => {
       <div>
         <div className="flex flex-col items-center">
           <div className="pb-20">Weitere Artikel</div>
-          <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
-            {cards3.map((card) => (
-              <Card
-                key={card.id}
-                description={card.description}
-                size={card.size}
-                componentStyle={{ width: 250, minHeight: 250 }}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center h-[20rem]">
+              <Loading size="md" />
+            </div>
+          ) : (
+            <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
+              {articles.map(({ attributes }) => (
+                <Link key={attributes.id} href="/insights/article/1">
+                  <Card
+                    description={attributes.header.title}
+                    size="small"
+                    imageUrl={attributes?.image?.path.data.attributes.url}
+                    componentStyle={{ width: 250, minHeight: 250 }}
+                  />
+                </Link>
+              ))}
+            </div>
+          )}
           <div className="p-20">
             <Button onButtonClick={() => {}} width={200}>
               weiter zu insights

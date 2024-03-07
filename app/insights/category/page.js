@@ -7,6 +7,7 @@ import { notFound } from "next/navigation"
 import Button from "@/app/components/Button"
 import Card from "@/app/components/Card"
 import { chunkArray } from "@/app/utils/arrayChunks"
+import ArticlesLayout from "@/app/components/ArticlesLayout"
 
 const mapPage = {
   all: {
@@ -421,26 +422,7 @@ const Category = () => {
     <div className="pt-20">
       <Filters filters={insightPageFilters} activeFilter={type} />
       <Text twClassName="text-center text-[55px]">{pageFixedData.header}</Text>
-      <div className="flex flex-col items-center gap-20 pt-16">
-        {chunkArray(cards3).map((items, index) => (
-          <div key={index} className="flex gap-10">
-            {items.map((card, index) => (
-              <div key={index}>
-                <Card
-                  description={card.description}
-                  size={card.size}
-                  componentStyle={{ width: 250, minHeight: 250 }}
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-        <div className="py-10">
-          <Button onButtonClick={() => {}} width={160}>
-            WEITERE LADEN
-          </Button>
-        </div>
-      </div>
+      <ArticlesLayout items={cards3} />
     </div>
   )
 }
