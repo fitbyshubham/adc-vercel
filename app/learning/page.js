@@ -7,7 +7,7 @@ import { learningFilters } from "../utils/filters"
 
 const Learning = () => {
   return (
-    <div className="pt-20">
+    <div className="pt-32">
       <Filters filters={learningFilters} />
       <div className=" container mx-auto px-4 pt-10 pb-10">
         <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">

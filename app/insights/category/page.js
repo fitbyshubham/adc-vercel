@@ -419,7 +419,7 @@ const Category = () => {
   ]
 
   return (
-    <div className="pt-20">
+    <div className="pt-32">
       <Filters filters={insightPageFilters} activeFilter={type} />
       <Text twClassName="text-center text-[55px]">{pageFixedData.header}</Text>
       <ArticlesLayout items={cards3} />

@@ -50,7 +50,7 @@ const People = () => {
   }
 
   return (
-    <div className="pt-20 flex flex-col items-center">
+    <div className="pt-32 flex flex-col items-center">
       <Filters filters={peoplePageFilters} />
       <div className="md:p-20 pb-10 pt-8">
         <Search text={text} setText={setText} handleSearch={handleSearch} />
