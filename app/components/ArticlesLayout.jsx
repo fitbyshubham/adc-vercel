@@ -8,7 +8,10 @@ const ArticlesLayout = ({ items }) => {
   return (
     <div className="flex flex-col items-center gap-20 pt-16">
       {chunkArray(items).map((items, index) => (
-        <div key={index} className="flex gap-10">
+        <div
+          key={index}
+          className="flex gap-10 flex-wrap items-center justify-center"
+        >
           {items.map((card, index) => (
             <Link key={index} href="/insights/article/1">
               <Card
