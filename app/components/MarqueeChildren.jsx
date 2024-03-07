@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import config from '../apiConfig'
+import Image from "next/image"
+import config from "../apiConfig"
 
 const MarqueeChildren = ({ content, images, visible = true }) => {
   if (!visible) return null
@@ -16,7 +16,7 @@ const MarqueeChildren = ({ content, images, visible = true }) => {
               alt="Img"
               width={10}
               height={10}
-              className={'w-28 h-28'}
+              className={"w-28 h-28"}
             />
           ))}
         </div>

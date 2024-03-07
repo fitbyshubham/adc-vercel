@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 const Text = ({
   children,
@@ -8,7 +8,7 @@ const Text = ({
   onClick,
   style,
 }) => {
-  const twStyle = capitalize ? twClassName : 'uppercase ' + twClassName
+  const twStyle = capitalize ? twClassName : "uppercase " + twClassName
 
   return (
     <div className={twStyle} onClick={onClick} style={{ fontSize, ...style }}>

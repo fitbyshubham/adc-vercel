@@ -1,5 +1,5 @@
-import not_found from '@/assets/images/not_found.svg'
-import Image from 'next/image'
+import not_found from "@/assets/images/not_found.svg"
+import Image from "next/image"
 
 const NotFound = () => {
   return (

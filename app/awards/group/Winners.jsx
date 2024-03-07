@@ -1,29 +1,29 @@
-import Text from '@/app/components/Text'
-import not_found from '@/assets/images/bildschirmfoto.png'
-import down from '@/assets/icons/expend_down.png'
-import Image from 'next/image'
-import ADCLogo from '@/app/components/ADCLogo'
+import Text from "@/app/components/Text"
+import not_found from "@/assets/images/bildschirmfoto.png"
+import down from "@/assets/icons/expend_down.png"
+import Image from "next/image"
+import ADCLogo from "@/app/components/ADCLogo"
 
 const Winners = ({ type }) => {
-  if (type !== 'winners') return null
+  if (type !== "winners") return null
 
   const awardNames = [
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
-    { text: 'DIgital' },
-    { text: 'Film' },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
+    { text: "DIgital" },
+    { text: "Film" },
   ]
 
   return (

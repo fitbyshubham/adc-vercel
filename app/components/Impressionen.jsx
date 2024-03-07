@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import i1 from '@/assets/images/i1.png'
-import i2 from '@/assets/images/i2.png'
-import i3 from '@/assets/images/i3.png'
+import Image from "next/image"
+import i1 from "@/assets/images/i1.png"
+import i2 from "@/assets/images/i2.png"
+import i3 from "@/assets/images/i3.png"
 
 const Impressionen = () => {
   return (

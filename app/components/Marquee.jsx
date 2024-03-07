@@ -1,4 +1,4 @@
-import FastMarquee from 'react-fast-marquee'
+import FastMarquee from "react-fast-marquee"
 
 const Marquee = ({ children, textSize, speed, delay, style }) => {
   return (
@@ -10,7 +10,7 @@ const Marquee = ({ children, textSize, speed, delay, style }) => {
       autoFill={true}
       speed={speed}
       delay={delay || 1}
-      className={'font-semibold'}
+      className={"font-semibold"}
     >
       {children}
     </FastMarquee>

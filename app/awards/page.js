@@ -1,11 +1,11 @@
-import Card from '../components/Card'
-import Filters from '../components/Filters'
-import Impressionen from '../components/Impressionen'
-import Info from '../components/Info'
-import Marquee from '../components/Marquee'
-import MarqueeChildren from '../components/MarqueeChildren'
-import '../style.css'
-import { awardsFilters } from '../utils/filters'
+import Card from "../components/Card"
+import Filters from "../components/Filters"
+import Impressionen from "../components/Impressionen"
+import Info from "../components/Info"
+import Marquee from "../components/Marquee"
+import MarqueeChildren from "../components/MarqueeChildren"
+import "../style.css"
+import { awardsFilters } from "../utils/filters"
 
 const CreativeDays = () => {
   const des = `Die Call for Entries für die ADC Awards 2023 sind ab sofort eröffnet. Dieses Mal gibt es drei spannende Premieren: die Kategorien «Spatial Experience» und «Creative Effectiveness» sowie den Sonderpreis ADCESG Award. Einsendeschluss ist der NEU der 22. März 2023.
@@ -14,16 +14,16 @@ const CreativeDays = () => {
     <div>
       <div className="awards-gradient-background flex flex-col h-[90rem]">
         <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
-          <MarqueeChildren data={{ content: 'AWARD 2024', visible: true }} />
+          <MarqueeChildren data={{ content: "AWARD 2024", visible: true }} />
         </Marquee>
         <div className="flex justify-center">
           <div className=" container mx-auto px-4 pt-10 pb-10">
             <div className="grid grid-cols-12 gap-4">
               <Card
                 imageCard={false}
-                title={'Location: Schloss Sihlberg'}
+                title={"Location: Schloss Sihlberg"}
                 width={230}
-                buttonText={'ZU google maps'}
+                buttonText={"ZU google maps"}
                 btnWidth={165}
               />
             </div>
@@ -35,11 +35,11 @@ const CreativeDays = () => {
         <div className="pt-20 pb-20">
           <Info
             description={des}
-            btnTitle={'Festivalpass bestellen'}
+            btnTitle={"Festivalpass bestellen"}
             btnWidth={220}
             primaryBtn={true}
-            btnBgColor={'#000000'}
-            componentStyle={{ background: 'none' }}
+            btnBgColor={"#000000"}
+            componentStyle={{ background: "none" }}
           />
         </div>
         <Impressionen />

@@ -1,28 +1,28 @@
-'use client'
-import { useState, useEffect } from 'react'
-import Search from '../components/Search'
-import Card from '../components/Card'
-import Button from '../components/Button'
-import Api from '../api'
-import Text from '../components/Text'
-import Loading from '../components/Loading'
-import moment from 'moment'
+"use client"
+import { useState, useEffect } from "react"
+import Search from "../components/Search"
+import Card from "../components/Card"
+import Button from "../components/Button"
+import Api from "../api"
+import Text from "../components/Text"
+import Loading from "../components/Loading"
+import moment from "moment"
 
 const NewsAndEvents = () => {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [text, setText] = useState('')
+  const [text, setText] = useState("")
   const [newsEvents, setNewsEvents] = useState(null)
   const [meta, setMeta] = useState({})
 
   const filters = [
-    'All',
-    'Youngsters',
-    'Newbies',
-    'Jury Members',
-    'Board',
-    'Legends',
-    'Friends',
+    "All",
+    "Youngsters",
+    "Newbies",
+    "Jury Members",
+    "Board",
+    "Legends",
+    "Friends",
   ]
 
   const fetchNewsEventsData = (searchText, page, prevNewsEventsData = []) => {
@@ -39,7 +39,7 @@ const NewsAndEvents = () => {
   }
 
   useEffect(() => {
-    fetchNewsEventsData('', 1)
+    fetchNewsEventsData("", 1)
   }, [])
 
   const handleSearch = (text) => {
@@ -64,14 +64,14 @@ const NewsAndEvents = () => {
             <Card
               key={attributes.id}
               title={attributes.title}
-              heading={moment(attributes.date).format('DD.MM.YYYY')}
+              heading={moment(attributes.date).format("DD.MM.YYYY")}
               covered={true}
               imageCard={Boolean(attributes?.image)}
               imageUrl={attributes?.image?.path.data.attributes.url}
               buttonText="WEITERLESEN"
               btnWidth={150}
-              btnBgColor={'#ffffff'}
-              btnTextColor={'#000000'}
+              btnBgColor={"#ffffff"}
+              btnTextColor={"#000000"}
             />
           ))}
       </div>
@@ -81,7 +81,7 @@ const NewsAndEvents = () => {
         ) : (
           <div
             className={`p-5 ${
-              meta?.pagination?.pageCount === page ? 'hidden' : ''
+              meta?.pagination?.pageCount === page ? "hidden" : ""
             }`}
           >
             {loading ? (

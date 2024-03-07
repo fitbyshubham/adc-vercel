@@ -1,6 +1,6 @@
-import logo from '@/assets/images/logo.png'
-import logo_light from '@/assets/images/logo_light.png'
-import Image from 'next/image'
+import logo from "@/assets/images/logo.png"
+import logo_light from "@/assets/images/logo_light.png"
+import Image from "next/image"
 
 const ADCLogo = ({ width, height, isDarkMode }) => {
   if (isDarkMode) {
