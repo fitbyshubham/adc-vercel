@@ -1,17 +1,27 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { usePathname } from "next/navigation"
-
 import Menu from "./Menu"
 import NavLink from "./NavLink"
 import useParentPage from "../hooks/useParentPage"
+import Api from "../api"
+import { Context } from "../context"
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const { menuItems, setMenuItems } = useContext(Context)
   const fullPath = usePathname()
-  const { name, path } = useParentPage(fullPath)
+  const { name, path } = useParentPage(fullPath, menuItems)
 
   const handleClick = () => setOpen(!open)
+
+  useEffect(() => {
+    Api.getMenuContent()
+      .then((res) => {
+        setMenuItems(res.data.attributes)
+      })
+      .catch(console.log)
+  }, [])
 
   const linkList = [
     { logo: true, path: "/" },
@@ -20,12 +30,12 @@ const Navbar = () => {
   ]
 
   return open ? (
-    <Menu open={open} handleClose={handleClick} />
+    <Menu open={open} handleClose={handleClick} menuItems={menuItems} />
   ) : (
     <div className="flex justify-between items-center p-[30px] fixed w-full backdrop-blur-md z-50">
-      {linkList.map((item) => (
+      {linkList.map((item, i) => (
         <NavLink
-          key={item.title}
+          key={i}
           logo={item.logo}
           title={item.title}
           fontSize={20}

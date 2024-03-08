@@ -1,11 +1,14 @@
-export const homeFilters = [
-  { id: "insights", text: "INSIGHTS", path: "/" },
-  { id: "learning", text: "Learning", path: "/" },
-  { id: "creative-days", text: "Creative Days", path: "/" },
-  { id: "awards", text: "ADC Awards", path: "/" },
-  { id: "people", text: "People", path: "/" },
-]
+export const getHomeFilters = (menuItems) => {
+  if (!menuItems) return []
 
+  return [
+    { id: "insights", text: menuItems?.page1Name, path: "/" },
+    { id: "learning", text: menuItems?.page2Name, path: "/" },
+    { id: "creative-days", text: menuItems?.page3Name, path: "/" },
+    { id: "awards", text: menuItems?.page4Name, path: "/" },
+    { id: "people", text: menuItems?.page5Name, path: "/" },
+  ]
+}
 export const insightPageFilters = [
   { id: "all", text: "All", path: "/insights/category?type=" },
   { id: "sparks", text: "Sparks", path: "/insights/category?type=" },

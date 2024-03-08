@@ -14,6 +14,12 @@ const config = {
   ARTICLES: {
     BASE: "/articles",
   },
+  MENU: {
+    BASE: "/menu",
+  },
+  FOOTER: {
+    BASE: "/footer",
+  },
 }
 
 export default config

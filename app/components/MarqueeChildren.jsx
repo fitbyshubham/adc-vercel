@@ -14,8 +14,8 @@ const MarqueeChildren = ({ content, images, visible = true }) => {
               key={image.id}
               src={config.IMAGE_API_URL.concat(image?.attributes.url)}
               alt="Img"
-              width={10}
-              height={10}
+              width={50}
+              height={50}
               className={"w-28 h-28"}
             />
           ))}

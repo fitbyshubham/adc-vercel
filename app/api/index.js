@@ -14,12 +14,28 @@ const axiosInstance = function (token) {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+  getMenuContent() {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.MENU.BASE.concat(`?populate=*`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getFooterContent() {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.FOOTER.BASE.concat(`?populate=supports.logo`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
   getHomePage() {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.HOMEPAGE.BASE.concat(
-            "?populate=hero.headline,hero.poster,insights.image.path,headline1.headline.images,headline1.poster,headline2.headline.images,headline2.poster,headline3.headline.images,headline3.poster"
+            "?populate=hero.circularFlowButton,insights.image.path,marquee1.headline.images,marquee1.circularFlowButton,marquee2.headline.images,marquee2.circularFlowButton,marquee3.headline.images,marquee3.circularFlowButton"
           )
         )
         .then((res) => resolve(res.data))

@@ -134,8 +134,8 @@ const Insights = () => {
             </div>
           ) : (
             <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
-              {articles.map(({ attributes }) => (
-                <Link key={attributes.id} href="/insights/article/1">
+              {articles.map(({ id, attributes }) => (
+                <Link key={id} href="/insights/article/1">
                   <Card
                     description={attributes.header.title}
                     size="small"
