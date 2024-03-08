@@ -54,12 +54,12 @@ const Menu = ({ open, handleClose, menuItems }) => {
               </div>
             ) : null}
           </div>
-          <NavLink
-            title={open ? "CLOSE" : "MENU"}
-            path={""}
-            handleClick={handleClose}
-          />
         </div>
+        <NavLink
+          title={open ? "CLOSE" : "MENU"}
+          path={""}
+          handleClick={handleClose}
+        />
       </div>
     </div>
   )
