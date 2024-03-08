@@ -37,7 +37,7 @@ const Program = ({ id, title, time, info }) => {
           <Text twClassName="w-[82px] text-[12px] max-md:text-[9px]">
             {time}
           </Text>
-          <div className="w-[665px] max-md:w-full flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-3">
             <Text twClassName="leading-tight text-[24px] max-md:text-[16px]">
               {title}
             </Text>
@@ -56,16 +56,14 @@ const Program = ({ id, title, time, info }) => {
   return (
     <div className="flex gap-4  pb-5">
       <Text twClassName="w-[96px] text-[12px] max-md:text-[9px]">{time}</Text>
-      <div className="flex justify-between">
-        <div className="w-[624px] max-md:w-full">
-          <Text
-            twClassName={
-              "leading-tight w-[249px] max-md:w-[165px] text-[24px] max-md:text-[16px]"
-            }
-          >
-            {title}
-          </Text>
-        </div>
+      <div className="flex justify-between w-full">
+        <Text
+          twClassName={
+            "leading-tight w-[249px] max-md:w-[165px] text-[24px] max-md:text-[16px]"
+          }
+        >
+          {title}
+        </Text>
         <Link
           className="w-[30px] h-[30px] rounded-full bg-[#EAEAEA] p-2 flex justify-center items-center"
           href={`/modules-detail/${id}`}
@@ -86,7 +84,7 @@ const ProgramDays = ({ data }) => {
   }
 
   return (
-    <div className="w-[751px] xl:ml-[50px] max-md:w-full">
+    <div className="lg:w-[751px] xl:ml-[100px] lg:ml-[30px] ml-0 w-full">
       {data.map((items) => {
         return (
           <div key={items.id}>
@@ -202,17 +200,17 @@ const ProgramFilter = () => {
     },
   ]
   return (
-    <div className="max-md:flex max-md:justify-center mb-[200px]">
-      <div className="max-md:p-5 flex flex-col gap-[132px]">
+    <div className="max-md:flex w-full mb-[200px]">
+      <div className="max-md:p-5 flex flex-col gap-[132px] w-full">
         <Text
           style={{ textAlign: "center" }}
           twClassName={
-            "text-center text-[120px] max-md:text-[55px] max-sm:text-[30px]"
+            "text-center text-[120px] max-md:text-[90px] max-sm:text-[50px]"
           }
         >
           Programm
         </Text>
-        <div className="flex md:flex-row flex-col justify-between max-md:gap-8 md:px-[100px] max-sm:pt-4">
+        <div className="flex flex-col gap-8 w-full lg:flex-row justify-between px-8">
           <div className="sm:hidden flex gap-5">
             <Image
               src={no_image_found}
@@ -267,9 +265,9 @@ const SpeakerFilter = () => {
     Die Platzzahl am Workshop ist limitiert: First come, first served.`
   return (
     <>
-      <div className="flex flex-col xl:flex-row p-[30px] gap-[102px]">
-        <div className="max-sm:text-left lg:pl-[103px] w-full flex flex-col gap-y-8">
-          <Text twClassName="text-[120px] max-md:text-[55px] max-sm:text-[30px] md:leading-[120px]">
+      <div className="flex flex-col lg:flex-row p-[30px] gap-[102px]">
+        <div className="max-sm:text-left xl:pl-[103px] pl-0 w-full flex flex-col gap-y-8 ">
+          <Text twClassName="text-[120px] max-md:text-[90px] max-sm:text-[50px] xl:leading-[120px] leading-none">
             {header}
           </Text>
           <Text>{date}</Text>
@@ -278,7 +276,7 @@ const SpeakerFilter = () => {
             Jetzt anmelden
           </Button>
         </div>
-        <div className="flex flex-col justify-between gap-8 xl:w-[382px] w-full flex-shrink-0">
+        <div className="flex flex-col justify-between gap-8 lg:w-[382px] w-full flex-shrink-0">
           <Image
             src={speaker_img_not_found}
             alt="Speaker"
@@ -298,9 +296,9 @@ const SpeakerFilter = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-[100px] px-8">
+      <div className="flex flex-col items-center justify-center gap-[100px] px-8">
         <Text>ALLE SPEAKERS</Text>
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-[155px] gap-y-[100px] max-md:gap-14 place-items-center">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
           <Card
             imageCard={true}
             className="w-[308px] max-md:w-[200px]"
