@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import Link from "next/link"
 import Button from "./components/Button"
 import Card from "./components/Card"
@@ -12,11 +12,13 @@ import Poster from "./components/Poster"
 import Text from "./components/Text"
 import Loading from "./components/Loading"
 import moment from "moment"
-import { homeFilters } from "./utils/filters"
+import { getHomeFilters } from "./utils/filters"
+import { Context } from "./context"
 
 export default function Home() {
   const [pageData, setPageData] = useState(null)
   const [highlightedNewsEvents, setHighlightedNewsEvents] = useState(null)
+  const { menuItems } = useContext(Context)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -53,17 +55,19 @@ export default function Home() {
       <div className="gradient-background">
         <div className="flex justify-center items-center h-[45rem]">
           <Marquee speed={200} textSize={220}>
-            <MarqueeChildren content={pageData?.hero?.headline?.text} />
+            <MarqueeChildren content={pageData?.hero?.headline} />
           </Marquee>
         </div>
         <Poster
-          visible={pageData?.hero?.poster?.visible}
-          title={pageData?.hero?.poster?.title}
-          subTitle={pageData?.hero?.poster?.subTitle}
+          visible={pageData?.hero?.circularFlowButton?.visible}
+          title={pageData?.hero?.circularFlowButton?.title}
+          subTitle={pageData?.hero?.circularFlowButton?.subTitle}
         />
       </div>
-      <Filters filters={homeFilters} />
-      <div className=" container mx-auto px-4 pt-10">
+      <div className="pt-8">
+        <Filters filters={getHomeFilters(menuItems)} />
+      </div>
+      <div className=" container mx-auto px-4 pt-16">
         <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">
           {pageData.insights.map((insight, index) => (
             <div className={cardsClassName[index]} key={insight.id}>
@@ -85,7 +89,7 @@ export default function Home() {
       </Link>
       <div
         className={
-          pageData?.headline1?.visible
+          pageData?.marquee1?.visible
             ? "border-b-[1px] border-t-[1px] border-black mt-10"
             : ""
         }
@@ -93,9 +97,9 @@ export default function Home() {
         <div className="p-1">
           <Marquee speed={200} textSize={150}>
             <MarqueeChildren
-              content={pageData?.headline1?.headline?.text}
-              images={pageData?.headline1?.headline?.images}
-              visible={pageData?.headline1?.visible}
+              content={pageData?.marquee1?.headline?.text}
+              images={pageData?.marquee1?.headline?.images}
+              visible={pageData?.marquee1?.visible}
             />
           </Marquee>
         </div>
@@ -104,9 +108,9 @@ export default function Home() {
         <Text>NEWS & EVENTS</Text>
         <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
           {highlightedNewsEvents
-            ? highlightedNewsEvents.map(({ attributes }) => (
+            ? highlightedNewsEvents.map(({ id, attributes }) => (
                 <Card
-                  key={attributes.id}
+                  key={id}
                   title={attributes.title}
                   heading={moment(attributes.date).format("DD.MM.YYYY")}
                   covered={true}
@@ -128,7 +132,7 @@ export default function Home() {
       </div>
       <div
         className={
-          pageData?.headline2?.visible
+          pageData?.marquee2?.visible
             ? "border-b-[1px] border-t-[1px] border-black mt-10"
             : "border-b-[1px] border-black "
         }
@@ -136,16 +140,16 @@ export default function Home() {
         <div className="p-1">
           <Marquee speed={200} textSize={150}>
             <MarqueeChildren
-              content={pageData?.headline2?.headline?.text}
-              images={pageData?.headline2?.headline.images}
-              visible={pageData?.headline2?.visible}
+              content={pageData?.marquee2?.headline?.text}
+              images={pageData?.marquee2?.headline.images}
+              visible={pageData?.marquee2?.visible}
             />
           </Marquee>
         </div>
       </div>
       <div
         className={
-          pageData?.headline3?.visible
+          pageData?.marquee3?.visible
             ? "border-b-[1px] border-black mb-20"
             : "mb-20"
         }
@@ -153,9 +157,9 @@ export default function Home() {
         <div className="p-1">
           <Marquee speed={200} textSize={150}>
             <MarqueeChildren
-              content={pageData?.headline3?.headline.text}
-              images={pageData?.headline3?.headline.images}
-              visible={pageData?.headline3?.visible}
+              content={pageData?.marquee3?.headline.text}
+              images={pageData?.marquee3?.headline.images}
+              visible={pageData?.marquee3?.visible}
             />
           </Marquee>
         </div>

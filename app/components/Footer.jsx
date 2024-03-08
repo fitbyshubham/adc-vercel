@@ -1,20 +1,33 @@
 "use client"
+import { useEffect, useState, useContext } from "react"
 import Image from "next/image"
 import Button from "./Button"
 import img1 from "@/assets/images/adc_logos_footer 2.png"
 import img2 from "@/assets/images/adc_logos_footer 3.png"
 import ADCLogo from "./ADCLogo"
+import Api from "../api"
+import Loading from "./Loading"
+import config from "../apiConfig"
+import { Context } from "../context"
+import Filters from "./Filters"
+import { getHomeFilters } from "../utils/filters"
 
 const Footer = () => {
+  const [data, setData] = useState(null)
+  const { menuItems } = useContext(Context)
+
+  useEffect(() => {
+    Api.getFooterContent()
+      .then((res) => {
+        setData(res.data.attributes)
+      })
+      .catch(console.log)
+  }, [])
+
   return (
     <div className="bg-black">
-      <div className="flex justify-between p-5 text-white max-md:hidden">
-        <div>HOME</div>
-        <div>INSIGHTS</div>
-        <div>LEARNING</div>
-        <div>CREATIVE DAYS</div>
-        <div>ADC AWARDS</div>
-        <div>PEOPLE</div>
+      <div className="pt-5">
+        <Filters filters={getHomeFilters(menuItems)} textColor="#ffffff" />
       </div>
       <div className="flex justify-between max-md:items-center p-5 pt-20 max-md:flex-col">
         <div className="flex flex-col gap-10">
@@ -37,27 +50,39 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="uppercase flex flex-col gap-5 lg:items-end w-[250px]">
-          <p className="text-[#5D5D5D] text-end max-md:text-center ">
-            ADC Switzerland Zentralstrasse 18, 8003 Zürich +41 44 262 00 33
-          </p>
-          <p className="text-[#5D5D5D] text-end max-md:text-center ">
-            Geschäftsstelle & Galerie Mo, Di & Do jeweils 9 – 17 Uhr und auf
-            Voranmeldung
-          </p>
-          <p className="text-[#5D5D5D] text-end max-md:text-center ">
-            Impressum DATENSCHUTZ
-          </p>
-          <p className="flex justify-between text-[#ffffff] gap-5">
-            <a href="#">instagram</a>
-            <a href="#">facebook</a>
-            <a href="#">linkedin</a>
-          </p>
-        </div>
+        {data ? (
+          <div className="uppercase flex flex-col gap-5 lg:items-end w-[250px]">
+            <p className="text-[#5D5D5D] text-end max-md:text-center ">
+              {data.address1}
+            </p>
+            <p className="text-[#5D5D5D] text-end max-md:text-center ">
+              {data.address2}
+            </p>
+            <p className="text-[#5D5D5D] text-end max-md:text-center ">
+              {data?.address3}
+            </p>
+            <p className="flex justify-between text-[#ffffff] gap-5">
+              <a href={data?.instagramLink}>instagram</a>
+              <a href={data?.facebookLink}>facebook</a>
+              <a href={data?.linkedinLink}>linkedin</a>
+            </p>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </div>
-      <div className="flex p-5 mt-20 overflow-hidden">
-        <Image src={img1} alt="Supports" className="w-full" />
-        <Image src={img2} alt="Supports" className="w-full" />
+      <div className="flex p-5 mt-20 overflow-hidden gap-5">
+        {data &&
+          data.supports.map(({ id, visible, logo }) => (
+            <Image
+              key={id}
+              src={config.IMAGE_API_URL + logo?.data.attributes.url || img1}
+              alt="Supports"
+              width={200}
+              height={100}
+              className="w-full"
+            />
+          ))}
       </div>
     </div>
   )
