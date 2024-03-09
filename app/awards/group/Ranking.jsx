@@ -1,4 +1,4 @@
-import Text from "@/app/components/Text"
+import Text from "@/components/Text"
 import { PlayIcon } from "@heroicons/react/24/solid"
 
 const Ranking = ({ type }) => {

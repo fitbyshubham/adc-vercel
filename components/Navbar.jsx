@@ -23,9 +23,9 @@ const Navbar = () => {
     <Menu open={open} handleClose={handleClick} />
   ) : (
     <div className="flex justify-between items-center p-[30px] fixed w-full backdrop-blur-md z-50">
-      {linkList.map((item) => (
+      {linkList.map((item, idx) => (
         <NavLink
-          key={item.title}
+          key={idx}
           logo={item.logo}
           title={item.title}
           fontSize={20}

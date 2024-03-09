@@ -1,9 +1,15 @@
+"use client"
 import Image from "next/image"
 import no_image_found from "@/assets/images/bildschirmfoto.png"
-import Text from "../../../components/Text"
-import Button from "../../../components/Button"
-import Card from "../../../components/Card"
-import ArticlesLayout from "@/app/components/ArticlesLayout"
+import Text from "@/components/Text"
+import Button from "@/components/Button"
+import Card from "@/components/Card"
+import ArticlesLayout from "@/components/ArticlesLayout"
+import { useParams, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import Api from "@/api"
+import config from "@/apiConfig"
+import Link from "next/link"
 
 const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
   return (
@@ -73,26 +79,78 @@ const cards2 = [
 ]
 
 const StoryDetail = () => {
-  const title = `Die Royal Oak unter den Hotels`
-  const subTitle = `Audemars Piguet setzt auch mit dem Hôtel des Horlogers neue Massstäbe und gibt dem Watch Valley ein Wahrzeichen.`
-  const author = "Silvia Affolter"
   const date = "Dezember 2023"
-  const content1 = `Einst Avantgarde, heute Ikone. Was für die Royal Oak, die begehrte Galionsfigur aus dem Hause Audemars Piguet gilt, könnte man auch auf die Bauten der Schweizer Uhrenmanufakturgruppe münzen. Zuerst die Eröffnung des spektakulären Musée Atelier in Le Brassus: Das Museum schmiegt sich als lichtdurchflutete Glasspirale an das älteste Gebäude des Unternehmenssitzes und wirkt von oben betrachtet wie eine grüne Schnecke, die natürlich in die Landschaft zu gehören scheint. Besucherinnen und Besucher können den Kunsthandwerkerinnen dort quasi auf die Finger schauen, wenn sie einige der kompliziertesten Prachtstücke vollenden. Und nun geht das neue Hôtel des Horlogers – vom dänischen Entwickler BIG – Bjarke Ingels Group in Zusammenarbeit mit dem Schweizer Architekturbüro CCHE entworfen und umgesetzt – in seinem Erscheinungsbild eine Symbiose mit dem Vallée de Joux ein.`
-  const content2 = `Fünfzig Zimmer und Suiten, Konferenzräume, drei Restaurants, eine Bar, Wellnessund Fitnessbereich und eine grosse Bibliothek zum Thema Inspiration laden zum Besuch des ehrfürchtigen Tals, der Wiege der Uhrmacherkunst ein. Das Innenleben des Boutiquehotels wurde durch Pierre Minassian von AUM gestaltet. Wer die Lobby betritt, sieht keinen einzigen Zeitmesser, der für gewöhnlich jede Hotelhalle ziert. Ich mache mich auf die Suche. Auch nicht auf den Zimmern, ja nicht einmal im Fitnessraum erinnert eine Uhr an die Vergänglichkeit. «Das Hôtel des Horlogers ist ein Geschenk an alle Uhrmacher aus der Region und steht nicht für eine bestimmte Manufaktur», erklärt General Manager André Cheminade. Das Hotel ist zwar nigelnagelneu, doch die Tradition reicht bis 1857 zurück. Das Hôtel de France, wie es ursprünglich hiess, war Treffpunkt aller Uhrmacher und Ateliers aus dem Juragebiet. Von hier aus wurden per Pferdepost die edlen Zeitmesser nach Genf und von dort in alle Welt verschickt. So wurde aus dem Niemandsland Le Brassus die Bastion der High-End-Uhrmacherei und die Pilgerstätte für Tausende von Aficionados, die gerne weit über 100 000 Franken für ein handgefertigtes Meisterwerk hinblättern. Aber um standesgemäss zu übernachten, musste die noble Kundschaft bisher den Weg nach Lausanne oder Genf zurücklegen.`
   const imgInfo1 =
     "Charakteristisch für das Hôtel des Horlogers ist die avantgardistische, zickzackförmige Architektur, die der Topografie des Vallée de Joux folgt."
 
+  const [article, setArticle] = useState({
+    id: "",
+    attributes: {
+      author: "",
+      content: "",
+      group: "",
+      header: {
+        title: "",
+        subTitle: "",
+      },
+      image: {
+        visible: true,
+        path: {
+          data: {
+            attributes: {
+              url: "",
+            },
+          },
+        },
+      },
+    },
+  })
+
+  const router = useRouter()
+
+  const params = useParams()
+  const id = params.articleId
+
+  const [articles, setArticles] = useState([])
+
+  const fetchArticles = async (page = 1) => {
+    Api.getArticles(page, 8)
+      .then((res) => {
+        setArticles(res.data)
+        setLoading(false)
+      })
+      .catch(console.log)
+  }
+
+  const fetchArticle = (id) => {
+    Api.getArticle(id)
+      .then((res) => setArticle(res.data))
+      .catch((err) => console.log(err.message))
+  }
+
+  useEffect(() => {
+    fetchArticle(id)
+    fetchArticles()
+  }, [id])
+
   return (
     <div className="flex flex-col items-center ">
-      <div className="pt-28">BACK</div>
+      <button className="pt-28" onClick={() => router.back()}>
+        BACK
+      </button>
       <Image
-        src={no_image_found}
+        src={
+          config.IMAGE_API_URL +
+          article.attributes.image.path.data.attributes.url
+        }
         alt="Img"
-        className="p-10 w-[45rem] max-md:w-[21rem]  max-sm:w-[14rem] h-[45rem] max-md:h-[21rem]  max-sm:h-[14rem]"
+        width={200}
+        height={200}
+        className="p-10 w-[45rem] max-md:w-[21rem]  max-sm:w-[14rem] h-[45rem] max-md:h-[21rem]  max-sm:h-[14rem] object-cover"
       />
       <div className="text-center flex flex-col items-center">
-        <Text twClassName="text-[120px] max-md:text-[55px] w-[63rem] max-md:w-[41rem] max-sm:w-[335px]">
-          {title}
+        <Text twClassName="text-[120px] leading-none max-md:text-[55px] w-[63rem] max-md:w-[41rem] max-sm:w-[335px]">
+          {article.attributes.header.title}
         </Text>
         <Text
           capitalize={true}
@@ -100,10 +158,10 @@ const StoryDetail = () => {
             "text-[34px] max-md:text-[22px] w-[53rem] max-md:w-[41rem] max-sm:w-[335px]"
           }
         >
-          {subTitle}
+          {article.attributes.header.subTitle}
         </Text>
         <div className="p-10 flex gap-10 items-center">
-          <Text>{author}</Text>
+          <Text>{article.attributes.author}</Text>
           <Text>{date}</Text>
           <div className="max-sm:hidden">
             <Button primaryBtn={true} bgColor={"#000000"} width={120}>
@@ -118,12 +176,16 @@ const StoryDetail = () => {
         </div>
       </div>
       <div className="lg:container pt-10">
-        <Detail content={content1} cardDescription={imgInfo1} size={"small"} />
+        <Detail
+          content={article.attributes.content}
+          cardDescription={imgInfo1}
+          size={"small"}
+        />
         <Text twClassName={"pt-10 pb-10 text-[24px]"}>
           Die Unvergänglichkeit
         </Text>
         <Detail
-          content={content2}
+          content={article.attributes.content}
           cardTitle={"SILVIA AFFOLTER"}
           cardDescription={imgInfo1}
           size={"large"}
@@ -138,7 +200,29 @@ const StoryDetail = () => {
         </div>
       </div>
 
-      <ArticlesLayout items={cards2} />
+      {/* <ArticlesLayout items={cards2} /> */}
+      <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
+        {articles.map(({ attributes, id }, idx) => (
+          <Link key={idx} href={`/insights/article/${id}`}>
+            <Card
+              description={attributes.header.title}
+              size="small"
+              imageUrl={attributes?.image?.path.data.attributes.url}
+              componentStyle={{ width: 250, minHeight: 250 }}
+            />
+          </Link>
+        ))}
+      </div>
+      <div className="p-20">
+        <Button
+          onButtonClick={() => {}}
+          width={200}
+          bgColor={"black"}
+          textColor={"white"}
+        >
+          weiter zu insights
+        </Button>
+      </div>
     </div>
   )
 }

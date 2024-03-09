@@ -8,5 +8,14 @@ function chunkArray(arr) {
   }
   return chunks
 }
+function chunkArray2(arr) {
+  const chunks = []
+  let index = 0
+  while (index < arr.length) {
+    chunks.push(arr.slice(index, index + 2))
+    index += 2
+  }
+  return chunks
+}
 
-export { chunkArray }
+export { chunkArray, chunkArray2 }

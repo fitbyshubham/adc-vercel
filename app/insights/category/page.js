@@ -1,13 +1,17 @@
 "use client"
-import Filters from "@/app/components/Filters"
-import Text from "@/app/components/Text"
+import Filters from "@/components/Filters"
+import Text from "@/components/Text"
 import { useSearchParams } from "next/navigation"
-import { insightPageFilters } from "../../utils/filters"
+import { insightPageFilters } from "../../../utils/filters"
 import { notFound } from "next/navigation"
-import Button from "@/app/components/Button"
-import Card from "@/app/components/Card"
-import { chunkArray } from "@/app/utils/arrayChunks"
-import ArticlesLayout from "@/app/components/ArticlesLayout"
+import Button from "@/components/Button"
+import Card from "@/components/Card"
+import { chunkArray, chunkArray2 } from "@/utils/arrayChunks"
+import ArticlesLayout from "@/components/ArticlesLayout"
+import Link from "next/link"
+import Api from "@/api"
+import { useEffect, useState } from "react"
+import CustomCard from "@/components/CustomCard"
 
 const mapPage = {
   all: {
@@ -39,6 +43,47 @@ const Category = () => {
   const searchParams = useSearchParams()
   const type = searchParams.get("type")
   const pageFixedData = mapPage[type]
+
+  const [insights, setInsights] = useState([
+    [
+      {
+        attributes: {
+          card: {
+            description: "",
+            featured: true,
+            position: "",
+            group: "",
+            image: {
+              visible: true,
+              path: {
+                data: {
+                  attributes: {
+                    url: "",
+                  },
+                },
+              },
+            },
+            size: "",
+            title: "",
+          },
+          content: "",
+        },
+        id: "",
+      },
+    ],
+  ])
+
+  const fetchInsights = async (type) => {
+    Api.getInsights(type === "all" ? "" : type)
+      .then((res) => {
+        setInsights(chunkArray2(res.data))
+      })
+      .catch(console.log)
+  }
+
+  useEffect(() => {
+    fetchInsights(type)
+  }, [type])
 
   if (!pageFixedData) {
     return notFound()
@@ -419,10 +464,32 @@ const Category = () => {
   ]
 
   return (
-    <div className="pt-32">
+    <div className="py-32">
       <Filters filters={insightPageFilters} activeFilter={type} />
-      <Text twClassName="text-center text-[55px]">{pageFixedData.header}</Text>
-      <ArticlesLayout items={cards3} />
+      <Text twClassName="text-center text-[55px] mt-8">
+        {pageFixedData.header}
+      </Text>
+      <div className="flex flex-col gap-[100px] mt-[100px] w-full md:px-20 px-4">
+        {insights.map((arr, idx) => (
+          <div
+            className="flex flex-col md:flex-row gap-[100px] mx-auto relative"
+            key={idx}
+          >
+            {arr.map((item, idx) => (
+              <CustomCard
+                key={idx}
+                title={item.attributes.card.title}
+                description={item.attributes.card.description}
+                buttonText={"Weiterlesen"}
+                size={item.attributes.card.size}
+                className={"bg-green-500"}
+                imageUrl={item.attributes.card.image.path.data.attributes.url}
+                position={item.attributes.card.position}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

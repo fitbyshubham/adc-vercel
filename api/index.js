@@ -62,4 +62,26 @@ export default {
         .catch((error) => reject(error))
     })
   },
+  getArticle(id) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.ARTICLES.BASE.concat(`/${id}?populate=image.path,header.title`)
+        )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getInsights(type) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.API_URL.concat(
+            `/insights?populate=card.image.path&filters[card][group][$containsi]=${type}`
+          )
+        )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
 }

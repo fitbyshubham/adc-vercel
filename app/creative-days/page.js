@@ -1,11 +1,11 @@
-import Card from "../components/Card"
-import Filters from "../components/Filters"
-import Impressionen from "../components/Impressionen"
-import Info from "../components/Info"
-import Marquee from "../components/Marquee"
-import MarqueeChildren from "../components/MarqueeChildren"
+import Card from "@/components/Card"
+import Filters from "@/components/Filters"
+import Impressionen from "@/components/Impressionen"
+import Info from "@/components/Info"
+import Marquee from "@/components/Marquee"
+import MarqueeChildren from "@/components/MarqueeChildren"
 import "../style.css"
-import { creativeDaysFilters as filters } from "../utils/filters"
+import { creativeDaysFilters as filters } from "../../utils/filters"
 
 const CreativeDays = () => {
   const des = [

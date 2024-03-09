@@ -1,12 +1,12 @@
 "use client"
-import Button from "@/app/components/Button"
-import Text from "@/app/components/Text"
+import Button from "@/components/Button"
+import Text from "@/components/Text"
 import Image from "next/image"
 import speaker_img_not_found from "@/assets/images/speaker.png"
-import Card from "@/app/components/Card"
+import Card from "@/components/Card"
 import Link from "next/link"
-import Filters from "@/app/components/Filters"
-import { creativeDaysFilters } from "@/app/utils/filters"
+import Filters from "@/components/Filters"
+import { creativeDaysFilters } from "@/utils/filters"
 import { useSearchParams } from "next/navigation"
 import no_image_found from "@/assets/images/bildschirmfoto.png"
 import right_arrow from "@/assets/icons/right_arrow.png"
@@ -20,9 +20,7 @@ const ProgramView = () => {
 
   return (
     <div className="pt-32 max-md:pt-[100px] flex flex-col md:gap-y-[100px]">
-      <div className="flex justify-start items-center p-[30px]">
-        <Filters filters={creativeDaysFilters} activeFilter={type} />
-      </div>
+      <Filters filters={creativeDaysFilters} activeFilter={type} />
       {type === "program" && <ProgramFilter />}
       {type === "speakers" && <SpeakerFilter />}
     </div>

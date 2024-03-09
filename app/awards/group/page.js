@@ -1,7 +1,7 @@
 "use client"
-import Filters from "@/app/components/Filters"
+import Filters from "@/components/Filters"
 import { notFound, useSearchParams } from "next/navigation"
-import { awardsFilters } from "../../utils/filters"
+import { awardsFilters } from "@/utils/filters"
 import Ranking from "./Ranking"
 import Winners from "./Winners"
 

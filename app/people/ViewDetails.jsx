@@ -2,8 +2,8 @@
 import people from "@/assets/images/speaker.png"
 import Image from "next/image"
 import Link from "next/link"
-import Text from "../components/Text"
-import Button from "../components/Button"
+import Text from "@/components/Text"
+import Button from "@/components/Button"
 
 const ViewDetails = () => {
   return (

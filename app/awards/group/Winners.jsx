@@ -1,8 +1,8 @@
-import Text from "@/app/components/Text"
+import Text from "@/components/Text"
 import not_found from "@/assets/images/bildschirmfoto.png"
 import down from "@/assets/icons/expend_down.png"
 import Image from "next/image"
-import ADCLogo from "@/app/components/ADCLogo"
+import ADCLogo from "@/components/ADCLogo"
 
 const Winners = ({ type }) => {
   if (type !== "winners") return null

@@ -16,7 +16,7 @@ const Menu = ({ open, handleClose }) => {
   return (
     <div className={twClass}>
       <div className="flex flex-col gap-4 p-4 pb-10">
-        <div className="flex justify-between gap-x-8">
+        <div className="flex justify-between items-center gap-x-8">
           <NavLink title={"ADC"} path={""} />
 
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
