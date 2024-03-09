@@ -2,13 +2,15 @@ import Link from "next/link"
 
 const Filters = ({ filters, activeFilter, textColor }) => {
   return (
-    <div className="flex justify-between max-md:p-5 px-5">
+    <div className="flex flex-wrap w-full justify-between px-8 gap-8 max-md:p-5">
       {filters.map((filter) => (
         <div key={filter.id} className="flex flex-col gap-1 items-center ">
           <Link
             href={filter.path + filter.id}
-            className="uppercase max-sm:text-[12px]"
-            style={{ color: textColor }}
+            className="uppercase"
+            style={{
+              color: textColor,
+            }}
           >
             {filter.text}
           </Link>

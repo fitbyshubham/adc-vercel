@@ -2,7 +2,7 @@
 import Image from "next/image"
 import no_image_found from "@/assets/images/bildschirmfoto.png"
 import Button from "./Button"
-import config from "@/app/apiConfig"
+import config from "@/apiConfig"
 
 const Card = ({
   title,

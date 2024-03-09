@@ -1,9 +1,9 @@
 import React from "react"
-import Filters from "../components/Filters"
-import Card from "../components/Card"
-import Info from "../components/Info"
-import Impressionen from "../components/Impressionen"
-import { learningFilters } from "../utils/filters"
+import Filters from "@/components/Filters"
+import Card from "@/components/Card"
+import Info from "@/components/Info"
+import Impressionen from "@/components/Impressionen"
+import { learningFilters } from "../../utils/filters"
 
 const Learning = () => {
   return (

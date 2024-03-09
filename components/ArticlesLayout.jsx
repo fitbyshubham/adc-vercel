@@ -4,10 +4,11 @@ import { chunkArray } from "../utils/arrayChunks"
 import Button from "./Button"
 import Card from "./Card"
 
-const ArticlesLayout = ({ items }) => {
+const ArticlesLayout = ({ data }) => {
+  console.log(data)
   return (
     <div className="flex flex-col items-center gap-20 pt-16">
-      {chunkArray(items).map((items, index) => (
+      {chunkArray(data).map((items, index) => (
         <div
           key={index}
           className="flex gap-10 flex-wrap items-center justify-center"
@@ -15,9 +16,12 @@ const ArticlesLayout = ({ items }) => {
           {items.map((card, index) => (
             <Link key={index} href="/insights/article/1">
               <Card
-                description={card.description}
-                size={card.size}
+                description={card?.attributes?.card?.title}
+                size={"small"}
                 componentStyle={{ width: 250, minHeight: 250 }}
+                imageUrl={
+                  card?.attributes?.card?.image?.path?.data?.attributes?.url
+                }
               />
             </Link>
           ))}

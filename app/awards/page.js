@@ -1,11 +1,11 @@
-import Card from "../components/Card"
-import Filters from "../components/Filters"
-import Impressionen from "../components/Impressionen"
-import Info from "../components/Info"
-import Marquee from "../components/Marquee"
-import MarqueeChildren from "../components/MarqueeChildren"
+import Card from "@/components/Card"
+import Filters from "@/components/Filters"
+import Impressionen from "@/components/Impressionen"
+import Info from "@/components/Info"
+import Marquee from "@/components/Marquee"
+import MarqueeChildren from "@/components/MarqueeChildren"
 import "../style.css"
-import { awardsFilters } from "../utils/filters"
+import { awardsFilters } from "@/utils/filters"
 
 const CreativeDays = () => {
   const des = `Die Call for Entries für die ADC Awards 2023 sind ab sofort eröffnet. Dieses Mal gibt es drei spannende Premieren: die Kategorien «Spatial Experience» und «Creative Effectiveness» sowie den Sonderpreis ADCESG Award. Einsendeschluss ist der NEU der 22. März 2023.
