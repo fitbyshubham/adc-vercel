@@ -51,7 +51,7 @@ const Insights = () => {
       .catch(console.log)
   }
   const fetchInsights = async () => {
-    Api.getInsights("")
+    Api.getInsights("", true)
       .then((res) => {
         console.log(res.data)
         setInsights(chunkArray2(res.data))

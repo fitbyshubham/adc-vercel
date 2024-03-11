@@ -35,7 +35,7 @@ export default {
       axiosInstance(config.token)
         .get(
           config.HOMEPAGE.BASE.concat(
-            "?populate=hero.circularFlowButton,insights.image.path,marquee1.headline.images,marquee1.circularFlowButton,marquee2.headline.images,marquee2.circularFlowButton,marquee3.headline.images,marquee3.circularFlowButton"
+            "?populate=hero.circularFlowButton,insight1.image.path,insight2.image.path,insight3.image.path,marquee1.headline.images,marquee1.circularFlowButton,marquee2.headline.images,marquee2.circularFlowButton,marquee3.headline.images,marquee3.circularFlowButton"
           )
         )
         .then((res) => resolve(res.data))
@@ -88,12 +88,12 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getInsights(type) {
+  getInsights(type, featured) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.API_URL.concat(
-            `/insights?populate=card.image.path&filters[group][$containsi]=${type}`
+            `/insights?populate=card.image.path&filters[group][$containsi]=${type}&filters[card][featured][$eq]=${featured}`
           )
         )
         .then((res) => resolve(res.data))

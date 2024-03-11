@@ -69,7 +69,7 @@ const Category = () => {
   ])
 
   const fetchInsights = async (type) => {
-    Api.getInsights(type === "all" ? "" : type)
+    Api.getInsights(type === "all" ? "" : type, false)
       .then((res) => {
         setInsights(res.data)
       })
