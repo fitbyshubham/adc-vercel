@@ -11,6 +11,7 @@ const Marquee = ({
   subTitle,
   visible,
   url,
+  small,
 }) => {
   return (
     <div className="relative w-full">
@@ -29,7 +30,7 @@ const Marquee = ({
       {visible && (
         <Link
           href={url}
-          className="w-[205px] h-[205px] max-md:w-[180px] max-md:h-[180px] p-10 max-md:p-5 max-md:right-[2rem] rounded-full flex-col justify-center items-center gap-5 absolute top-1/2 right-[200px] bg-black text-white z-10 flex"
+          className={`p-10 max-md:p-5 max-md:right-[2rem] rounded-full flex-col justify-center items-center absolute top-1/2 right-[200px] bg-black text-white z-10 flex ${small ? "w-[100px] h-[100px] max-md:w-[80px] max-md:h-[80px]" : "w-[205px] h-[205px] max-md:w-[180px] max-md:h-[180px] gap-5"}`}
         >
           <div className="uppercase text-[22px] max-md:text-[16px] text-center">
             {title}
