@@ -81,16 +81,13 @@ const StoryDetail = () => {
   const imgInfo1 =
     "Charakteristisch für das Hôtel des Horlogers ist die avantgardistische, zickzackförmige Architektur, die der Topografie des Vallée de Joux folgt."
 
-  const [article, setArticle] = useState({
+  const [data, setData] = useState({
     id: "",
     attributes: {
-      author: "",
       content: "",
-      group: "",
-      header: {
-        title: "",
-        subTitle: "",
-      },
+      date: "",
+      description: "",
+      title: "",
       image: {
         visible: true,
         path: {
@@ -107,28 +104,16 @@ const StoryDetail = () => {
   const router = useRouter()
 
   const params = useParams()
-  const id = params.articleId
+  const id = params.filter
 
-  const [articles, setArticles] = useState([])
-
-  const fetchArticles = async (page = 1) => {
-    Api.getArticles(page, 8)
-      .then((res) => {
-        setArticles(res.data)
-        setLoading(false)
-      })
-      .catch(console.log)
-  }
-
-  const fetchArticle = (id) => {
-    Api.getArticle(id)
-      .then((res) => setArticle(res.data))
+  const fetchNewsAndEvent = (id) => {
+    Api.getNewsAndEvent(id)
+      .then((res) => setData(res.data))
       .catch((err) => console.log(err.message))
   }
 
   useEffect(() => {
-    fetchArticle(id)
-    fetchArticles()
+    fetchNewsAndEvent(id)
   }, [id])
 
   return (
@@ -138,8 +123,7 @@ const StoryDetail = () => {
       </button>
       <Image
         src={
-          config.IMAGE_API_URL +
-          article.attributes.image.path.data.attributes.url
+          config.IMAGE_API_URL + data.attributes.image.path.data.attributes.url
         }
         alt="Img"
         width={200}
@@ -148,34 +132,12 @@ const StoryDetail = () => {
       />
       <div className="text-center flex flex-col items-center">
         <Text twClassName="text-[120px] leading-none max-md:text-[55px] w-[63rem] max-md:w-[41rem] max-sm:w-[335px]">
-          {article.attributes.header.title}
+          {data.attributes.title}
         </Text>
-        <Text
-          capitalize={true}
-          twClassName={
-            "text-[34px] max-md:text-[22px] w-[53rem] max-md:w-[41rem] max-sm:w-[335px]"
-          }
-        >
-          {article.attributes.header.subTitle}
-        </Text>
-        <div className="p-10 flex gap-10 items-center">
-          <Text>{article.attributes.author}</Text>
-          <Text>{date}</Text>
-          <div className="max-sm:hidden">
-            <Button primaryBtn={true} bgColor={"#000000"} width={120}>
-              concious
-            </Button>
-          </div>
-        </div>
-        <div className="sm:hidden">
-          <Button primaryBtn={true} bgColor={"#000000"} width={120}>
-            concious
-          </Button>
-        </div>
       </div>
       <div className="lg:container pt-10">
         <Detail
-          content={article.attributes.content}
+          content={data.attributes.content}
           cardDescription={imgInfo1}
           size={"small"}
         />
@@ -183,7 +145,7 @@ const StoryDetail = () => {
           Die Unvergänglichkeit
         </Text>
         <Detail
-          content={article.attributes.content}
+          content={data.attributes.content}
           cardTitle={"SILVIA AFFOLTER"}
           cardDescription={imgInfo1}
           size={"large"}
@@ -196,20 +158,6 @@ const StoryDetail = () => {
             ZUR HOTEL WEBSITE
           </Button>
         </div>
-      </div>
-
-      {/* <ArticlesLayout items={cards2} /> */}
-      <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
-        {articles.map(({ attributes, id }, idx) => (
-          <Link key={idx} href={`/insights/article/${id}`}>
-            <Card
-              description={attributes.header.title}
-              size="small"
-              imageUrl={attributes?.image?.path.data.attributes.url}
-              componentStyle={{ width: 250, minHeight: 250 }}
-            />
-          </Link>
-        ))}
       </div>
       <div className="p-20">
         <Button

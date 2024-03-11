@@ -56,7 +56,7 @@ const Card = ({
             width={100}
             height={100}
             className={
-              covered ? "w-[105px] pb-12" : large ? "w-[400px]" : "w-[200px]"
+              covered ? "w-[105px]" : large ? "w-[400px]" : "w-[200px]"
             }
             style={imageStyle}
           />

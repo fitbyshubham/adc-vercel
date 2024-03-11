@@ -93,7 +93,7 @@ export default {
       axiosInstance(config.token)
         .get(
           config.API_URL.concat(
-            `/insights?populate=card.image.path&filters[group][$containsi]=${type}&filters[card][featured][$eq]=${featured}`
+            `/insights?populate=card.image.path&filters[group][$containsi]=${type}${featured ? "&filters[card][featured][$eq]=true" : ""}`
           )
         )
         .then((res) => resolve(res.data))
@@ -130,6 +130,14 @@ export default {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(config.API_URL.concat(`/awards-page?populate=button`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getNewsAndEvent(id) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.NEWS_AND_EVENTS.BASE.concat(`/${id}?populate=image.path`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })

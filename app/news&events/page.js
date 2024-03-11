@@ -7,6 +7,8 @@ import Api from "@/api"
 import Text from "@/components/Text"
 import Loading from "@/components/Loading"
 import moment from "moment"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 const NewsAndEvents = () => {
   const [loading, setLoading] = useState(true)
@@ -14,6 +16,8 @@ const NewsAndEvents = () => {
   const [text, setText] = useState("")
   const [newsEvents, setNewsEvents] = useState(null)
   const [meta, setMeta] = useState({})
+
+  const router = useRouter()
 
   const filters = [
     "All",
@@ -60,7 +64,7 @@ const NewsAndEvents = () => {
 
       <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
         {newsEvents &&
-          newsEvents.map(({ attributes }) => (
+          newsEvents.map(({ attributes, id }) => (
             <Card
               key={attributes.id}
               title={attributes.title}
@@ -72,6 +76,7 @@ const NewsAndEvents = () => {
               btnWidth={150}
               btnBgColor={"#ffffff"}
               btnTextColor={"#000000"}
+              onButtonClick={() => router.push(`/news&events/${id}`)}
             />
           ))}
       </div>
@@ -89,7 +94,7 @@ const NewsAndEvents = () => {
                 <Loading size="md" />
               </div>
             ) : (
-              <Button onButtonClick={handleShowMore} width={200}>
+              <Button width={200}>
                 <Text>weitere anzeigen</Text>
               </Button>
             )}

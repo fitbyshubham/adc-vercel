@@ -19,18 +19,28 @@ const mapPage = {
   },
   impulse: {
     header: "impulse",
+    subHeader:
+      "Gemeinsam die Welt verändern. Kreative ESG-Benchmarks aus den Bereichen Umwelt, Soziales und Unternehmensführung.",
   },
   sparks: {
     header: "Sparks",
+    subHeader:
+      "Gemeinsam die Welt verändern. Kreative ESG-Benchmarks aus den Bereichen Umwelt, Soziales und Unternehmensführung.",
   },
   "queens-and-kings": {
     header: "queens and kings",
+    subHeader:
+      "Gemeinsam die Welt verändern. Kreative ESG-Benchmarks aus den Bereichen Umwelt, Soziales und Unternehmensführung.",
   },
   "point-of-view": {
     header: "point of view",
+    subHeader:
+      "Gemeinsam die Welt verändern. Kreative ESG-Benchmarks aus den Bereichen Umwelt, Soziales und Unternehmensführung.",
   },
   picky: {
     header: "picky",
+    subHeader:
+      "Gemeinsam die Welt verändern. Kreative ESG-Benchmarks aus den Bereichen Umwelt, Soziales und Unternehmensführung.",
   },
 }
 
@@ -463,6 +473,9 @@ const Category = () => {
       <Filters filters={insightPageFilters} activeFilter={type} />
       <Text twClassName="text-center text-[55px] mt-8">
         {pageFixedData.header}
+      </Text>
+      <Text twClassName="text-center text-lg mt-8 max-w-[546px] mx-auto">
+        {pageFixedData.subHeader}
       </Text>
       <ArticlesLayout data={insights} />
       {/* <div className="flex flex-col gap-[100px] mt-[100px] w-full md:px-20 px-4">

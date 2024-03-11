@@ -16,12 +16,15 @@ import { Context } from "../context"
 import Image from "next/image"
 import PlaceholderImage from "@/assets/images/bildschirmfoto.png"
 import config from "@/apiConfig"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
   const [pageData, setPageData] = useState(null)
   const [highlightedNewsEvents, setHighlightedNewsEvents] = useState(null)
   const { menuItems } = useContext(Context)
   const [loading, setLoading] = useState(true)
+
+  const router = useRouter()
 
   useEffect(() => {
     Api.getHomePage()
@@ -73,8 +76,8 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-[100px] p-[100px] w-full">
-        <div className="flex gap-[100px]">
-          <div className="w-[411px]">
+        <div className="flex gap-[100px] flex-col md:flex-row">
+          <div className="md:w-[411px] w-full">
             <div
               className={`h-full w-full flex flex-col gap-y-4 justify-center`}
             >
@@ -100,7 +103,7 @@ export default function Home() {
             <div
               className={`h-full w-full flex flex-col gap-y-4 justify-start`}
             >
-              <div className={`relative aspect-square w-[412px]`}>
+              <div className={`relative aspect-square md:w-[411px] w-full`}>
                 <Image
                   src={
                     config.IMAGE_API_URL +
@@ -120,7 +123,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="w-[411px]">
+          <div className="md:w-[411px] w-full">
             <div
               className={`h-full w-full flex flex-col gap-y-4 justify-center`}
             >
@@ -165,6 +168,7 @@ export default function Home() {
             title={pageData?.marquee1?.circularFlowButton?.title}
             subTitle={pageData?.marquee1?.circularFlowButton?.subTitle}
             url={pageData?.marquee1?.circularFlowButton?.url}
+            small={true}
           >
             <MarqueeChildren
               content={pageData?.marquee1?.headline?.text}
@@ -190,6 +194,7 @@ export default function Home() {
                   btnWidth={150}
                   btnBgColor={"#ffffff"}
                   btnTextColor={"#000000"}
+                  onButtonClick={() => router.push(`/news&events/${id}`)}
                 />
               ))
             : null}
