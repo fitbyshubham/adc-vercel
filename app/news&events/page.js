@@ -1,11 +1,11 @@
 "use client"
 import { useState, useEffect } from "react"
-import Search from "../components/Search"
-import Card from "../components/Card"
-import Button from "../components/Button"
-import Api from "../api"
-import Text from "../components/Text"
-import Loading from "../components/Loading"
+import Search from "@/components/Search"
+import Card from "@/components/Card"
+import Button from "@/components/Button"
+import Api from "@/api"
+import Text from "@/components/Text"
+import Loading from "@/components/Loading"
 import moment from "moment"
 
 const NewsAndEvents = () => {

@@ -8,12 +8,14 @@ import Marquee from "@/components/Marquee"
 import MarqueeChildren from "@/components/MarqueeChildren"
 import Api from "@/api"
 import "./style.css"
-import Poster from "@/components/Poster"
 import Text from "@/components/Text"
 import Loading from "@/components/Loading"
 import moment from "moment"
 import { getHomeFilters } from "@/utils/filters"
 import { Context } from "../context"
+import Image from "next/image"
+import PlaceholderImage from "@/assets/images/bildschirmfoto.png"
+import config from "@/apiConfig"
 
 export default function Home() {
   const [pageData, setPageData] = useState(null)
@@ -54,34 +56,95 @@ export default function Home() {
     <main>
       <div className="gradient-background">
         <div className="flex justify-center items-center h-[45rem]">
-          <Marquee speed={200} textSize={220}>
+          <Marquee
+            speed={200}
+            textSize={220}
+            visible={pageData?.hero?.circularFlowButton?.visible}
+            title={pageData?.hero?.circularFlowButton?.title}
+            subTitle={pageData?.hero?.circularFlowButton?.subTitle}
+            url={pageData?.hero?.circularFlowButton?.url}
+          >
             <MarqueeChildren content={pageData?.hero?.headline} />
           </Marquee>
         </div>
-        <Poster
-          visible={pageData?.hero?.circularFlowButton?.visible}
-          title={pageData?.hero?.circularFlowButton?.title}
-          subTitle={pageData?.hero?.circularFlowButton?.subTitle}
-        />
       </div>
       <div className="pt-8">
         <Filters filters={getHomeFilters(menuItems)} />
       </div>
-      <div className=" container mx-auto px-4 pt-16">
-        <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">
-          {pageData.insights.map((insight, index) => (
-            <div className={cardsClassName[index]} key={insight.id}>
-              <Card
-                title={insight?.title}
-                description={insight?.description}
-                buttonText="Weiterlesen"
-                imageUrl={insight?.image?.path.data.attributes.url}
-                size={insight?.size}
-              />
+
+      <div className="flex flex-col gap-[100px] p-[100px] w-full">
+        <div className="flex gap-[100px]">
+          <div className="w-[411px]">
+            <div
+              className={`h-full w-full flex flex-col gap-y-4 justify-center`}
+            >
+              <div className={`relative aspect-square w-[207px]`}>
+                <Image
+                  src={
+                    config.IMAGE_API_URL +
+                    pageData?.insight1?.image?.path?.data?.attributes?.url
+                  }
+                  alt="image"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-4xl">{pageData.insight1.title}</p>
+              <p>{pageData.insight1.description}</p>
+              <Button width={120}>
+                <p className="text-xs">Weiterlesen</p>
+              </Button>
             </div>
-          ))}
+          </div>
+          <div className="w-full max-w-[720px] flex-1">
+            <div
+              className={`h-full w-full flex flex-col gap-y-4 justify-start`}
+            >
+              <div className={`relative aspect-square w-[412px]`}>
+                <Image
+                  src={
+                    config.IMAGE_API_URL +
+                    pageData?.insight2?.image?.path?.data?.attributes?.url
+                  }
+                  alt="image"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-4xl">{pageData.insight2.title}</p>
+              <p>{pageData.insight2.description}</p>
+              <Button width={120}>
+                <p className="text-xs">Weiterlesen</p>
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <div className="w-[411px]">
+            <div
+              className={`h-full w-full flex flex-col gap-y-4 justify-center`}
+            >
+              <div className={`relative aspect-square w-[207px]`}>
+                <Image
+                  src={
+                    config.IMAGE_API_URL +
+                    pageData?.insight3?.image?.path?.data?.attributes?.url
+                  }
+                  alt="image"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-4xl">{pageData.insight3.title}</p>
+              <p>{pageData.insight3.description}</p>
+              <Button width={120}>
+                <p className="text-xs">Weiterlesen</p>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
+
       <Link href="/insights" className="flex justify-center p-20">
         <Button primaryBtn={true} width={200}>
           WEITER zu insights
@@ -95,7 +158,14 @@ export default function Home() {
         }
       >
         <div className="p-1">
-          <Marquee speed={200} textSize={150}>
+          <Marquee
+            speed={200}
+            textSize={150}
+            visible={pageData?.marquee1?.circularFlowButton?.visible}
+            title={pageData?.marquee1?.circularFlowButton?.title}
+            subTitle={pageData?.marquee1?.circularFlowButton?.subTitle}
+            url={pageData?.marquee1?.circularFlowButton?.url}
+          >
             <MarqueeChildren
               content={pageData?.marquee1?.headline?.text}
               images={pageData?.marquee1?.headline?.images}
@@ -138,7 +208,14 @@ export default function Home() {
         }
       >
         <div className="p-1">
-          <Marquee speed={200} textSize={150}>
+          <Marquee
+            speed={200}
+            textSize={150}
+            visible={pageData?.marquee2?.circularFlowButton?.visible}
+            title={pageData?.marquee2?.circularFlowButton?.title}
+            subTitle={pageData?.marquee2?.circularFlowButton?.subTitle}
+            url={pageData?.marquee2?.circularFlowButton?.url}
+          >
             <MarqueeChildren
               content={pageData?.marquee2?.headline?.text}
               images={pageData?.marquee2?.headline.images}
@@ -155,7 +232,14 @@ export default function Home() {
         }
       >
         <div className="p-1">
-          <Marquee speed={200} textSize={150}>
+          <Marquee
+            speed={200}
+            textSize={150}
+            visible={pageData?.marquee3?.circularFlowButton?.visible}
+            title={pageData?.marquee3?.circularFlowButton?.title}
+            subTitle={pageData?.marquee3?.circularFlowButton?.subTitle}
+            url={pageData?.marquee3?.circularFlowButton?.url}
+          >
             <MarqueeChildren
               content={pageData?.marquee3?.headline.text}
               images={pageData?.marquee3?.headline.images}

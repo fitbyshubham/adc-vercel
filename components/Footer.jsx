@@ -71,7 +71,7 @@ const Footer = () => {
           <Loading />
         )}
       </div>
-      <div className="flex p-5 mt-20 overflow-hidden gap-5">
+      <div className="flex p-5  overflow-hidden gap-5">
         {data &&
           data.supports.map(({ id, visible, logo }) => (
             <Image
@@ -80,7 +80,7 @@ const Footer = () => {
               alt="Supports"
               width={200}
               height={100}
-              className="w-full"
+              className="max-w-[100px] max-h-[100px] object-cover"
             />
           ))}
       </div>
