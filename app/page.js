@@ -124,7 +124,7 @@ export default function Home() {
               ))
             : null}
         </div>
-        <Link href="/news&events">
+        <Link href="/news-and-events">
           <Button primaryBtn={true} width={180}>
             ALLE ANZEIGEN
           </Button>
