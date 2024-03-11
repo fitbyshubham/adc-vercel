@@ -32,10 +32,10 @@ export const insightPageFilters = [
 ]
 
 export const learningFilters = [
-  { id: "all-school", text: "All school", path: "" },
-  { id: "adc-forward", text: "ADC forward", path: "" },
-  { id: "adc-morning", text: "ADC mentoring", path: "" },
-  { id: "coffee-case", text: "coffee case", path: "" },
+  { id: "adc-school", text: "ADC school", path: "/" },
+  { id: "adc-forward", text: "ADC forward", path: "/" },
+  { id: "adc-morning", text: "ADC mentoring", path: "/" },
+  { id: "coffee-case", text: "coffee case", path: "/" },
 ]
 
 export const peoplePageFilters = [
