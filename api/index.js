@@ -93,9 +93,43 @@ export default {
       axiosInstance(config.token)
         .get(
           config.API_URL.concat(
-            `/insights?populate=card.image.path&filters[card][group][$containsi]=${type}`
+            `/insights?populate=card.image.path&filters[group][$containsi]=${type}`
           )
         )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getLearningPageCards() {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.API_URL.concat(`/learnings?populate=card.image.path,button`)
+        )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getLearningPageNote() {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.API_URL.concat(`/learning-page?populate=note.button`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getCreativeDaysPage() {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.API_URL.concat(`/creative-days-page?populate=button`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getAwardsPage() {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.API_URL.concat(`/awards-page?populate=button`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })

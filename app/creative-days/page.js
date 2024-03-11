@@ -1,3 +1,4 @@
+"use client"
 import Card from "@/components/Card"
 import Filters from "@/components/Filters"
 import Impressionen from "@/components/Impressionen"
@@ -6,13 +7,25 @@ import Marquee from "@/components/Marquee"
 import MarqueeChildren from "@/components/MarqueeChildren"
 import "../style.css"
 import { creativeDaysFilters as filters } from "../../utils/filters"
+import { useEffect, useState } from "react"
+import Api from "@/api"
 
 const CreativeDays = () => {
-  const des = [
-    "Die Creative Days sind zurück. Mit einer klaren Strategie: Ganz im Zeichen von Kreativität und Women’s Empowerment. Vom 8. bis 10. Juni 2023 präsentiert der ADC Switzerland während drei Tagen kreative Highlights. Im Schloss Sihlberg in Zürich treten hochkarätige, nationale und internationale Referentinnen und Referenten auf und laden zu Workshops, Keynote-Speeches und Diskurs ein.",
-    "Ihren krönenden Abschluss finden die Creative Days 23 am Samstag mit der ADC Award Ceremony mit anschliessendem Dinner und Party bis tief in die Nacht.",
-    "Mit dem Creative Days 3-Tages-Pass für CHF 195.– erhälts du Zugang zum Schloss Sihlberg mit allen Keynote-Speeches und Workshops sowie der ADC Award Ceremony inkl. Dinner und Party.",
-  ]
+  const [data, setData] = useState({
+    attributes: {
+      button: {
+        text: "",
+      },
+      title: "",
+      marquee: "",
+      content: "",
+    },
+  })
+  useEffect(() => {
+    Api.getCreativeDaysPage()
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
     <div>
@@ -40,9 +53,9 @@ const CreativeDays = () => {
         <Filters filters={filters} />
         <div className="pt-20 pb-20">
           <Info
-            title={"Creative Days 2024"}
-            description={des}
-            btnTitle={"Festivalpass bestellen"}
+            title={data.attributes.title}
+            description={data.attributes.content}
+            btnTitle={data.attributes.button.text}
             btnWidth={220}
             primaryBtn={true}
             btnBgColor={"#000000"}

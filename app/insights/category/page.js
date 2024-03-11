@@ -4,14 +4,9 @@ import Text from "@/components/Text"
 import { useSearchParams } from "next/navigation"
 import { insightPageFilters } from "../../../utils/filters"
 import { notFound } from "next/navigation"
-import Button from "@/components/Button"
-import Card from "@/components/Card"
-import { chunkArray, chunkArray2 } from "@/utils/arrayChunks"
 import ArticlesLayout from "@/components/ArticlesLayout"
-import Link from "next/link"
 import Api from "@/api"
 import { useEffect, useState } from "react"
-import CustomCard from "@/components/CustomCard"
 
 const mapPage = {
   all: {

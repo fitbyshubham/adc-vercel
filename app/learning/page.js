@@ -1,52 +1,95 @@
-import React from "react"
+"use client"
+import React, { useEffect, useState } from "react"
 import Filters from "@/components/Filters"
-import Card from "@/components/Card"
 import Info from "@/components/Info"
 import Impressionen from "@/components/Impressionen"
-import { learningFilters } from "../../utils/filters"
+import { learningFilters } from "@/utils/filters"
+import Api from "@/api"
+import { chunkArray2 } from "@/utils/arrayChunks"
+import InsightCard from "@/components/InsightsCard"
 
 const Learning = () => {
+  const [data, setData] = useState([
+    [
+      {
+        id: "",
+        attributes: {
+          button: {
+            text: "",
+          },
+          card: {
+            description: "",
+            id: 13,
+            image: {
+              visible: true,
+              path: {
+                data: {
+                  attributes: {
+                    url: "",
+                  },
+                },
+              },
+            },
+            position: "",
+            size: "",
+            title: "",
+          },
+        },
+      },
+    ],
+  ])
+  const [note, setNote] = useState({
+    attributes: {
+      note: {
+        title: "",
+        description: "",
+        button: {
+          text: "",
+        },
+      },
+    },
+  })
+  useEffect(() => {
+    Api.getLearningPageCards()
+      .then((res) => {
+        setData(chunkArray2(res.data))
+      })
+      .catch((err) => console.log(err))
+    Api.getLearningPageNote()
+      .then((res) => {
+        setNote(res.data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
   return (
     <div className="pt-32">
       <Filters filters={learningFilters} />
-      <div className=" container mx-auto px-4 pt-10 pb-10">
-        <div className="grid grid-cols-12 max-sm:grid-cols-1 gap-4">
-          <div className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
-            <Card
-              title={"Fünf Kreative und ihre BÜrosessel"}
-              description={"Sesselwechsel auch ohne Jobwechsel."}
-              buttonText={"Weiterlesen"}
-              size={"small"}
-            />
+      <div className="flex flex-col gap-[100px] mt-[100px] w-full">
+        {data.map((arr, idx) => (
+          <div
+            className="flex flex-col md:flex-row gap-[100px] mx-auto relative"
+            key={idx}
+          >
+            {arr.map((item, idx) => (
+              <InsightCard
+                key={idx}
+                title={item.attributes.card.title}
+                description={item.attributes.card.description}
+                buttonText={"Weiterlesen"}
+                size={item.attributes.card.size}
+                className={"bg-green-500"}
+                imageUrl={item.attributes.card.image.path.data.attributes.url}
+                position={item.attributes.card.position}
+              />
+            ))}
           </div>
-          <div className="col-span-3 md:col-span-3 lg:col-span-3">
-            <Card
-              title={"Heureka"}
-              description={
-                "Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee."
-              }
-              buttonText={"Weiterlesen"}
-              size={"large"}
-            />
-          </div>
-          <div className="col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5">
-            <Card
-              title={"Heureka"}
-              description={
-                "Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee."
-              }
-              buttonText={"Weiterlesen"}
-              size={"small"}
-            />
-          </div>
-        </div>
+        ))}
       </div>
       <div className="flex justify-center p-28 max-sm:p-5">
         <Info
-          title={"für die nächste generation"}
-          description={
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-          }
+          title={note.attributes.note.title}
+          description={note.attributes.note.description}
+          btnTitle={note.attributes.note.button.text}
         />
       </div>
       <Impressionen />
