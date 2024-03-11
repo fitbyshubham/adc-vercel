@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 import Api from "@/api"
 import Loading from "@/components/Loading"
 import config from "@/apiConfig"
-import CustomCard from "@/components/CustomCard"
+import InsightCard from "@/components/InsightsCard"
 import { chunkArray2 } from "@/utils/arrayChunks"
 
 const Insights = () => {
@@ -18,11 +18,12 @@ const Insights = () => {
     [
       {
         attributes: {
+          content: "",
+          group: "",
           card: {
             description: "",
             featured: true,
             position: "",
-            group: "",
             image: {
               visible: true,
               path: {
@@ -36,7 +37,6 @@ const Insights = () => {
             size: "",
             title: "",
           },
-          content: "",
         },
       },
     ],
@@ -53,7 +53,7 @@ const Insights = () => {
   const fetchInsights = async () => {
     Api.getInsights("")
       .then((res) => {
-        console.log(chunkArray2(res.data))
+        console.log(res.data)
         setInsights(chunkArray2(res.data))
       })
       .catch(console.log)
@@ -123,7 +123,7 @@ const Insights = () => {
               key={idx}
             >
               {arr.map((item, idx) => (
-                <CustomCard
+                <InsightCard
                   key={idx}
                   title={item.attributes.card.title}
                   description={item.attributes.card.description}

@@ -32,37 +32,37 @@ export const insightPageFilters = [
 ]
 
 export const learningFilters = [
-  { id: "all-school", text: "All school", path: "" },
-  { id: "adc-forward", text: "ADC forward", path: "" },
-  { id: "adc-morning", text: "ADC mentoring", path: "" },
-  { id: "coffee-case", text: "coffee case", path: "" },
+  { id: "all-school", text: "All school", path: "/learning/" },
+  { id: "adc-forward", text: "ADC forward", path: "/learning/" },
+  { id: "adc-morning", text: "ADC mentoring", path: "/learning/" },
+  { id: "coffee-case", text: "coffee case", path: "/learning/" },
 ]
 
 export const peoplePageFilters = [
-  { id: "all", text: "All", path: "/" },
-  { id: "youngsters", text: "Youngsters", path: "/" },
-  { id: "newbies", text: "Newbies", path: "/" },
-  { id: "jury-members", text: "Jury Members", path: "/" },
-  { id: "board", text: "Board", path: "/" },
-  { id: "legends", text: "Legends", path: "/" },
-  { id: "friends", text: "Friends", path: "/" },
+  { id: "all", text: "All", path: "/people/" },
+  { id: "youngsters", text: "Youngsters", path: "/people/" },
+  { id: "newbies", text: "Newbies", path: "/people/" },
+  { id: "jury-members", text: "Jury Members", path: "/people/" },
+  { id: "board", text: "Board", path: "/people/" },
+  { id: "legends", text: "Legends", path: "/people/" },
+  { id: "friends", text: "Friends", path: "/people/" },
 ]
 
 export const creativeDaysFilters = [
   { id: "program", text: "Program", path: "/creative-days/category?type=" },
   { id: "speakers", text: "Speakers", path: "/creative-days/category?type=" },
-  { id: "tickets", text: "Tickets", path: "/creative-days/category?type=" },
-  { id: "location", text: "Location", path: "/creative-days/category?type=" },
+  { id: "tickets", text: "Tickets", path: "/creative-days/" },
+  { id: "location", text: "Location", path: "/creative-days/" },
 ]
 
 export const awardsFilters = [
   { id: "winners", text: "WINNERS", path: "/awards/group?type=" },
   { id: "ranking", text: "Ranking", path: "/awards/group?type=" },
-  { id: "guidelines", text: "Guidelines", path: "/awards/group?type=" },
+  { id: "guidelines", text: "Guidelines", path: "/awards/" },
   {
     id: "young-creatives",
     text: "Young Creatives",
-    path: "/awards/group?type=",
+    path: "/awards/",
   },
-  { id: "adc-europe", text: "ADC EUROPE", path: "/awards/group?type=" },
+  { id: "adc-europe", text: "ADC EUROPE", path: "/awards/" },
 ]

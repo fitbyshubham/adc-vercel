@@ -1,3 +1,4 @@
+"use client"
 import Card from "@/components/Card"
 import Filters from "@/components/Filters"
 import Impressionen from "@/components/Impressionen"
@@ -6,15 +7,31 @@ import Marquee from "@/components/Marquee"
 import MarqueeChildren from "@/components/MarqueeChildren"
 import "../style.css"
 import { awardsFilters } from "@/utils/filters"
+import { useEffect, useState } from "react"
+import Api from "@/api"
 
 const CreativeDays = () => {
-  const des = `Die Call for Entries für die ADC Awards 2023 sind ab sofort eröffnet. Dieses Mal gibt es drei spannende Premieren: die Kategorien «Spatial Experience» und «Creative Effectiveness» sowie den Sonderpreis ADCESG Award. Einsendeschluss ist der NEU der 22. März 2023.
-  Für die nächsten ADC Awards, die im Mai/Juni 2023 stattfinden, freut sich der ADC Switzerland auf Einsendungen. Unter anderem auch für die neu geschaffene Kategorie «Spatial Experience», die Einreichungen in den Bereichen «Events», «Exhibitions», «Public Space» und «Digital Space» umfasst. Damit können neu auch szenographische Ideen eingereicht werden, die Flächen bzw. Räume dreidimensional physisch und/oder digital bespielen.`
+  const [data, setData] = useState({
+    attributes: {
+      marquee: "",
+      content: "",
+      button: {
+        text: "",
+      },
+    },
+  })
+  useEffect(() => {
+    Api.getAwardsPage()
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err))
+  }, [])
   return (
     <div>
       <div className="awards-gradient-background flex flex-col h-[90rem]">
         <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
-          <MarqueeChildren data={{ content: "AWARD 2024", visible: true }} />
+          <MarqueeChildren
+            data={{ content: data.attributes.marquee, visible: true }}
+          />
         </Marquee>
         <div className="flex justify-center">
           <div className=" container mx-auto px-4 pt-10 pb-10">
@@ -34,8 +51,8 @@ const CreativeDays = () => {
         <Filters filters={awardsFilters} />
         <div className="pt-20 pb-20">
           <Info
-            description={des}
-            btnTitle={"Festivalpass bestellen"}
+            description={data.attributes.content}
+            btnTitle={data.attributes.button.text}
             btnWidth={220}
             primaryBtn={true}
             btnBgColor={"#000000"}
