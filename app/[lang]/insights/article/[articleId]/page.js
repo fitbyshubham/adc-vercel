@@ -132,7 +132,7 @@ const StoryDetail = () => {
   }, [id])
 
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col gap-y-5 items-center ">
       <button className="pt-28" onClick={() => router.back()}>
         BACK
       </button>
@@ -144,16 +144,16 @@ const StoryDetail = () => {
         alt="Img"
         width={200}
         height={200}
-        className="p-10 w-[45rem] max-md:w-[21rem]  max-sm:w-[14rem] h-[45rem] max-md:h-[21rem]  max-sm:h-[14rem] object-cover"
+        className="w-[217px] h-[217px] sm:w-[387px] sm:h-[387px] object-cover"
       />
-      <div className="text-center flex flex-col items-center">
-        <Text twClassName="text-[120px] leading-none max-md:text-[55px] w-[63rem] max-md:w-[41rem] max-sm:w-[335px]">
+      <div className="text-center flex flex-col gap-y-5 items-center w-full">
+        <Text twClassName="lg:text-[120px] sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
           {article.attributes.header.title}
         </Text>
         <Text
           capitalize={true}
           twClassName={
-            "text-[34px] max-md:text-[22px] w-[53rem] max-md:w-[41rem] max-sm:w-[335px]"
+            "md:text-[34px] text-[22px] w-[53rem] max-md:w-[41rem] max-sm:w-[335px] w-full"
           }
         >
           {article.attributes.header.subTitle}
@@ -173,7 +173,7 @@ const StoryDetail = () => {
           </Button>
         </div>
       </div>
-      <div className="lg:container pt-10">
+      <div className="lg:container w-full px-5 pt-10">
         <Detail
           content={article.attributes.content}
           cardDescription={imgInfo1}
@@ -189,8 +189,8 @@ const StoryDetail = () => {
           size={"large"}
         />
       </div>
-      <div className="p-20 max-md:p-5 self-start max-md:self-center">
-        <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 w-[750px] max-md:w-[508px] max-sm:w-[335px]">
+      <div className="md:p-20 p-5 self-start max-md:self-center w-full">
+        <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 lg:w-[750px] md:w-[508px] w-[335px]">
           <Text>www.hoteldeshorlogers.com, DZ ab CHF 370</Text>
           <Button primaryBtn={true} bgColor={"#000000"} width={200}>
             ZUR HOTEL WEBSITE

@@ -16,23 +16,25 @@ const CustomCard = ({
   const concatImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
     <div
-      className={`${size === "small" ? "w-[411px]" : size === "medium" ? "w-[500px]" : "w-full max-w-[720px] flex-1"}`}
+      className={`${size === "small" ? "md:w-[411px]" : size === "medium" ? "md:w-[500px]" : "w-full md:max-w-[720px] flex-1"}`}
     >
       <div
-        className={` h-full w-full flex flex-col gap-y-4 ${position === "center" ? "justify-center" : position === "bottom" ? "justify-end" : "justify-start"}`}
+        className={` h-full w-full flex flex-col gap-y-4 justify-between ${position === "center" ? "md:justify-center" : position === "bottom" ? "md:justify-end" : "md:justify-start"}`}
       >
-        <div
-          className={`relative aspect-square ${size === "small" ? "w-[207px]" : size === "medium" ? "w-[250px]" : "w-[412px]"}`}
-        >
-          <Image
-            src={concatImageUrl}
-            alt="image"
-            fill
-            className="object-cover"
-          />
+        <div className="flex flex-col gap-y-4">
+          <div
+            className={`relative aspect-square w-[217px] ${size === "small" ? "md:w-[207px]" : size === "medium" ? "md:w-[250px]" : "md:w-[412px]"}`}
+          >
+            <Image
+              src={concatImageUrl}
+              alt="image"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <p className="text-4xl">{title}</p>
+          <p>{description}</p>
         </div>
-        <p className="text-4xl">{title}</p>
-        <p>{description}</p>
         <Button width={120}>
           <p className="text-xs">{buttonText}</p>
         </Button>

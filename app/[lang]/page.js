@@ -75,25 +75,27 @@ export default function Home() {
         <Filters filters={getHomeFilters(menuItems)} />
       </div>
 
-      <div className="flex flex-col gap-[100px] p-[100px] w-full">
-        <div className="flex gap-[100px] flex-col md:flex-row">
+      <div className="flex sm:flex-col flex-row overflow-scroll no-scrollbar lg:gap-[100px] gap-[20px] lg:p-[100px] p-[20px] w-full">
+        <div className="flex lg:gap-[100px] gap-[20px] flex-row">
           <div className="md:w-[411px] w-full">
             <div
-              className={`h-full w-full flex flex-col gap-y-4 justify-center`}
+              className={`h-full w-full flex flex-col gap-y-4 sm:justify-center justify-between`}
             >
-              <div className={`relative aspect-square w-[207px]`}>
-                <Image
-                  src={
-                    config.IMAGE_API_URL +
-                    pageData?.insight1?.image?.path?.data?.attributes?.url
-                  }
-                  alt="image"
-                  fill
-                  className="object-cover"
-                />
+              <div className="flex flex-col gap-y-4">
+                <div className={`relative aspect-square w-[207px]`}>
+                  <Image
+                    src={
+                      config.IMAGE_API_URL +
+                      pageData?.insight1?.image?.path?.data?.attributes?.url
+                    }
+                    alt="image"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="text-4xl">{pageData.insight1.title}</p>
+                <p>{pageData.insight1.description}</p>
               </div>
-              <p className="text-4xl">{pageData.insight1.title}</p>
-              <p>{pageData.insight1.description}</p>
               <Button width={120}>
                 <p className="text-xs">Weiterlesen</p>
               </Button>
@@ -101,21 +103,25 @@ export default function Home() {
           </div>
           <div className="w-full max-w-[720px] flex-1">
             <div
-              className={`h-full w-full flex flex-col gap-y-4 justify-start`}
+              className={`h-full w-full flex flex-col gap-y-4 justify-between`}
             >
-              <div className={`relative aspect-square md:w-[411px] w-full`}>
-                <Image
-                  src={
-                    config.IMAGE_API_URL +
-                    pageData?.insight2?.image?.path?.data?.attributes?.url
-                  }
-                  alt="image"
-                  fill
-                  className="object-cover"
-                />
+              <div className="flex flex-col gap-y-4">
+                <div
+                  className={`relative aspect-square md:w-[411px] w-[207px]`}
+                >
+                  <Image
+                    src={
+                      config.IMAGE_API_URL +
+                      pageData?.insight2?.image?.path?.data?.attributes?.url
+                    }
+                    alt="image"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="text-4xl">{pageData.insight2.title}</p>
+                <p>{pageData.insight2.description}</p>
               </div>
-              <p className="text-4xl">{pageData.insight2.title}</p>
-              <p>{pageData.insight2.description}</p>
               <Button width={120}>
                 <p className="text-xs">Weiterlesen</p>
               </Button>
@@ -125,21 +131,23 @@ export default function Home() {
         <div className="flex justify-end">
           <div className="md:w-[411px] w-full">
             <div
-              className={`h-full w-full flex flex-col gap-y-4 justify-center`}
+              className={`h-full w-full flex flex-col gap-y-4 sm:justify-center justify-between`}
             >
-              <div className={`relative aspect-square w-[207px]`}>
-                <Image
-                  src={
-                    config.IMAGE_API_URL +
-                    pageData?.insight3?.image?.path?.data?.attributes?.url
-                  }
-                  alt="image"
-                  fill
-                  className="object-cover"
-                />
+              <div className="flex flex-col gap-y-4">
+                <div className={`relative aspect-square w-[207px]`}>
+                  <Image
+                    src={
+                      config.IMAGE_API_URL +
+                      pageData?.insight3?.image?.path?.data?.attributes?.url
+                    }
+                    alt="image"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="text-4xl">{pageData.insight3.title}</p>
+                <p>{pageData.insight3.description}</p>
               </div>
-              <p className="text-4xl">{pageData.insight3.title}</p>
-              <p>{pageData.insight3.description}</p>
               <Button width={120}>
                 <p className="text-xs">Weiterlesen</p>
               </Button>
@@ -180,7 +188,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
         <Text>NEWS & EVENTS</Text>
-        <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
+        <div className="flex gap-8 overflow-scroll w-full no-scrollbar">
           {highlightedNewsEvents
             ? highlightedNewsEvents.map(({ id, attributes }) => (
                 <Card

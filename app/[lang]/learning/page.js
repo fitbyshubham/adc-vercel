@@ -64,10 +64,10 @@ const Learning = () => {
   return (
     <div className="pt-32">
       <Filters filters={learningFilters} />
-      <div className="flex flex-col gap-[100px] mt-[100px] w-full">
+      <div className="flex sm:flex-col flex-row overflow-scroll p-[20px] no-scrollbar sm:gap-[100px] gap-[20px] sm:mt-[100px] w-full">
         {data.map((arr, idx) => (
           <div
-            className="flex flex-col md:flex-row gap-[100px] mx-auto relative"
+            className="flex sm:flex-col flex-row md:flex-row lg:gap-[100px] gap-[20px] mx-auto relative"
             key={idx}
           >
             {arr.map((item, idx) => (

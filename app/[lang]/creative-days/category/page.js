@@ -208,7 +208,7 @@ const ProgramFilter = () => {
         >
           Programm
         </Text>
-        <div className="flex flex-col gap-8 w-full lg:flex-row justify-between px-8">
+        <div className="flex flex-col gap-8 w-full lg:flex-row justify-between md:px-8">
           <div className="sm:hidden flex gap-5">
             <Image
               src={no_image_found}
@@ -263,9 +263,9 @@ const SpeakerFilter = () => {
     Die Platzzahl am Workshop ist limitiert: First come, first served.`
   return (
     <>
-      <div className="flex flex-col lg:flex-row p-[30px] gap-[102px]">
+      <div className="flex flex-col lg:flex-row md:p-[30px] p-[20px] gap-[102px]">
         <div className="max-sm:text-left xl:pl-[103px] pl-0 w-full flex flex-col gap-y-8 ">
-          <Text twClassName="text-[120px] max-md:text-[90px] max-sm:text-[50px] xl:leading-[120px] leading-none">
+          <Text twClassName="lg:text-[120px] sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
             {header}
           </Text>
           <Text>{date}</Text>
@@ -274,23 +274,25 @@ const SpeakerFilter = () => {
             Jetzt anmelden
           </Button>
         </div>
-        <div className="flex flex-col justify-between gap-8 lg:w-[382px] w-full flex-shrink-0">
+        <div className="flex lg:flex-col md:flex-row flex-col justify-start gap-8 lg:w-[382px] w-full flex-shrink-0">
           <Image
             src={speaker_img_not_found}
             alt="Speaker"
-            className="xl:w-full w-[382px] h-auto self-center"
+            className="xl:w-full w-[382px] aspect-square h-full"
           />
-          <Text fontSize={24} twClassName="leading-tight font-medium">
-            {speakerName}
-          </Text>
-          <Text capitalize={true} fontSize={16} twClassName={"font-medium"}>
-            {speakerInfo}
-          </Text>
-          <p className="text-[15px]">{speakerMoreInfo}</p>
-          <div className="flex gap-3 text-[12px] pt-3">
-            <Link href="#">{"LinkedIn".toUpperCase()}</Link>
-            <Link href="#">{"website".toUpperCase()}</Link>
-            <Link href="#">{"Instagram".toUpperCase()}</Link>
+          <div className="flex flex-col gap-8">
+            <Text fontSize={24} twClassName="leading-tight font-medium">
+              {speakerName}
+            </Text>
+            <Text capitalize={true} fontSize={16} twClassName={"font-medium"}>
+              {speakerInfo}
+            </Text>
+            <p className="text-[15px]">{speakerMoreInfo}</p>
+            <div className="flex gap-3 text-[12px] pt-3">
+              <Link href="#">{"LinkedIn".toUpperCase()}</Link>
+              <Link href="#">{"website".toUpperCase()}</Link>
+              <Link href="#">{"Instagram".toUpperCase()}</Link>
+            </div>
           </div>
         </div>
       </div>
@@ -380,7 +382,7 @@ const SpeakerFilter = () => {
           />
         </div>
       </div>
-      <div className="px-8 self-center  mb-[100px]">
+      <div className="md:px-8 px-5 self-center mb-[100px]">
         <div className="bg-[#EAEAEA] rounded-3xl p-10 flex flex-col gap-5 w-[752px] max-md:w-full">
           <Text>ADC Forward</Text>
           <Text fontSize={15} capitalize={true}>

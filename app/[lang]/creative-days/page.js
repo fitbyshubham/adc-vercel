@@ -49,19 +49,17 @@ const CreativeDays = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center mt-10">
+      <div className="flex flex-col items-center mt-10 pb-20">
         <Filters filters={filters} />
-        <div className="pt-20 pb-20">
-          <Info
-            title={data.attributes.title}
-            description={data.attributes.content}
-            btnTitle={data.attributes.button.text}
-            btnWidth={220}
-            primaryBtn={true}
-            btnBgColor={"#000000"}
-            componentStyle={{ background: "none" }}
-          />
-        </div>
+        <Info
+          title={data.attributes.title}
+          description={data.attributes.content}
+          btnTitle={data.attributes.button.text}
+          btnWidth={220}
+          primaryBtn={true}
+          btnBgColor={"#000000"}
+          componentStyle={{ background: "none" }}
+        />
         <Impressionen />
       </div>
     </div>

@@ -7,9 +7,9 @@ const Description = ({ data }) => {
     return (
       <div className="flex flex-col gap-5">
         {data.map((item, idx) => (
-          <div className="text-[24px]" key={idx}>
+          <p className="text-[24px]" key={idx}>
             {item}
-          </div>
+          </p>
         ))}
       </div>
     )
@@ -29,7 +29,7 @@ const Info = ({
 }) => {
   return (
     <div
-      className="bg-[#EAEAEA] flex flex-col gap-10 w-[52rem] max-md:w-[40rem] max-sm:w-full p-8 rounded-xl"
+      className="bg-[#EAEAEA] flex flex-col gap-10 md:w-[52rem] w-full md:p-8 p-5"
       style={componentStyle}
     >
       {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}

@@ -114,12 +114,11 @@ const Insights = () => {
   return (
     <div className="pt-32">
       <Filters filters={insightPageFilters} />
-      <div className=" container mx-auto px-4 pt-10 pb-10">
-        {/* <div className="grid grid-cols-12 gap-4"> */}
-        <div className="flex flex-col gap-[100px] mt-[100px] w-full">
+      <div className=" container mx-auto px-4 py-10">
+        <div className="flex sm:flex-col flex-row overflow-scroll no-scrollbar sm:gap-[100px] gap-[20px] sm:mt-[100px] w-full">
           {insights.map((arr, idx) => (
             <div
-              className="flex flex-col md:flex-row gap-[100px] mx-auto relative"
+              className="flex sm:flex-col flex-row md:flex-row lg:gap-[100px] gap-[20px] mx-auto relative"
               key={idx}
             >
               {arr.map((item, idx) => (
@@ -194,9 +193,9 @@ const Insights = () => {
           </div> */}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5 w-full">
+      <div className="flex flex-col justify-center items-center md:gap-28 gap-[20px] md:pt-24 pt-8 pb-24 p-5 w-full">
         <div>KATEGORIEN</div>
-        <div className="flex gap-8 overflow-scroll no-scrollbar w-full pl-[150px]">
+        <div className="flex gap-8 overflow-scroll no-scrollbar w-full lg:pl-[150px]">
           {cards2.map((card) => (
             <Card
               key={card.id}
@@ -226,8 +225,8 @@ const Insights = () => {
         </div>
       </div>
       <div>
-        <div className="flex flex-col items-center">
-          <div className="pb-20">Weitere Artikel</div>
+        <div className="flex flex-col items-center gap-[20px] md:gap-16">
+          <p>Weitere Artikel</p>
           {loading ? (
             <div className="flex justify-center items-center h-[20rem]">
               <Loading size="md" />
