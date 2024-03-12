@@ -2,7 +2,7 @@
 import Filters from "@/components/Filters"
 import Text from "@/components/Text"
 import { useSearchParams } from "next/navigation"
-import { insightPageFilters } from "../../../utils/filters"
+import { insightPageFilters } from "../../../../utils/filters"
 import { notFound } from "next/navigation"
 import ArticlesLayout from "@/components/ArticlesLayout"
 import Api from "@/api"

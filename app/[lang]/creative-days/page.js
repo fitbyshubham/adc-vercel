@@ -6,7 +6,7 @@ import Info from "@/components/Info"
 import Marquee from "@/components/Marquee"
 import MarqueeChildren from "@/components/MarqueeChildren"
 import "../style.css"
-import { creativeDaysFilters as filters } from "../../utils/filters"
+import { creativeDaysFilters as filters } from "../../../utils/filters"
 import { useEffect, useState } from "react"
 import Api from "@/api"
 

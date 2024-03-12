@@ -6,7 +6,7 @@ import Loading from "@/components/Loading"
 import Search from "@/components/Search"
 import { useEffect, useState } from "react"
 import Text from "@/components/Text"
-import { peoplePageFilters } from "../../utils/filters"
+import { peoplePageFilters } from "../../../utils/filters"
 import ViewDetails from "./ViewDetails"
 
 const People = () => {
