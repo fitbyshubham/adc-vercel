@@ -9,7 +9,8 @@ import Text from "@/components/Text"
 import { peoplePageFilters } from "../../../utils/filters"
 import ViewDetails from "./ViewDetails"
 
-const People = () => {
+const People = ({ params }) => {
+  const lang = params?.lang
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [text, setText] = useState("")
@@ -51,7 +52,7 @@ const People = () => {
 
   return (
     <div className="pt-32 flex flex-col items-center">
-      <Filters filters={peoplePageFilters} />
+      <Filters filters={peoplePageFilters(lang)} />
       <div className="md:p-20 pb-10 pt-8">
         <Search text={text} setText={setText} handleSearch={handleSearch} />
       </div>

@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 import Api from "@/api"
 import Loading from "@/components/Loading"
 import config from "@/apiConfig"
-import InsightCard from "@/components/InsightsCard"
+import SquareCard from "@/components/SquareCard"
 import { chunkArray2 } from "@/utils/arrayChunks"
 
 const Insights = ({ params }) => {
@@ -115,7 +115,7 @@ const Insights = ({ params }) => {
 
   return (
     <div className="pt-32">
-      <Filters filters={insightPageFilters} />
+      <Filters filters={insightPageFilters(lang)} />
       <div className=" container mx-auto px-4 py-10">
         <div className="flex sm:flex-col flex-row overflow-scroll no-scrollbar sm:gap-[100px] gap-[20px] sm:mt-[100px] w-full">
           {insights.map((arr, idx) => (
@@ -124,75 +124,21 @@ const Insights = ({ params }) => {
               key={idx}
             >
               {arr.map((item, idx) => (
-                <InsightCard
+                <SquareCard
                   key={idx}
-                  title={item.attributes.card.title}
-                  description={item.attributes.card.description}
+                  title={item?.attributes?.card.title}
+                  description={item?.attributes.card?.description}
                   buttonText={"Weiterlesen"}
                   size={item.attributes.card.size}
                   className={"bg-green-500"}
-                  imageUrl={item.attributes.card.image.path.data.attributes.url}
-                  position={item.attributes.card.position}
+                  imageUrl={
+                    item?.attributes.card.image.path.data.attributes.url
+                  }
+                  position={item?.attributes.card.position}
                 />
               ))}
             </div>
           ))}
-          {/* <div className="col-span-12 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
-            <Card
-              title={"Fünf Kreative und ihre BÜrosessel"}
-              description={"Sesselwechsel auch ohne Jobwechsel."}
-              buttonText={"Weiterlesen"}
-              size={"small"}
-            />
-          </div>
-          <div className="col-span-12 md:col-span-3 lg:col-span-3">
-            <Card
-              title={"Heureka"}
-              description={
-                "Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee."
-              }
-              buttonText={"Weiterlesen"}
-              size={"large"}
-            />
-          </div>
-          <div className="col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5">
-            <Card
-              title={"Heureka"}
-              description={
-                "Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee."
-              }
-              buttonText={"Weiterlesen"}
-              size={"small"}
-            />
-          </div>
-          <div className="col-span-12 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">
-            <Card
-              title={"Fünf Kreative und ihre BÜrosessel"}
-              description={"Sesselwechsel auch ohne Jobwechsel."}
-              buttonText={"Weiterlesen"}
-              size={"small"}
-            />
-          </div>
-          <div className="col-span-12 md:col-span-3 lg:col-span-3">
-            <Card
-              title={"Heureka"}
-              description={
-                "Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee."
-              }
-              buttonText={"Weiterlesen"}
-              size={"large"}
-            />
-          </div>
-          <div className="col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5">
-            <Card
-              title={"Heureka"}
-              description={
-                "Den einen bläst sie auf 3000 Metern entgegen, den anderen kommt sie beim Kartoffelschälen und wieder anderen beim Anblick eines schlafenden Prinzen: Die beste Idee."
-              }
-              buttonText={"Weiterlesen"}
-              size={"small"}
-            />
-          </div> */}
         </div>
       </div>
       <div className="flex flex-col justify-center items-center md:gap-28 gap-[20px] md:pt-24 pt-8 pb-24 p-5 w-full">
@@ -236,7 +182,10 @@ const Insights = ({ params }) => {
           ) : (
             <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
               {articles.map(({ attributes }, idx) => (
-                <Link key={idx} href={`/insights/article/${attributes.slug}`}>
+                <Link
+                  key={idx}
+                  href={`/${lang}/insights/article/${attributes.slug}`}
+                >
                   <Card
                     description={attributes.header.title}
                     size="small"

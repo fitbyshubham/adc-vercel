@@ -35,6 +35,9 @@ const config = {
   AWARDS_PAGE: {
     BASE: "/awards-page",
   },
+  AWARDS: {
+    BASE: "/awards",
+  },
 }
 
 export default config

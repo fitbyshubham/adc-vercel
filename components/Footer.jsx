@@ -12,7 +12,7 @@ import { Context } from "../context"
 import Filters from "./Filters"
 import { getHomeFilters } from "../utils/filters"
 
-const Footer = () => {
+const Footer = ({ lang }) => {
   const [data, setData] = useState(null)
   const { menuItems } = useContext(Context)
 
@@ -27,7 +27,10 @@ const Footer = () => {
   return (
     <div className="bg-black">
       <div className="pt-5">
-        <Filters filters={getHomeFilters(menuItems)} textColor="#ffffff" />
+        <Filters
+          filters={getHomeFilters(menuItems, lang)}
+          textColor="#ffffff"
+        />
       </div>
       <div className="flex justify-between max-md:items-center p-5 pt-20 max-md:flex-col">
         <div className="flex flex-col gap-10">

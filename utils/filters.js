@@ -9,60 +9,69 @@ export const getHomeFilters = (menuItems, lang) => {
     { id: "people", text: menuItems?.page5Name, path: `/${lang}/` },
   ]
 }
-export const insightPageFilters = [
-  { id: "all", text: "All", path: "/insights/category?type=" },
-  { id: "sparks", text: "Sparks", path: "/insights/category?type=" },
-  { id: "impulse", text: "Impulse", path: "/insights/category?type=" },
+
+export const insightPageFilters = (lang) => [
+  { id: "all", text: "All", path: `/${lang}/insights/category?type=` },
+  { id: "sparks", text: "Sparks", path: `/${lang}/insights/category?type=` },
+  { id: "impulse", text: "Impulse", path: `/${lang}/insights/category?type=` },
   {
     id: "conscious",
     text: "Conscious",
-    path: "/insights/category?type=",
+    path: `/${lang}/insights/category?type=`,
   },
   {
     id: "queens-and-kings",
     text: "Queens & Kings",
-    path: "/insights/category?type=",
+    path: `/${lang}/insights/category?type=`,
   },
   {
     id: "point-of-view",
     text: "Point of View",
-    path: "/insights/category?type=",
+    path: `/${lang}/insights/category?type=`,
   },
-  { id: "picky", text: "Picky", path: "/insights/category?type=" },
+  { id: "picky", text: "Picky", path: `/${lang}/insights/category?type=` },
 ]
 
-export const learningFilters = [
-  { id: "adc-school", text: "ADC school", path: "/learning/" },
-  { id: "adc-forward", text: "ADC forward", path: "/learning/" },
-  { id: "adc-morning", text: "ADC mentoring", path: "/learning/" },
-  { id: "coffee-case", text: "coffee case", path: "/learning/" },
+export const learningFilters = (lang) => [
+  { id: "adc-school", text: "ADC school", path: `/${lang}/learning/` },
+  { id: "adc-forward", text: "ADC forward", path: `/${lang}/learning/` },
+  { id: "adc-morning", text: "ADC mentoring", path: `/${lang}/learning/` },
+  { id: "coffee-case", text: "coffee case", path: `/${lang}/learning/` },
 ]
 
-export const peoplePageFilters = [
-  { id: "all", text: "All", path: "/people/" },
-  { id: "youngsters", text: "Youngsters", path: "/people/" },
-  { id: "newbies", text: "Newbies", path: "/people/" },
-  { id: "jury-members", text: "Jury Members", path: "/people/" },
-  { id: "board", text: "Board", path: "/people/" },
-  { id: "legends", text: "Legends", path: "/people/" },
-  { id: "friends", text: "Friends", path: "/people/" },
+export const peoplePageFilters = (lang) => [
+  { id: "all", text: "All", path: `/${lang}/people/` },
+  { id: "youngsters", text: "Youngsters", path: `/${lang}/people/` },
+  { id: "newbies", text: "Newbies", path: `/${lang}/people/` },
+  { id: "jury-members", text: "Jury Members", path: `/${lang}/people/` },
+  { id: "board", text: "Board", path: `/${lang}/people/` },
+  { id: "legends", text: "Legends", path: `/${lang}/people/` },
+  { id: "friends", text: "Friends", path: `/${lang}/people/` },
 ]
 
-export const creativeDaysFilters = [
-  { id: "program", text: "Program", path: "/creative-days/category?type=" },
-  { id: "speakers", text: "Speakers", path: "/creative-days/category?type=" },
-  { id: "tickets", text: "Tickets", path: "/creative-days/" },
-  { id: "location", text: "Location", path: "/creative-days/" },
+export const creativeDaysFilters = (lang) => [
+  {
+    id: "program",
+    text: "Program",
+    path: `/${lang}/creative-days/category?type=`,
+  },
+  {
+    id: "speakers",
+    text: "Speakers",
+    path: `/${lang}/creative-days/category?type=`,
+  },
+  { id: "tickets", text: "Tickets", path: `/${lang}/creative-days/` },
+  { id: "location", text: "Location", path: `/${lang}/creative-days/` },
 ]
 
-export const awardsFilters = [
-  { id: "winners", text: "WINNERS", path: "/awards/group?type=" },
-  { id: "ranking", text: "Ranking", path: "/awards/group?type=" },
-  { id: "guidelines", text: "Guidelines", path: "/awards/" },
+export const awardsFilters = (lang) => [
+  { id: "winners", text: "WINNERS", path: `/${lang}/awards/group?type=` },
+  { id: "ranking", text: "Ranking", path: `/${lang}/awards/group?type=` },
+  { id: "guidelines", text: "Guidelines", path: `/${lang}/awards/` },
   {
     id: "young-creatives",
     text: "Young Creatives",
-    path: "/awards/",
+    path: `/${lang}/awards/`,
   },
-  { id: "adc-europe", text: "ADC EUROPE", path: "/awards/" },
+  { id: "adc-europe", text: "ADC EUROPE", path: `/${lang}/awards/` },
 ]

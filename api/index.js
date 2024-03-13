@@ -25,7 +25,7 @@ export default {
   getFooterContent() {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(config.FOOTER.BASE.concat(`?populate=supports.logo`))
+        .get(config.FOOTER.BASE.concat(`?populate=deep`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
@@ -53,12 +53,12 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getNewsEvents({ lang, name = "", page = 1, pageSize = 10 }) {
+  getNewsEvents({ lang, text = "", page = 1, pageSize = 10 }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.NEWS_AND_EVENTS.BASE.concat(
-            `?populate=deep&locale=${lang}&filters[title][$containsi]=${name}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+            `?populate=deep&locale=${lang}&filters[title][$containsi]=${text}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
           )
         )
         .then((res) => {
@@ -104,10 +104,10 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getLearningPageCards() {
+  getLearningPageCards({ lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(config.LEARNINGS.BASE.concat(`?populate=deep`))
+        .get(config.LEARNINGS.BASE.concat(`?populate=deep&locale=${lang}`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
@@ -144,6 +144,14 @@ export default {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(config.AWARDS_PAGE.BASE.concat(`?populate=deep&locale=${lang}`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getAwardsCards({ lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.AWARDS.BASE.concat(`?populate=deep&locale=${lang}`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
