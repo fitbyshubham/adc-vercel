@@ -83,7 +83,11 @@ export default {
   getArticle({ lang, id }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(config.ARTICLES.BASE.concat(`/${id}?populate=deep&locale=${lang}`))
+        .get(
+          config.ARTICLES.BASE.concat(
+            `?populate=deep&locale=${lang}&filters[slug][$eq]=${id}`
+          )
+        )
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
@@ -148,6 +152,18 @@ export default {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(config.NEWS_AND_EVENTS.BASE.concat(`/${id}?populate=image.path`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getLearnings(slug) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.API_URL.concat(
+            `/learnings/?populate=card.image.path&filters[slug][$eq]${slug}`
+          )
+        )
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })

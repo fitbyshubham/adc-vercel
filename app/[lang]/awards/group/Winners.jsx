@@ -27,26 +27,30 @@ const Winners = ({ type }) => {
   ]
 
   return (
-    <div className="px-[200px] py-20">
+    <div className="xl:px-[200px] lg:px-[50px] px-[20px] py-20">
       <div className="flex justify-between">
         <Text capitalize={true} style={{ fontSize: 24 }}>
           Winners
         </Text>
         <ADCLogo width={220} height={55} />
       </div>
-      <div className="flex justify-between pt-16">
-        <div>
+      <div className="flex flex-col lg:flex-row gap-10 lg:items-start items-center justify-between pt-16">
+        <div className="flex-col flex gap-10 min-w-[250px]">
           <div className="flex gap-10 items-center">
-            <div>ADC Awards 2023</div>
+            <p>ADC Awards 2023</p>
             <Image src={down} alt="Winners" className="w-8 h-8" />
           </div>
-          <div className="pt-10">
+          <div>
             {awardNames.map((award, i) => (
-              <div key={i}>{award.text}</div>
+              <p key={i}>{award.text}</p>
             ))}
           </div>
         </div>
-        <Image src={not_found} alt="Winners" className="w-[35rem] h-[40rem]" />
+        <Image
+          src={not_found}
+          alt="Winners"
+          className="max-w-[650px] w-full h-auto"
+        />
       </div>
     </div>
   )
