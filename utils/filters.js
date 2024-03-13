@@ -1,12 +1,12 @@
-export const getHomeFilters = (menuItems) => {
+export const getHomeFilters = (menuItems, lang) => {
   if (!menuItems) return []
 
   return [
-    { id: "insights", text: menuItems?.page1Name, path: "/" },
-    { id: "learning", text: menuItems?.page2Name, path: "/" },
-    { id: "creative-days", text: menuItems?.page3Name, path: "/" },
-    { id: "awards", text: menuItems?.page4Name, path: "/" },
-    { id: "people", text: menuItems?.page5Name, path: "/" },
+    { id: "insights", text: menuItems?.page1Name, path: `/${lang}/` },
+    { id: "learning", text: menuItems?.page2Name, path: `/${lang}/` },
+    { id: "creative-days", text: menuItems?.page3Name, path: `/${lang}/` },
+    { id: "awards", text: menuItems?.page4Name, path: `/${lang}/` },
+    { id: "people", text: menuItems?.page5Name, path: `/${lang}/` },
   ]
 }
 export const insightPageFilters = [

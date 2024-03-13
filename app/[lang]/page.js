@@ -14,11 +14,11 @@ import moment from "moment"
 import { getHomeFilters } from "@/utils/filters"
 import { Context } from "../../context"
 import Image from "next/image"
-import PlaceholderImage from "@/assets/images/bildschirmfoto.png"
 import config from "@/apiConfig"
 import { useRouter } from "next/navigation"
 
-export default function Home() {
+export default function Home({ params }) {
+  const lang = params?.lang
   const [pageData, setPageData] = useState(null)
   const [highlightedNewsEvents, setHighlightedNewsEvents] = useState(null)
   const { menuItems } = useContext(Context)
@@ -27,11 +27,11 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    Api.getHomePage()
+    Api.getHomePage({ lang })
       .then((res) => {
         const data = res.data.attributes
         setPageData(data)
-        Api.getNewsEvents("", 1, 4)
+        Api.getNewsEvents({ lang, pageSize: 4 })
           .then((res) => {
             const data = res.data
             setHighlightedNewsEvents(data)
@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </div>
       <div className="pt-8">
-        <Filters filters={getHomeFilters(menuItems)} />
+        <Filters filters={getHomeFilters(menuItems, lang)} />
       </div>
 
       <div className="flex sm:flex-col flex-row overflow-scroll no-scrollbar lg:gap-[100px] gap-[20px] lg:p-[100px] p-[20px] w-full">
@@ -156,7 +156,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Link href="/insights" className="flex justify-center p-20">
+      <Link href={`/${lang}/insights`} className="flex justify-center p-20">
         <Button primaryBtn={true} width={200}>
           WEITER zu insights
         </Button>
@@ -207,7 +207,7 @@ export default function Home() {
               ))
             : null}
         </div>
-        <Link href="/news-and-events">
+        <Link href={`/${lang}/news-and-events`}>
           <Button primaryBtn={true} width={180}>
             ALLE ANZEIGEN
           </Button>
@@ -252,6 +252,7 @@ export default function Home() {
             title={pageData?.marquee3?.circularFlowButton?.title}
             subTitle={pageData?.marquee3?.circularFlowButton?.subTitle}
             url={pageData?.marquee3?.circularFlowButton?.url}
+            small
           >
             <MarqueeChildren
               content={pageData?.marquee3?.headline.text}

@@ -4,7 +4,7 @@ import NavLink from "./NavLink"
 import Link from "next/link"
 import Loading from "./Loading"
 
-const Menu = ({ open, handleClose, menuItems }) => {
+const Menu = ({ open, handleClose, menuItems, lang }) => {
   const twClass = open ? "bg-white fixed w-full z-50" : "hidden"
 
   const menuLinkList = [
@@ -93,31 +93,31 @@ const Menu = ({ open, handleClose, menuItems }) => {
             twClassName={"lg:text-[55px] text-[24px] font-semibold"}
             onClick={handleClose}
           >
-            <Link href={"/insights"}>{menuItems?.page1Name}</Link>
+            <Link href={`/${lang}/insights`}>{menuItems?.page1Name}</Link>
           </Text>
           <Text
             twClassName={"lg:text-[55px] text-[24px] font-semibold"}
             onClick={handleClose}
           >
-            <Link href={"/learning"}>{menuItems?.page2Name}</Link>
+            <Link href={`/${lang}/learning`}>{menuItems?.page2Name}</Link>
           </Text>
           <Text
             twClassName={"lg:text-[55px] text-[24px] font-semibold"}
             onClick={handleClose}
           >
-            <Link href={"/creative-days"}>{menuItems?.page3Name}</Link>
+            <Link href={`/${lang}/creative-days`}>{menuItems?.page3Name}</Link>
           </Text>
           <Text
             twClassName={"lg:text-[55px] text-[24px] font-semibold"}
             onClick={handleClose}
           >
-            <Link href={"/awards"}>{menuItems?.page4Name}</Link>
+            <Link href={`/${lang}/awards`}>{menuItems?.page4Name}</Link>
           </Text>
           <Text
             twClassName={"lg:text-[55px] text-[24px] font-semibold"}
             onClick={handleClose}
           >
-            <Link href={"/people"}>{menuItems?.page5Name}</Link>
+            <Link href={`/${lang}/people`}>{menuItems?.page5Name}</Link>
           </Text>
         </div>
         <div className="flex gap-x-[26px] lg:hidden self-center">

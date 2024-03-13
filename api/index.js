@@ -30,15 +30,14 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getHomePage() {
+  getHomePage({ lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(
-          config.HOMEPAGE.BASE.concat(
-            "?populate=hero.circularFlowButton,insight1.image.path,insight2.image.path,insight3.image.path,marquee1.headline.images,marquee1.circularFlowButton,marquee2.headline.images,marquee2.circularFlowButton,marquee3.headline.images,marquee3.circularFlowButton"
-          )
-        )
-        .then((res) => resolve(res.data))
+        .get(config.HOMEPAGE.BASE.concat(`?populate=deep&locale=${lang}`))
+        .then((res) => {
+          const pageRes = res.data
+          resolve(pageRes)
+        })
         .catch((error) => reject(error))
     })
   },
@@ -54,48 +53,51 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getNewsEvents(name, page, pageSize = 10) {
+  getNewsEvents({ lang, name = "", page = 1, pageSize = 10 }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.NEWS_AND_EVENTS.BASE.concat(
-            `?populate=image.path&filters[title][$containsi]=${name}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+            `?populate=deep&locale=${lang}&filters[title][$containsi]=${name}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
           )
         )
-        .then((res) => resolve(res.data))
+        .then((res) => {
+          const pageRes = res.data
+          resolve(pageRes)
+        })
         .catch((error) => reject(error))
     })
   },
-  getArticles(page = 1, pageSize = 7) {
+  getArticles({ lang, page = 1, pageSize = 7 }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.ARTICLES.BASE.concat(
-            `?populate=image.path,header.title&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+            `?populate=deep&locale=${lang}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
           )
         )
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
   },
-  getArticle(id) {
+  getArticle({ lang, id }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.ARTICLES.BASE.concat(
-            `?populate=image.path,header.title&filters[slug][$eq]=${id}`
+            `?populate=deep&locale=${lang}&filters[slug][$eq]=${id}`
           )
         )
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
   },
-  getInsights(type, featured) {
+  getInsights({ lang, type = "", featured }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
-          config.API_URL.concat(
-            `/insights?populate=card.image.path&filters[group][$containsi]=${type}${featured ? "&filters[card][featured][$eq]=true" : ""}`
+          config.INSIGHTS.BASE.concat(
+            `?populate=deep&locale=${lang}&filters[group][$containsi]=${type}&filters[card][featured][$eq]=${featured}}`
           )
         )
         .then((res) => resolve(res.data))
@@ -105,33 +107,43 @@ export default {
   getLearningPageCards() {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
+        .get(config.LEARNINGS.BASE.concat(`?populate=deep`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getLearningPageNote({ lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
         .get(
-          config.API_URL.concat(`/learnings?populate=card.image.path,button`)
+          config.API_URL.concat(`/learning-page?populate=deep&locale=${lang}`)
         )
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
   },
-  getLearningPageNote() {
+  getCreativeDaysPage({ lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(config.API_URL.concat(`/learning-page?populate=note.button`))
+        .get(config.CREATIVE_DAYS.BASE.concat(`?populate=deep&locale=${lang}`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
   },
-  getCreativeDaysPage() {
+  getCreativeDaysNote({ lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(config.API_URL.concat(`/creative-days-page?populate=button`))
+        .get(
+          config.CREATIVE_DAYS_PAGE.BASE.concat(`?populate=deep&locale=${lang}`)
+        )
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })
   },
-  getAwardsPage() {
+  getAwardsPage({ lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
-        .get(config.API_URL.concat(`/awards-page?populate=button`))
+        .get(config.AWARDS_PAGE.BASE.concat(`?populate=deep&locale=${lang}`))
         .then((res) => resolve(res.data))
         .catch((error) => reject(error))
     })

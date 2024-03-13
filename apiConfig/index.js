@@ -20,6 +20,21 @@ const config = {
   FOOTER: {
     BASE: "/footer",
   },
+  INSIGHTS: {
+    BASE: "/insights",
+  },
+  LEARNINGS: {
+    BASE: "/learnings",
+  },
+  CREATIVE_DAYS: {
+    BASE: "/creative-days",
+  },
+  CREATIVE_DAYS_PAGE: {
+    BASE: "creative-days-page",
+  },
+  AWARDS_PAGE: {
+    BASE: "/awards-page",
+  },
 }
 
 export default config

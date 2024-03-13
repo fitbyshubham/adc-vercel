@@ -11,7 +11,8 @@ import config from "@/apiConfig"
 import InsightCard from "@/components/InsightsCard"
 import { chunkArray2 } from "@/utils/arrayChunks"
 
-const Insights = () => {
+const Insights = ({ params }) => {
+  const lang = params.lang
   const [loading, setLoading] = useState(true)
   const [articles, setArticles] = useState([])
   const [insights, setInsights] = useState([
@@ -44,17 +45,17 @@ const Insights = () => {
   ])
 
   const fetchArticles = async (page = 1) => {
-    Api.getArticles(page, 8)
+    Api.getArticles({ lang, page, pageSize: 8 })
       .then((res) => {
         setArticles(res.data)
         setLoading(false)
       })
       .catch(console.log)
   }
+
   const fetchInsights = async () => {
-    Api.getInsights("", true)
+    Api.getInsights({ lang, type: "", featured: true })
       .then((res) => {
-        console.log(res.data)
         setInsights(chunkArray2(res.data))
       })
       .catch(console.log)
