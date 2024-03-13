@@ -29,19 +29,21 @@ const Info = ({
 }) => {
   return (
     <div
-      className="bg-[#EAEAEA] flex flex-col gap-10 w-[52rem] pr-5"
+      className="bg-[#EAEAEA] p-5 w-full flex justify-center"
       style={componentStyle}
     >
-      {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}
-      <Description data={description} />
-      <div>
-        <Button
-          bgColor={btnBgColor || "#FFFFFF"}
-          width={btnWidth}
-          primaryBtn={primaryBtn}
-        >
-          {btnTitle || "Weitere Informationen"}
-        </Button>
+      <div className="w-[52rem] flex flex-col gap-10">
+        {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}
+        <Description data={description} />
+        <div>
+          <Button
+            bgColor={btnBgColor || "#FFFFFF"}
+            width={btnWidth}
+            primaryBtn={primaryBtn}
+          >
+            {btnTitle || "Weitere Informationen"}
+          </Button>
+        </div>
       </div>
     </div>
   )

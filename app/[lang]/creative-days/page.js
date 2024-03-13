@@ -85,8 +85,8 @@ const CreativeDays = ({ params }) => {
             componentStyle={{ background: "none" }}
           />
         </div>
-        <Impressionen />
       </div>
+      <Impressionen />
     </div>
   )
 }

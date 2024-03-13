@@ -9,11 +9,11 @@ const Category = ({ params }) => {
   const lang = params?.lang
   const searchParams = useSearchParams()
   const type = searchParams.get("type")
-  const pageExist = awardsFilters.map((page) => page.id).includes(type)
+  //   const pageExist = awardsFilters.map((page) => page.id).includes(type)
 
-  if (!pageExist) {
-    return notFound()
-  }
+  //   if (!pageExist) {
+  //     return notFound()
+  //   }
 
   return (
     <div className="pt-36">

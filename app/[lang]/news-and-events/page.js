@@ -48,12 +48,12 @@ const NewsAndEvents = ({ params }) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center p-[20px]">
       <div className="p-20 pt-28">
         <Search text={text} setText={setText} handleSearch={handleSearch} />
       </div>
 
-      <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-8">
+      <div className="flex overflow-scroll no-scrollbar w-full gap-8">
         {newsEvents &&
           newsEvents.map(({ attributes, id }) => (
             <Card
