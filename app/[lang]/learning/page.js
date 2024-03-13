@@ -8,7 +8,8 @@ import Api from "@/api"
 import { chunkArray2 } from "@/utils/arrayChunks"
 import InsightCard from "@/components/InsightsCard"
 
-const Learning = () => {
+const Learning = ({ params }) => {
+  const lang = params?.lang
   const [data, setData] = useState([
     [
       {
@@ -55,7 +56,7 @@ const Learning = () => {
         setData(chunkArray2(res.data))
       })
       .catch((err) => console.log(err))
-    Api.getLearningPageNote()
+    Api.getLearningPageNote({ lang })
       .then((res) => {
         setNote(res.data)
       })

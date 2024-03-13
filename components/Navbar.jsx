@@ -7,7 +7,7 @@ import useParentPage from "../hooks/useParentPage"
 import Api from "../api"
 import { Context } from "../context"
 
-const Navbar = () => {
+const Navbar = ({ lang }) => {
   const [open, setOpen] = useState(false)
   const { menuItems, setMenuItems } = useContext(Context)
   const fullPath = usePathname()
@@ -30,7 +30,12 @@ const Navbar = () => {
   ]
 
   return open ? (
-    <Menu open={open} handleClose={handleClick} menuItems={menuItems} />
+    <Menu
+      open={open}
+      handleClose={handleClick}
+      menuItems={menuItems}
+      lang={lang}
+    />
   ) : (
     <div className="flex justify-between items-center p-[30px] fixed w-full backdrop-blur-md z-50">
       {linkList.map((item, idx) => (
