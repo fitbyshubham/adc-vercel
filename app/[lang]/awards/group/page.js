@@ -5,7 +5,8 @@ import { awardsFilters } from "@/utils/filters"
 import Ranking from "./Ranking"
 import Winners from "./Winners"
 
-const Category = () => {
+const Category = ({ params }) => {
+  const lang = params?.lang
   const searchParams = useSearchParams()
   const type = searchParams.get("type")
   const pageExist = awardsFilters.map((page) => page.id).includes(type)
@@ -16,7 +17,7 @@ const Category = () => {
 
   return (
     <div className="pt-36">
-      <Filters filters={awardsFilters} activeFilter={type} />
+      <Filters filters={awardsFilters(lang)} activeFilter={type} />
       <Winners type={type} />
       <Ranking type={type} />
     </div>

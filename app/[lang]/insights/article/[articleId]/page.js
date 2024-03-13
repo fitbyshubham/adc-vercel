@@ -1,47 +1,32 @@
 "use client"
-import { useParams } from "next/navigation"
-import StoryDetail from "@/components/StoryDetail"
-import { useEffect, useState } from "react"
 import Api from "@/api"
+import Loading from "@/components/Loading"
+import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
-const Page = () => {
-  const params = useParams()
-  const id = params.articleId
+const Page = ({ params }) => {
+  const lang = params?.lang
+  const id = params?.articleId
 
-  const [article, setArticle] = useState({
-    id: "",
-    attributes: {
-      author: "",
-      content: "",
-      group: "",
-      header: {
-        title: "",
-        subTitle: "",
-      },
-      image: {
-        visible: true,
-        path: {
-          data: {
-            attributes: {
-              url: "",
-            },
-          },
-        },
-      },
-    },
-  })
+  const [article, setArticle] = useState(null)
 
   const fetchArticle = (id) => {
-    Api.getArticle(id)
-      .then((res) => {
-        setArticle(res.data[0])
-      })
+    Api.getArticle({ lang, id })
+      .then((res) => setArticle(res.data[0]))
       .catch((err) => console.log(err.message))
   }
 
   useEffect(() => {
     fetchArticle(id)
   }, [id])
+
+  if (!article) {
+    return (
+      <div className="h-[50rem] w-full flex justify-center items-center">
+        <Loading size="lg" />
+      </div>
+    )
+  }
 
   return (
     <StoryDetail

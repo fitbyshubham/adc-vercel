@@ -3,7 +3,8 @@ import Card from "../components/Card"
 import Filters from "../components/Filters"
 import Text from "../components/Text"
 
-const ModulesOverview = () => {
+const ModulesOverview = ({ params }) => {
+  const lang = params?.lang
   const filters = [
     "Creative Days 2024",
     "Program",
@@ -145,7 +146,7 @@ const ModulesOverview = () => {
 
   return (
     <div className="pt-20">
-      <Filters filters={filters} />
+      <Filters filters={filters(lang)} />
       <div className=" container mx-auto px-4 pt-10 pb-10">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6">

@@ -188,7 +188,7 @@ export default function Home({ params }) {
       </div>
       <div className="flex flex-col justify-center items-center gap-28 pt-24 pb-24 p-5">
         <Text>NEWS & EVENTS</Text>
-        <div className="flex gap-8 overflow-scroll w-full no-scrollbar">
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8">
           {highlightedNewsEvents
             ? highlightedNewsEvents.map(({ id, attributes }) => (
                 <Card
@@ -202,7 +202,9 @@ export default function Home({ params }) {
                   btnWidth={150}
                   btnBgColor={"#ffffff"}
                   btnTextColor={"#000000"}
-                  onButtonClick={() => router.push(`/news&events/${id}`)}
+                  onButtonClick={() =>
+                    router.push(`/${lang}/news-and-events/${id}`)
+                  }
                 />
               ))
             : null}

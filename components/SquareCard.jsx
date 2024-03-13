@@ -21,7 +21,7 @@ const CustomCard = ({
       <div
         className={` h-full w-full flex flex-col gap-y-4 justify-between ${position === "center" ? "md:justify-center" : position === "bottom" ? "md:justify-end" : "md:justify-start"}`}
       >
-        <div className="flex flex-col gap-y-4">
+        <div className={`flex flex-col gap-y-4 ${imageUrl ? "" : "hidden"}`}>
           <div
             className={`relative aspect-square w-[217px] ${size === "small" ? "md:w-[207px]" : size === "medium" ? "md:w-[250px]" : "md:w-[412px]"}`}
           >

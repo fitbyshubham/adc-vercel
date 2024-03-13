@@ -73,7 +73,7 @@ const CreativeDays = ({ params }) => {
         </div>
       </div>
       <div className="flex flex-col items-center mt-10 pb-20">
-        <Filters filters={filters} />
+        <Filters filters={filters(lang)} />
         <div className="pt-20 pb-20">
           <Info
             title={pageData.attributes?.title}

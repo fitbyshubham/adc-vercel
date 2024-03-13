@@ -20,19 +20,9 @@ const NewsAndEvents = ({ params }) => {
 
   const router = useRouter()
 
-  const filters = [
-    "All",
-    "Youngsters",
-    "Newbies",
-    "Jury Members",
-    "Board",
-    "Legends",
-    "Friends",
-  ]
-
-  const fetchNewsEventsData = (searchText, page, prevNewsEventsData = []) => {
+  const fetchNewsEventsData = (text = "", page, prevNewsEventsData = []) => {
     setLoading(true)
-    Api.getNewsEvents({ lang, searchText, page, pageSize: 8 })
+    Api.getNewsEvents({ lang, text, page, pageSize: 8 })
       .then((res) => {
         if (prevNewsEventsData) {
           setNewsEvents([...prevNewsEventsData, ...res.data])
@@ -44,7 +34,7 @@ const NewsAndEvents = ({ params }) => {
   }
 
   useEffect(() => {
-    fetchNewsEventsData({ lang, pageSize: 8 })
+    fetchNewsEventsData()
   }, [])
 
   const handleSearch = (text) => {
