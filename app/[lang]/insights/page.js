@@ -20,6 +20,7 @@ const Insights = () => {
         attributes: {
           content: "",
           group: "",
+          slug: "",
           card: {
             description: "",
             featured: true,
@@ -233,8 +234,8 @@ const Insights = () => {
             </div>
           ) : (
             <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
-              {articles.map(({ attributes, id }, idx) => (
-                <Link key={idx} href={`/insights/article/${id}`}>
+              {articles.map(({ attributes }, idx) => (
+                <Link key={idx} href={`/insights/article/${attributes.slug}`}>
                   <Card
                     description={attributes.header.title}
                     size="small"

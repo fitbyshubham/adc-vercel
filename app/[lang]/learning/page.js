@@ -52,6 +52,7 @@ const Learning = () => {
   useEffect(() => {
     Api.getLearningPageCards()
       .then((res) => {
+        console.log(res.data)
         setData(chunkArray2(res.data))
       })
       .catch((err) => console.log(err))
