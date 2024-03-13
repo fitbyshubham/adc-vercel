@@ -6,7 +6,7 @@ import Impressionen from "@/components/Impressionen"
 import { learningFilters } from "@/utils/filters"
 import Api from "@/api"
 import { chunkArray2 } from "@/utils/arrayChunks"
-import InsightCard from "@/components/InsightsCard"
+import InsightCard from "@/components/SquareCard"
 
 const Learning = ({ params }) => {
   const lang = params?.lang
@@ -39,6 +39,7 @@ const Learning = ({ params }) => {
       },
     ],
   ])
+
   const [note, setNote] = useState({
     attributes: {
       note: {
@@ -50,22 +51,32 @@ const Learning = ({ params }) => {
       },
     },
   })
-  useEffect(() => {
-    Api.getLearningPageCards()
+
+  const fetchCards = async () => {
+    Api.getLearningPageCards({ lang })
       .then((res) => {
         console.log(res.data)
         setData(chunkArray2(res.data))
       })
       .catch((err) => console.log(err))
+  }
+
+  const fetchNote = () => {
     Api.getLearningPageNote({ lang })
       .then((res) => {
         setNote(res.data)
       })
       .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchCards()
+    fetchNote()
   }, [])
+
   return (
     <div className="pt-32">
-      <Filters filters={learningFilters} />
+      <Filters filters={learningFilters(lang)} />
       <div className="flex sm:flex-col flex-row overflow-scroll p-[20px] no-scrollbar sm:gap-[100px] gap-[20px] sm:mt-[100px] w-full">
         {data.map((arr, idx) => (
           <div

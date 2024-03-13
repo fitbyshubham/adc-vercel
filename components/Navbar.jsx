@@ -11,7 +11,7 @@ const Navbar = ({ lang }) => {
   const [open, setOpen] = useState(false)
   const { menuItems, setMenuItems } = useContext(Context)
   const fullPath = usePathname()
-  const { name, path } = useParentPage(fullPath, menuItems)
+  const { name, path } = useParentPage(fullPath, menuItems, lang)
 
   const handleClick = () => setOpen(!open)
 

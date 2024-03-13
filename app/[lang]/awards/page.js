@@ -14,6 +14,7 @@ import Loading from "@/components/Loading"
 const AwardsPage = ({ params }) => {
   const lang = params?.lang
   const [pageData, setPageData] = useState(null)
+  const [cards, setCards] = useState(null)
 
   const fetchPageData = () => {
     Api.getAwardsPage({ lang })
@@ -21,11 +22,18 @@ const AwardsPage = ({ params }) => {
       .catch((err) => console.log(err))
   }
 
+  const fetchAwardsCards = () => {
+    Api.getAwardsCards({ lang })
+      .then((res) => setCards(res.data))
+      .catch((err) => console.log(err))
+  }
+
   useEffect(() => {
     fetchPageData()
+    fetchAwardsCards()
   }, [])
 
-  if (!pageData) {
+  if (!pageData || !cards) {
     return (
       <div className="h-[50rem] w-full flex justify-center items-center">
         <Loading size="lg" />
@@ -41,22 +49,19 @@ const AwardsPage = ({ params }) => {
             data={{ content: pageData.attributes?.marquee, visible: true }}
           />
         </Marquee>
-        <div className="flex justify-center">
-          <div className=" container mx-auto px-4 pt-10 pb-10">
-            <div className="grid grid-cols-12 gap-4">
-              <Card
-                imageCard={false}
-                title={"Location: Schloss Sihlberg"}
-                width={230}
-                buttonText={"ZU google maps"}
-                btnWidth={165}
-              />
-            </div>
-          </div>
-        </div>
+        {cards.map(({ id, attributes }) => (
+          <Card
+            key={id}
+            imageCard={false}
+            title={attributes?.title}
+            width={230}
+            buttonText={attributes?.button?.text}
+            btnWidth={165}
+          />
+        ))}
       </div>
       <div className="flex flex-col items-center mt-8">
-        <Filters filters={awardsFilters} />
+        <Filters filters={awardsFilters(lang)} />
         <div className="pt-20 pb-20">
           <Info
             description={pageData.attributes?.content}

@@ -29,7 +29,7 @@ const Info = ({
 }) => {
   return (
     <div
-      className="bg-[#EAEAEA] flex flex-col gap-10 md:w-[52rem] w-full md:p-8 p-5"
+      className="bg-[#EAEAEA] flex flex-col gap-10 w-[52rem] pr-5"
       style={componentStyle}
     >
       {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}

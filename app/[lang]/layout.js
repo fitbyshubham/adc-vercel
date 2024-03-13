@@ -21,7 +21,7 @@ export default function RootLayout({ children, params }) {
         <ContextProvider>
           <Navbar lang={params?.lang} />
           {children}
-          <Footer />
+          <Footer lang={params?.lang} />
         </ContextProvider>
       </body>
     </html>

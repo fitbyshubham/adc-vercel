@@ -14,13 +14,14 @@ import { useState } from "react"
 import line from "@/assets/icons/line.png"
 import expend from "@/assets/icons/expend.png"
 
-const ProgramView = () => {
+const ProgramView = ({ params }) => {
+  const lang = params?.lang
   const param = useSearchParams()
   const type = param.get("type")
 
   return (
     <div className="pt-32 max-md:pt-[100px] flex flex-col md:gap-y-[100px]">
-      <Filters filters={creativeDaysFilters} activeFilter={type} />
+      <Filters filters={creativeDaysFilters(lang)} activeFilter={type} />
       {type === "program" && <ProgramFilter />}
       {type === "speakers" && <SpeakerFilter />}
     </div>

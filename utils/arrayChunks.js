@@ -8,6 +8,7 @@ function chunkArray(arr) {
   }
   return chunks
 }
+
 function chunkArray2(arr) {
   const chunks = []
   let index = 0

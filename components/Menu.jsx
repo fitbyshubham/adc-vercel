@@ -8,7 +8,7 @@ const Menu = ({ open, handleClose, menuItems, lang }) => {
   const twClass = open ? "bg-white fixed w-full z-50" : "hidden"
 
   const menuLinkList = [
-    { title: "News & EVENTS", path: "#" },
+    { title: "News & EVENTS", path: `/${lang}/news-and-events` },
     { title: "BECOMe A MEMBER", path: "#" },
     { title: "PARTNER WITH US", path: "#" },
     { title: "Shop", path: "#" },
