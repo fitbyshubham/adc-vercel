@@ -9,8 +9,10 @@ import "../style.css"
 import { creativeDaysFilters as filters } from "../../../utils/filters"
 import { useEffect, useState } from "react"
 import Api from "@/api"
+import Loading from "@/components/Loading"
 
-const CreativeDays = () => {
+const CreativeDays = ({ params }) => {
+  const lang = params?.lang
   const [data, setData] = useState({
     attributes: {
       button: {
@@ -21,11 +23,32 @@ const CreativeDays = () => {
       content: "",
     },
   })
-  useEffect(() => {
-    Api.getCreativeDaysPage()
+  const [pageData, setPageData] = useState(null)
+
+  const fetchCreativeDaysPage = () => {
+    Api.getCreativeDaysNote({ lang })
+      .then((res) => setPageData(res.data))
+      .catch((err) => console.log(err))
+  }
+
+  const fetchCards = () => {
+    Api.getCreativeDaysPage({ lang })
       .then((res) => setData(res.data))
       .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchCreativeDaysPage()
+    fetchCards()
   }, [])
+
+  if (!pageData) {
+    return (
+      <div className="h-[50rem] w-full flex justify-center items-center">
+        <Loading size="lg" />
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -51,15 +74,17 @@ const CreativeDays = () => {
       </div>
       <div className="flex flex-col items-center mt-10 pb-20">
         <Filters filters={filters} />
-        <Info
-          title={data.attributes.title}
-          description={data.attributes.content}
-          btnTitle={data.attributes.button.text}
-          btnWidth={220}
-          primaryBtn={true}
-          btnBgColor={"#000000"}
-          componentStyle={{ background: "none" }}
-        />
+        <div className="pt-20 pb-20">
+          <Info
+            title={pageData.attributes?.title}
+            description={pageData.attributes?.content}
+            btnTitle={pageData.attributes?.button?.text}
+            btnWidth={220}
+            primaryBtn={true}
+            btnBgColor={"#000000"}
+            componentStyle={{ background: "none" }}
+          />
+        </div>
         <Impressionen />
       </div>
     </div>

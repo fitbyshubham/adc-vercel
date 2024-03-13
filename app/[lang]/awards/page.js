@@ -9,28 +9,36 @@ import "../style.css"
 import { awardsFilters } from "@/utils/filters"
 import { useEffect, useState } from "react"
 import Api from "@/api"
+import Loading from "@/components/Loading"
 
-const CreativeDays = () => {
-  const [data, setData] = useState({
-    attributes: {
-      marquee: "",
-      content: "",
-      button: {
-        text: "",
-      },
-    },
-  })
-  useEffect(() => {
-    Api.getAwardsPage()
-      .then((res) => setData(res.data))
+const AwardsPage = ({ params }) => {
+  const lang = params?.lang
+  const [pageData, setPageData] = useState(null)
+
+  const fetchPageData = () => {
+    Api.getAwardsPage({ lang })
+      .then((res) => setPageData(res.data))
       .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchPageData()
   }, [])
+
+  if (!pageData) {
+    return (
+      <div className="h-[50rem] w-full flex justify-center items-center">
+        <Loading size="lg" />
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className="awards-gradient-background flex flex-col h-[90rem]">
         <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
           <MarqueeChildren
-            data={{ content: data.attributes.marquee, visible: true }}
+            data={{ content: pageData.attributes?.marquee, visible: true }}
           />
         </Marquee>
         <div className="flex justify-center">
@@ -51,8 +59,8 @@ const CreativeDays = () => {
         <Filters filters={awardsFilters} />
         <div className="pt-20 pb-20">
           <Info
-            description={data.attributes.content}
-            btnTitle={data.attributes.button.text}
+            description={pageData.attributes?.content}
+            btnTitle={pageData.attributes?.button?.text}
             btnWidth={220}
             primaryBtn={true}
             btnBgColor={"#000000"}
@@ -65,4 +73,4 @@ const CreativeDays = () => {
   )
 }
 
-export default CreativeDays
+export default AwardsPage

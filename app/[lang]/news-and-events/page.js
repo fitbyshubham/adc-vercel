@@ -10,7 +10,8 @@ import moment from "moment"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-const NewsAndEvents = () => {
+const NewsAndEvents = ({ params }) => {
+  const lang = params?.lang
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [text, setText] = useState("")
@@ -31,7 +32,7 @@ const NewsAndEvents = () => {
 
   const fetchNewsEventsData = (searchText, page, prevNewsEventsData = []) => {
     setLoading(true)
-    Api.getNewsEvents(searchText, page, 8)
+    Api.getNewsEvents({ lang, searchText, page, pageSize: 8 })
       .then((res) => {
         if (prevNewsEventsData) {
           setNewsEvents([...prevNewsEventsData, ...res.data])
@@ -43,7 +44,7 @@ const NewsAndEvents = () => {
   }
 
   useEffect(() => {
-    fetchNewsEventsData("", 1)
+    fetchNewsEventsData({ lang, pageSize: 8 })
   }, [])
 
   const handleSearch = (text) => {
@@ -76,7 +77,9 @@ const NewsAndEvents = () => {
               btnWidth={150}
               btnBgColor={"#ffffff"}
               btnTextColor={"#000000"}
-              onButtonClick={() => router.push(`/news&events/${id}`)}
+              onButtonClick={() =>
+                router.push(`/${lang}/news-and-events/${id}`)
+              }
             />
           ))}
       </div>
@@ -94,7 +97,7 @@ const NewsAndEvents = () => {
                 <Loading size="md" />
               </div>
             ) : (
-              <Button width={200}>
+              <Button width={200} onButtonClick={handleShowMore}>
                 <Text>weitere anzeigen</Text>
               </Button>
             )}
