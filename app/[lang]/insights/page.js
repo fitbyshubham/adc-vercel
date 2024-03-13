@@ -10,38 +10,37 @@ import Loading from "@/components/Loading"
 import config from "@/apiConfig"
 import SquareCard from "@/components/SquareCard"
 import { chunkArray2 } from "@/utils/arrayChunks"
+import Image from "next/image"
 
 const Insights = ({ params }) => {
   const lang = params.lang
   const [loading, setLoading] = useState(true)
   const [articles, setArticles] = useState([])
   const [insights, setInsights] = useState([
-    [
-      {
-        attributes: {
-          content: "",
-          group: "",
-          slug: "",
-          card: {
-            description: "",
-            featured: true,
-            position: "",
-            image: {
-              visible: true,
-              path: {
-                data: {
-                  attributes: {
-                    url: "",
-                  },
+    {
+      attributes: {
+        content: "",
+        group: "",
+        slug: "",
+        card: {
+          description: "",
+          featured: true,
+          position: "",
+          image: {
+            visible: true,
+            path: {
+              data: {
+                attributes: {
+                  url: "",
                 },
               },
             },
-            size: "",
-            title: "",
           },
+          size: "",
+          title: "",
         },
       },
-    ],
+    },
   ])
 
   const fetchArticles = async (page = 1) => {
@@ -56,7 +55,7 @@ const Insights = ({ params }) => {
   const fetchInsights = async () => {
     Api.getInsights({ lang, type: "", featured: true })
       .then((res) => {
-        setInsights(chunkArray2(res.data))
+        setInsights(res.data)
       })
       .catch(console.log)
   }
@@ -116,11 +115,11 @@ const Insights = ({ params }) => {
   return (
     <div className="pt-32">
       <Filters filters={insightPageFilters(lang)} />
-      <div className=" container mx-auto px-4 py-10">
-        <div className="flex sm:flex-col flex-row overflow-scroll no-scrollbar sm:gap-[100px] gap-[20px] sm:mt-[100px] w-full">
+      {/* <div className="mx-auto px-4 py-10">
+        <div className="flex md:flex-col flex-row overflow-scroll bg-red-500 no-scrollbar lg:gap-[100px] gap-[20px] lg:mt-[100px] w-full">
           {insights.map((arr, idx) => (
             <div
-              className="flex sm:flex-col flex-row md:flex-row lg:gap-[100px] gap-[20px] mx-auto relative"
+              className="flex flex-row md:flex-row lg:gap-[100px] gap-[20px] mx-auto relative"
               key={idx}
             >
               {arr.map((item, idx) => (
@@ -140,7 +139,195 @@ const Insights = ({ params }) => {
             </div>
           ))}
         </div>
+      </div> */}
+
+      <div className="flex md:flex-col flex-row overflow-scroll no-scrollbar lg:gap-[100px] gap-[20px] lg:p-[100px] p-[20px] w-full">
+        <div className="flex lg:gap-[100px] gap-[20px] flex-row">
+          {insights[0] && (
+            <div className="md:w-[411px] w-full">
+              <div
+                className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <div className={`relative aspect-square w-[207px]`}>
+                    <Image
+                      src={
+                        config.IMAGE_API_URL +
+                        insights[0].attributes.card.image.path.data.attributes
+                          .url
+                      }
+                      alt="image"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-[30px] leading-none">
+                    {insights[0].attributes.card.title}
+                  </p>
+                  <p>{insights[0].attributes.card.description}</p>
+                </div>
+                <Button width={120}>
+                  <p className="text-xs">Weiterlesen</p>
+                </Button>
+              </div>
+            </div>
+          )}
+          {insights[1] && (
+            <div className="w-full max-w-[720px] flex-1">
+              <div
+                className={`h-full w-full flex flex-col gap-y-4 justify-between`}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <div
+                    className={`relative aspect-square md:w-[411px] w-[207px]`}
+                  >
+                    <Image
+                      src={
+                        config.IMAGE_API_URL +
+                        insights[1].attributes.card.image.path.data.attributes
+                          .url
+                      }
+                      alt="image"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="md:text-[55px] text-[30px]">
+                    {insights[1].attributes.card.title}
+                  </p>
+                  <p>{insights[1].attributes.card.description}</p>
+                </div>
+                <Button width={120}>
+                  <p className="text-xs">Weiterlesen</p>
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="flex lg:gap-[100px] gap-[20px] flex-row">
+          {insights[2] && (
+            <div className="w-full max-w-[720px] flex-1">
+              <div
+                className={`h-full w-full flex flex-col gap-y-4 justify-between`}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <div
+                    className={`relative aspect-square md:w-[411px] w-[207px]`}
+                  >
+                    <Image
+                      src={
+                        config.IMAGE_API_URL +
+                        insights[2].attributes.card.image.path.data.attributes
+                          .url
+                      }
+                      alt="image"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="md:text-[55px] text-[30px]">
+                    {insights[2].attributes.card.title}
+                  </p>
+                  <p>{insights[2].attributes.card.description}</p>
+                </div>
+                <Button width={120}>
+                  <p className="text-xs">Weiterlesen</p>
+                </Button>
+              </div>
+            </div>
+          )}
+          {insights[3] && (
+            <div className="md:w-[411px] w-full">
+              <div
+                className={`h-full w-full flex flex-col gap-y-4 md:justify-center justify-between`}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <div className={`relative aspect-square w-[207px]`}>
+                    <Image
+                      src={
+                        config.IMAGE_API_URL +
+                        insights[3].attributes.card.image.path.data.attributes
+                          .url
+                      }
+                      alt="image"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-[30px] leading-none">
+                    {insights[3].attributes.card.title}
+                  </p>
+                  <p>{insights[3].attributes.card.description}</p>
+                </div>
+                <Button width={120}>
+                  <p className="text-xs">Weiterlesen</p>
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="flex lg:gap-[100px] gap-[20px] flex-row md:mx-auto">
+          {insights[4] && (
+            <div className="md:w-[411px] w-full">
+              <div
+                className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <div className={`relative aspect-square w-[207px]`}>
+                    <Image
+                      src={
+                        config.IMAGE_API_URL +
+                        insights[4].attributes.card.image.path.data.attributes
+                          .url
+                      }
+                      alt="image"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-[30px] leading-none">
+                    {insights[4].attributes.card.title}
+                  </p>
+                  <p>{insights[4].attributes.card.description}</p>
+                </div>
+                <Button width={120}>
+                  <p className="text-xs">Weiterlesen</p>
+                </Button>
+              </div>
+            </div>
+          )}
+          {insights[5] && (
+            <div className="md:w-[411px] w-full">
+              <div
+                className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
+              >
+                <div className="flex flex-col gap-y-4">
+                  <div className={`relative aspect-square w-[207px]`}>
+                    <Image
+                      src={
+                        config.IMAGE_API_URL +
+                        insights[5].attributes.card.image.path.data.attributes
+                          .url
+                      }
+                      alt="image"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-[30px] leading-none">
+                    {insights[5].attributes.card.title}
+                  </p>
+                  <p>{insights[5].attributes.card.description}</p>
+                </div>
+                <Button width={120}>
+                  <p className="text-xs">Weiterlesen</p>
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="flex flex-col justify-center items-center md:gap-28 gap-[20px] md:pt-24 pt-8 pb-24 p-5 w-full">
         <div>KATEGORIEN</div>
         <div className="flex gap-8 overflow-scroll no-scrollbar w-full lg:pl-[150px]">
@@ -191,6 +378,9 @@ const Insights = ({ params }) => {
                     size="small"
                     imageUrl={attributes?.image?.path.data.attributes.url}
                     componentStyle={{ width: 250, minHeight: 250 }}
+                    className={
+                      "w-[98px] sm:w-[105px] lg:w-[162px] aspect-square h-[98px] sm:h-[105px] lg:h-[162px]"
+                    }
                   />
                 </Link>
               ))}

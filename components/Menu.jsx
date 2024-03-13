@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+import React, { useState } from "react"
 import Text from "./Text"
 import NavLink from "./NavLink"
 import Link from "next/link"
@@ -14,6 +15,11 @@ const Menu = ({ open, handleClose, menuItems, lang }) => {
     { title: "Shop", path: "#" },
     { title: "CONTACT", path: "#" },
   ]
+
+  const Lang = ["FR", "EN"]
+
+  const [curLang, setCurrlang] = useState(Lang[0])
+  const [visible, setVisible] = useState(false)
 
   return (
     <div className={twClass}>
@@ -34,9 +40,23 @@ const Menu = ({ open, handleClose, menuItems, lang }) => {
               ))}
             </div>
             <div className="flex absolute right-0  gap-x-[26px]">
-              <button className="outline-none text-xs uppercase font-medium">
-                FR
-              </button>
+              <div className="flex items-center relative">
+                <button
+                  className="outline-none text-xs uppercase font-medium h-full"
+                  onClick={() => setVisible((prev) => !prev)}
+                >
+                  {curLang}
+                </button>
+                <button
+                  onClick={() => {
+                    setCurrlang((prev) => Lang.filter((l) => l != prev)[0])
+                    setVisible(false)
+                  }}
+                  className={`absolute outline-none text-xs uppercase font-medium h-full top-full ${visible ? "visible" : "invisible"}`}
+                >
+                  {Lang.filter((l) => l != curLang)[0]}
+                </button>
+              </div>
               <button className="outline-none flex gap-x-[10px] items-center">
                 <p className="text-xs uppercase font-medium">Login</p>
                 <div className="h-[30px] w-[30px] rounded-full bg-black flex items-center justify-center">
