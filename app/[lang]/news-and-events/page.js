@@ -52,26 +52,27 @@ const NewsAndEvents = ({ params }) => {
       <div className="p-20 pt-28">
         <Search text={text} setText={setText} handleSearch={handleSearch} />
       </div>
-
-      <div className="flex overflow-scroll no-scrollbar w-full gap-8">
-        {newsEvents &&
-          newsEvents.map(({ attributes, id }) => (
-            <Card
-              key={attributes.id}
-              title={attributes.title}
-              heading={moment(attributes.date).format("DD.MM.YYYY")}
-              covered={true}
-              imageCard={Boolean(attributes?.image)}
-              imageUrl={attributes?.image?.path.data.attributes.url}
-              buttonText="WEITERLESEN"
-              btnWidth={150}
-              btnBgColor={"#ffffff"}
-              btnTextColor={"#000000"}
-              onButtonClick={() =>
-                router.push(`/${lang}/news-and-events/${id}`)
-              }
-            />
-          ))}
+      <div className="flex justify-center">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-8">
+          {newsEvents &&
+            newsEvents.map(({ attributes, id }) => (
+              <Card
+                key={attributes.id}
+                title={attributes.title}
+                heading={moment(attributes.date).format("DD.MM.YYYY")}
+                covered={true}
+                imageCard={Boolean(attributes?.image)}
+                imageUrl={attributes?.image?.path.data.attributes.url}
+                buttonText="WEITERLESEN"
+                btnWidth={150}
+                btnBgColor={"#ffffff"}
+                btnTextColor={"#000000"}
+                onButtonClick={() =>
+                  router.push(`/${lang}/news-and-events/${id}`)
+                }
+              />
+            ))}
+        </div>
       </div>
       <div className="p-16">
         {newsEvents && newsEvents.length === 0 ? (

@@ -54,7 +54,7 @@ const Category = ({ params }) => {
   const [insights, setInsights] = useState(null)
 
   const fetchInsights = async (type) => {
-    Api.getInsights({
+    Api.getArticles({
       lang,
       type: type === "all" ? null : type,
     })
@@ -72,12 +72,7 @@ const Category = ({ params }) => {
     return notFound()
   }
 
-  if (!insights)
-    return (
-      <div className="h-screen flex justify-center items-center">
-        <Loading size="lg" />
-      </div>
-    )
+  if (!insights) return <Loading size="lg" center />
 
   return (
     <div className="py-32">

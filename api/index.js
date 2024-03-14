@@ -68,12 +68,12 @@ export default {
         .catch((error) => reject(error))
     })
   },
-  getArticles({ lang, page = 1, pageSize = 7 }) {
+  getArticles({ lang, type, page = 1, pageSize = 7, featured = false }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
         .get(
           config.ARTICLES.BASE.concat(
-            `?populate=deep&locale=${lang}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+            `?populate=deep&locale=${lang}${type ? `&filters[category][$containsi]=${type}` : ""}${featured ? `&filters[featured][$eq]=${featured}` : ""}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
           )
         )
         .then((res) => resolve(res.data))
@@ -86,18 +86,6 @@ export default {
         .get(
           config.ARTICLES.BASE.concat(
             `?populate=deep&locale=${lang}&filters[slug][$eq]=${id}`
-          )
-        )
-        .then((res) => resolve(res.data))
-        .catch((error) => reject(error))
-    })
-  },
-  getInsights({ lang, type = "", featured }) {
-    return new Promise((resolve, reject) => {
-      axiosInstance(config.token)
-        .get(
-          config.INSIGHTS.BASE.concat(
-            `?populate=deep&locale=${lang}${type ? `&filters[group][$containsi]=${type}` : ""}${featured ? `&filters[card][featured][$eq]=${featured}` : ""}`
           )
         )
         .then((res) => resolve(res.data))

@@ -42,13 +42,7 @@ const CreativeDays = ({ params }) => {
     fetchCards()
   }, [])
 
-  if (!pageData) {
-    return (
-      <div className="h-[50rem] w-full flex justify-center items-center">
-        <Loading size="lg" />
-      </div>
-    )
-  }
+  if (!pageData) return <Loading size="lg" center />
 
   return (
     <div>

@@ -7,50 +7,12 @@ import { learningFilters } from "@/utils/filters"
 import Api from "@/api"
 import { chunkArray2 } from "@/utils/arrayChunks"
 import InsightCard from "@/components/SquareCard"
+import Loading from "@/components/Loading"
 
 const Learning = ({ params }) => {
   const lang = params?.lang
-  const [data, setData] = useState([
-    [
-      {
-        id: "",
-        attributes: {
-          button: {
-            text: "",
-          },
-          card: {
-            description: "",
-            id: 13,
-            image: {
-              visible: true,
-              path: {
-                data: {
-                  attributes: {
-                    url: "",
-                  },
-                },
-              },
-            },
-            position: "",
-            size: "",
-            title: "",
-          },
-        },
-      },
-    ],
-  ])
-
-  const [note, setNote] = useState({
-    attributes: {
-      note: {
-        title: "",
-        description: "",
-        button: {
-          text: "",
-        },
-      },
-    },
-  })
+  const [data, setData] = useState(null)
+  const [note, setNote] = useState(null)
 
   const fetchCards = async () => {
     Api.getLearningPageCards({ lang })
@@ -74,6 +36,7 @@ const Learning = ({ params }) => {
     fetchNote()
   }, [])
 
+  if (!data || !note) return <Loading size="lg" center />
   return (
     <div className="pt-32">
       <Filters filters={learningFilters(lang)} />
@@ -103,6 +66,7 @@ const Learning = ({ params }) => {
           title={note.attributes.note.title}
           description={note.attributes.note.description}
           btnTitle={note.attributes.note.button.text}
+          covered={true}
         />
       </div>
       <Impressionen />

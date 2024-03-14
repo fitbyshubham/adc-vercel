@@ -8,40 +8,22 @@ import { useState, useEffect } from "react"
 import Api from "@/api"
 import Loading from "@/components/Loading"
 import config from "@/apiConfig"
-import SquareCard from "@/components/SquareCard"
-import { chunkArray2 } from "@/utils/arrayChunks"
 import Image from "next/image"
+
+const category = {
+  sparks: "Sparks",
+  impulse: "Impulse",
+  conscious: "Conscious",
+  "queens-and-kings": "Queens and Kings",
+  "point-of-view": "Point of View",
+  picky: "Picky",
+}
 
 const Insights = ({ params }) => {
   const lang = params.lang
   const [loading, setLoading] = useState(true)
-  const [articles, setArticles] = useState([])
-  const [insights, setInsights] = useState([
-    {
-      attributes: {
-        content: "",
-        group: "",
-        slug: "",
-        card: {
-          description: "",
-          featured: true,
-          position: "",
-          image: {
-            visible: true,
-            path: {
-              data: {
-                attributes: {
-                  url: "",
-                },
-              },
-            },
-          },
-          size: "",
-          title: "",
-        },
-      },
-    },
-  ])
+  const [articles, setArticles] = useState(null)
+  const [insights, setInsights] = useState(null)
 
   const fetchArticles = async (page = 1) => {
     Api.getArticles({ lang, page, pageSize: 8 })
@@ -52,8 +34,8 @@ const Insights = ({ params }) => {
       .catch(console.log)
   }
 
-  const fetchInsights = async () => {
-    Api.getInsights({ lang, type: "", featured: true })
+  const fetchFeaturedArticles = async () => {
+    Api.getArticles({ lang, pageSize: 8, featured: true })
       .then((res) => {
         setInsights(res.data)
       })
@@ -62,7 +44,7 @@ const Insights = ({ params }) => {
 
   useEffect(() => {
     fetchArticles()
-    fetchInsights()
+    fetchFeaturedArticles()
   }, [])
 
   const cards2 = [
@@ -112,250 +94,238 @@ const Insights = ({ params }) => {
     },
   ]
 
+  if (loading || !insights) return <Loading size="lg" center />
+
   return (
     <div className="pt-32">
       <Filters filters={insightPageFilters(lang)} />
-      {/* <div className="mx-auto px-4 py-10">
-        <div className="flex md:flex-col flex-row overflow-scroll bg-red-500 no-scrollbar lg:gap-[100px] gap-[20px] lg:mt-[100px] w-full">
-          {insights.map((arr, idx) => (
-            <div
-              className="flex flex-row md:flex-row lg:gap-[100px] gap-[20px] mx-auto relative"
-              key={idx}
-            >
-              {arr.map((item, idx) => (
-                <SquareCard
-                  key={idx}
-                  title={item?.attributes?.card.title}
-                  description={item?.attributes.card?.description}
-                  buttonText={"Weiterlesen"}
-                  size={item.attributes.card.size}
-                  className={"bg-green-500"}
-                  imageUrl={
-                    item?.attributes.card.image.path.data.attributes.url
-                  }
-                  position={item?.attributes.card.position}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-      </div> */}
-
-      <div className="flex md:flex-col flex-row overflow-scroll no-scrollbar lg:gap-[100px] gap-[20px] lg:p-[100px] p-[20px] w-full">
-        <div className="flex lg:gap-[100px] gap-[20px] flex-row">
-          {insights[0] && (
-            <div className="md:w-[411px] w-full">
-              <div
-                className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
-              >
-                <div className="flex flex-col gap-y-4">
-                  <div className={`relative aspect-square w-[207px]`}>
-                    <Image
-                      src={
-                        config.IMAGE_API_URL +
-                        insights[0].attributes.card.image.path.data.attributes
-                          .url
-                      }
-                      alt="image"
-                      fill
-                      className="object-cover"
-                    />
+      <div className="flex justify-center">
+        <div className="flex flex-col lg:gap-[100px] gap-[20px] lg:p-[100px] p-[20px]">
+          <div className="flex sm:flex-row flex-col lg:gap-[100px] gap-[20px]">
+            {insights[0] && (
+              <div className="md:w-[411px] w-full">
+                <div
+                  className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
+                >
+                  <div className="flex flex-col gap-y-4">
+                    <div className={`relative aspect-square w-[207px]`}>
+                      <Image
+                        src={
+                          config.IMAGE_API_URL +
+                          insights[0].attributes.image.path.data.attributes.url
+                        }
+                        alt="image"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-[30px] leading-none">
+                      {insights[0].attributes?.header.title}
+                    </p>
+                    <p>{insights[0].attributes?.header.subTitle}</p>
                   </div>
-                  <p className="text-[30px] leading-none">
-                    {insights[0].attributes.card.title}
-                  </p>
-                  <p>{insights[0].attributes.card.description}</p>
-                </div>
-                <Button width={120}>
-                  <p className="text-xs">Weiterlesen</p>
-                </Button>
-              </div>
-            </div>
-          )}
-          {insights[1] && (
-            <div className="w-full max-w-[720px] flex-1">
-              <div
-                className={`h-full w-full flex flex-col gap-y-4 justify-between`}
-              >
-                <div className="flex flex-col gap-y-4">
-                  <div
-                    className={`relative aspect-square md:w-[411px] w-[207px]`}
+                  <Link
+                    href={`/${lang}/insights/article/${insights[0].attributes?.slug}`}
                   >
-                    <Image
-                      src={
-                        config.IMAGE_API_URL +
-                        insights[1].attributes.card.image.path.data.attributes
-                          .url
-                      }
-                      alt="image"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="md:text-[55px] text-[30px]">
-                    {insights[1].attributes.card.title}
-                  </p>
-                  <p>{insights[1].attributes.card.description}</p>
+                    <Button width={120} className="text-xs">
+                      {insights[0].attributes?.button?.text || "Weiterlesen"}
+                    </Button>
+                  </Link>
                 </div>
-                <Button width={120}>
-                  <p className="text-xs">Weiterlesen</p>
-                </Button>
               </div>
-            </div>
-          )}
-        </div>
-        <div className="flex lg:gap-[100px] gap-[20px] flex-row">
-          {insights[2] && (
-            <div className="w-full max-w-[720px] flex-1">
-              <div
-                className={`h-full w-full flex flex-col gap-y-4 justify-between`}
-              >
-                <div className="flex flex-col gap-y-4">
-                  <div
-                    className={`relative aspect-square md:w-[411px] w-[207px]`}
+            )}
+            {insights[1] && (
+              <div className="w-full max-w-[720px] flex-1">
+                <div
+                  className={`h-full w-full flex flex-col gap-y-4 justify-between`}
+                >
+                  <div className="flex flex-col gap-y-4">
+                    <div
+                      className={`relative aspect-square md:w-[411px] w-[207px]`}
+                    >
+                      <Image
+                        src={
+                          config.IMAGE_API_URL +
+                          insights[1].attributes.image.path.data.attributes.url
+                        }
+                        alt="image"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="md:text-[55px] text-[30px]">
+                      {insights[1].attributes?.header.title}
+                    </p>
+                    <p>{insights[1].attributes?.header.subTitle}</p>
+                  </div>
+                  <Link
+                    href={`/${lang}/insights/article/${insights[1].attributes?.slug}`}
                   >
-                    <Image
-                      src={
-                        config.IMAGE_API_URL +
-                        insights[2].attributes.card.image.path.data.attributes
-                          .url
-                      }
-                      alt="image"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="md:text-[55px] text-[30px]">
-                    {insights[2].attributes.card.title}
-                  </p>
-                  <p>{insights[2].attributes.card.description}</p>
+                    <Button width={120} className="text-xs">
+                      {insights[1].attributes?.button?.text || "Weiterlesen"}
+                    </Button>
+                  </Link>
                 </div>
-                <Button width={120}>
-                  <p className="text-xs">Weiterlesen</p>
-                </Button>
               </div>
-            </div>
-          )}
-          {insights[3] && (
-            <div className="md:w-[411px] w-full">
-              <div
-                className={`h-full w-full flex flex-col gap-y-4 md:justify-center justify-between`}
-              >
-                <div className="flex flex-col gap-y-4">
-                  <div className={`relative aspect-square w-[207px]`}>
-                    <Image
-                      src={
-                        config.IMAGE_API_URL +
-                        insights[3].attributes.card.image.path.data.attributes
-                          .url
-                      }
-                      alt="image"
-                      fill
-                      className="object-cover"
-                    />
+            )}
+          </div>
+          <div className="flex lg:gap-[100px] gap-[20px] sm:flex-row flex-col">
+            {insights[2] && (
+              <div className="w-full max-w-[720px] flex-1">
+                <div
+                  className={`h-full w-full flex flex-col gap-y-4 justify-between`}
+                >
+                  <div className="flex flex-col gap-y-4">
+                    <div
+                      className={`relative aspect-square md:w-[411px] w-[207px]`}
+                    >
+                      <Image
+                        src={
+                          config.IMAGE_API_URL +
+                          insights[2].attributes.image.path.data.attributes.url
+                        }
+                        alt="image"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="md:text-[55px] text-[30px]">
+                      {insights[2].attributes?.header.title}
+                    </p>
+                    <p>{insights[2].attributes?.header.subTitle}</p>
                   </div>
-                  <p className="text-[30px] leading-none">
-                    {insights[3].attributes.card.title}
-                  </p>
-                  <p>{insights[3].attributes.card.description}</p>
+                  <Link
+                    href={`/${lang}/insights/article/${insights[2].attributes?.slug}`}
+                  >
+                    <Button width={120} className="text-xs">
+                      {insights[2].attributes?.button?.text || "Weiterlesen"}
+                    </Button>
+                  </Link>
                 </div>
-                <Button width={120}>
-                  <p className="text-xs">Weiterlesen</p>
-                </Button>
               </div>
-            </div>
-          )}
-        </div>
-        <div className="flex lg:gap-[100px] gap-[20px] flex-row md:mx-auto">
-          {insights[4] && (
-            <div className="md:w-[411px] w-full">
-              <div
-                className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
-              >
-                <div className="flex flex-col gap-y-4">
-                  <div className={`relative aspect-square w-[207px]`}>
-                    <Image
-                      src={
-                        config.IMAGE_API_URL +
-                        insights[4].attributes.card.image.path.data.attributes
-                          .url
-                      }
-                      alt="image"
-                      fill
-                      className="object-cover"
-                    />
+            )}
+            {insights[3] && (
+              <div className="md:w-[411px] w-full">
+                <div
+                  className={`h-full w-full flex flex-col gap-y-4 md:justify-center justify-between`}
+                >
+                  <div className="flex flex-col gap-y-4">
+                    <div className={`relative aspect-square w-[207px]`}>
+                      <Image
+                        src={
+                          config.IMAGE_API_URL +
+                          insights[3].attributes.image.path.data.attributes.url
+                        }
+                        alt="image"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-[30px] leading-none">
+                      {insights[3].attributes?.header.title}
+                    </p>
+                    <p>{insights[3].attributes?.header.subTitle}</p>
                   </div>
-                  <p className="text-[30px] leading-none">
-                    {insights[4].attributes.card.title}
-                  </p>
-                  <p>{insights[4].attributes.card.description}</p>
+                  <Link
+                    href={`/${lang}/insights/article/${insights[3].attributes?.slug}`}
+                  >
+                    <Button width={120} className="text-xs">
+                      {insights[3].attributes?.button?.text || "Weiterlesen"}
+                    </Button>
+                  </Link>
                 </div>
-                <Button width={120}>
-                  <p className="text-xs">Weiterlesen</p>
-                </Button>
               </div>
-            </div>
-          )}
-          {insights[5] && (
-            <div className="md:w-[411px] w-full">
-              <div
-                className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
-              >
-                <div className="flex flex-col gap-y-4">
-                  <div className={`relative aspect-square w-[207px]`}>
-                    <Image
-                      src={
-                        config.IMAGE_API_URL +
-                        insights[5].attributes.card.image.path.data.attributes
-                          .url
-                      }
-                      alt="image"
-                      fill
-                      className="object-cover"
-                    />
+            )}
+          </div>
+          <div className="flex lg:gap-[100px] gap-[20px] sm:flex-row flex-col md:mx-auto">
+            {insights[4] && (
+              <div className="md:w-[411px] w-full">
+                <div
+                  className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
+                >
+                  <div className="flex flex-col gap-y-4">
+                    <div className={`relative aspect-square w-[207px]`}>
+                      <Image
+                        src={
+                          config.IMAGE_API_URL +
+                          insights[4].attributes.image.path.data.attributes.url
+                        }
+                        alt="image"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-[30px] leading-none">
+                      {insights[4].attributes?.header.title}
+                    </p>
+                    <p>{insights[4].attributes?.header.subTitle}</p>
                   </div>
-                  <p className="text-[30px] leading-none">
-                    {insights[5].attributes.card.title}
-                  </p>
-                  <p>{insights[5].attributes.card.description}</p>
+                  <Link
+                    href={`/${lang}/insights/article/${insights[4].attributes?.slug}`}
+                  >
+                    <Button width={120} className="text-xs">
+                      {insights[4].attributes?.button?.text || "Weiterlesen"}
+                    </Button>
+                  </Link>
                 </div>
-                <Button width={120}>
-                  <p className="text-xs">Weiterlesen</p>
-                </Button>
               </div>
-            </div>
-          )}
+            )}
+            {insights[5] && (
+              <div className="md:w-[411px] w-full">
+                <div
+                  className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
+                >
+                  <div className="flex flex-col gap-y-4">
+                    <div className={`relative aspect-square w-[207px]`}>
+                      <Image
+                        src={
+                          config.IMAGE_API_URL +
+                          insights[5].attributes.image.path.data.attributes.url
+                        }
+                        alt="image"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-[30px] leading-none">
+                      {insights[5].attributes?.header.title}
+                    </p>
+                    <p>{insights[5].attributes?.header.subTitle}</p>
+                  </div>
+                  <Link
+                    href={`/${lang}/insights/article/${insights[5].attributes?.slug}`}
+                  >
+                    <Button width={120} className="text-xs">
+                      {insights[5].attributes?.button?.text || "Weiterlesen"}
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="flex flex-col justify-center items-center md:gap-28 gap-[20px] md:pt-24 pt-8 pb-24 p-5 w-full">
         <div>KATEGORIEN</div>
-        <div className="flex gap-8 overflow-scroll no-scrollbar w-full lg:pl-[150px]">
-          {cards2.map((card) => (
-            <Card
-              key={card.id}
-              title={card.title}
-              headline={card.headline}
-              covered={true}
-              imageCard={false}
-              buttonText={card.buttonText}
-              btnWidth={150}
-              btnBgColor={"#ffffff"}
-              btnTextColor={"#000000"}
-            />
-          ))}
-          {cards2.map((card) => (
-            <Card
-              key={card.id}
-              title={card.title}
-              headline={card.headline}
-              covered={true}
-              imageCard={false}
-              buttonText={card.buttonText}
-              btnWidth={150}
-              btnBgColor={"#ffffff"}
-              btnTextColor={"#000000"}
-            />
+        <div className="flex gap-8 overflow-scroll no-scrollbar lg:pl-[100px] lg:w-[80rem] md:w-[40rem] sm:w-[37rem] w-[25rem]">
+          {articles.map(({ attributes, id }) => (
+            <Link
+              key={id}
+              href={`/${lang}/insights/article/${attributes.slug}`}
+            >
+              <Card
+                title={attributes?.header?.title}
+                headline={attributes?.header?.subTitle}
+                heading={category[attributes?.category]}
+                covered={true}
+                imageCard={false}
+                buttonText={attributes?.button?.text}
+                btnWidth={150}
+                btnBgColor={"#ffffff"}
+                btnTextColor={"#000000"}
+              />
+            </Link>
           ))}
         </div>
       </div>
@@ -367,7 +337,7 @@ const Insights = ({ params }) => {
               <Loading size="md" />
             </div>
           ) : (
-            <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
+            <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 md:gap-24 gap-5">
               {articles.map(({ attributes }, idx) => (
                 <Link
                   key={idx}
@@ -377,7 +347,7 @@ const Insights = ({ params }) => {
                     description={attributes.header.title}
                     size="small"
                     imageUrl={attributes?.image?.path.data.attributes.url}
-                    componentStyle={{ width: 250, minHeight: 250 }}
+                    componentStyle={{ width: 250, minHeight: 150 }}
                     imageClassName="md:w-[162px] md:h-[162px] w-[92px] h-[92px]"
                   />
                 </Link>

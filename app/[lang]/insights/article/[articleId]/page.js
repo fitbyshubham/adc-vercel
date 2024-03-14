@@ -32,11 +32,12 @@ const Page = ({ params }) => {
   return (
     <StoryDetail
       back={true}
-      author={article.attributes.author}
-      content={article.attributes.content}
-      imageUrl={article.attributes.image.path.data.attributes.url}
-      subTitle={article.attributes.header.subTitle}
-      title={article.attributes.header.title}
+      author={article.attributes?.author}
+      content={article.attributes?.content}
+      imageUrl={article.attributes?.image.path.data.attributes.url}
+      subTitle={article.attributes?.header?.subTitle}
+      title={article.attributes?.header?.title}
+      category={article.attributes?.category}
       lang={lang}
     />
   )

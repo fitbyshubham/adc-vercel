@@ -52,7 +52,7 @@ const Card = ({
     >
       <div className="flex justify-between">
         {heading ? (
-          <div className="text-[12px]" style={headingStyle}>
+          <div className="text-[12px] uppercase" style={headingStyle}>
             {heading}
           </div>
         ) : null}

@@ -4,9 +4,12 @@ import Text from "./Text"
 import NavLink from "./NavLink"
 import Link from "next/link"
 import Loading from "./Loading"
+import { usePathname, useRouter } from "next/navigation"
 
 const Menu = ({ open, handleClose, menuItems, lang }) => {
   const twClass = open ? "bg-white fixed w-full z-50" : "hidden"
+  const pathname = usePathname()
+  const route = useRouter()
 
   const menuLinkList = [
     { title: "News & EVENTS", path: `/${lang}/news-and-events` },
@@ -16,10 +19,23 @@ const Menu = ({ open, handleClose, menuItems, lang }) => {
     { title: "CONTACT", path: "#" },
   ]
 
-  const Lang = ["FR", "EN"]
+  const Lang = ["DE", "EN"]
 
-  const [curLang, setCurrlang] = useState(Lang[0])
+  const [curLang, setCurrlang] = useState(Lang[1])
   const [visible, setVisible] = useState(false)
+
+  const handleLanguageChange = () => {
+    setCurrlang((prev) => {
+      const lang = Lang.filter((l) => l != prev)[0]
+      const pathArr = pathname.split("/")
+      pathArr[1] = lang.toLowerCase()
+      const updatedPath = pathArr.join("/")
+      route.push(updatedPath)
+
+      return lang
+    })
+    setVisible(false)
+  }
 
   return (
     <div className={twClass}>
@@ -48,10 +64,7 @@ const Menu = ({ open, handleClose, menuItems, lang }) => {
                   {curLang}
                 </button>
                 <button
-                  onClick={() => {
-                    setCurrlang((prev) => Lang.filter((l) => l != prev)[0])
-                    setVisible(false)
-                  }}
+                  onClick={handleLanguageChange}
                   className={`absolute outline-none text-xs uppercase font-medium h-full top-full ${visible ? "visible" : "invisible"}`}
                 >
                   {Lang.filter((l) => l != curLang)[0]}
