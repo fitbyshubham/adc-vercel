@@ -97,7 +97,7 @@ export default {
       axiosInstance(config.token)
         .get(
           config.INSIGHTS.BASE.concat(
-            `?populate=deep&locale=${lang}&filters[group][$containsi]=${type}&filters[card][featured][$eq]=${featured}}`
+            `?populate=deep&locale=${lang}${type ? `&filters[group][$containsi]=${type}` : ""}${featured ? `&filters[card][featured][$eq]=${featured}` : ""}`
           )
         )
         .then((res) => resolve(res.data))

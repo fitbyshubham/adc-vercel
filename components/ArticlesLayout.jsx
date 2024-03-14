@@ -1,7 +1,6 @@
 "use client"
 import Link from "next/link"
 import { chunkArray } from "../utils/arrayChunks"
-import Button from "./Button"
 import Card from "./Card"
 
 const ArticlesLayout = ({ data, lang }) => {
