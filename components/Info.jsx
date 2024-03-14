@@ -1,6 +1,7 @@
 "use client"
 import React from "react"
 import Button from "./Button"
+import MarkdownText from "./MarkdownText"
 
 const Description = ({ data }) => {
   if (Array.isArray(data)) {
@@ -29,12 +30,12 @@ const Info = ({
 }) => {
   return (
     <div
-      className="bg-[#EAEAEA] p-5 w-full flex justify-center"
+      className="bg-[#EAEAEA] pr-4 flex justify-center"
       style={componentStyle}
     >
       <div className="w-[52rem] flex flex-col gap-10">
         {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}
-        <Description data={description} />
+        <MarkdownText>{description}</MarkdownText>
         <div>
           <Button
             bgColor={btnBgColor || "#FFFFFF"}

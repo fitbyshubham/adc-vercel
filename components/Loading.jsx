@@ -1,8 +1,11 @@
-const Loading = ({ size }) => {
+const Loading = ({ size, center }) => {
   const sizeClass =
     size === "lg" ? "w-10 h-10" : size === "md" ? "w-8 h-8" : "w-6 h-6"
   return (
-    <div role="status">
+    <div
+      role="status"
+      className={center ? "h-screen flex justify-center items-center" : ""}
+    >
       <svg
         aria-hidden="true"
         className={"text-gray-300 animate-spin fill-black " + sizeClass}

@@ -1,15 +1,24 @@
 "use client"
-import config from "@/apiConfig"
-import Image from "next/image"
-import React, { useEffect, useState } from "react"
-import Text from "./Text"
-import Button from "./Button"
-import Link from "next/link"
-import Card from "./Card"
-import { useRouter } from "next/navigation"
 import Api from "@/api"
+import config from "@/apiConfig"
+import moment from "moment"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import Button from "./Button"
+import Card from "./Card"
+import MarkdownText from "./MarkdownText"
+import Text from "./Text"
 
-const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
+const Detail = ({
+  content,
+  img,
+  cardTitle,
+
+  cardDescription,
+  size,
+}) => {
   return (
     <div className="flex  max-sm:flex-col justify-between max-md:gap-5 max-sm:gap-10">
       <div
@@ -40,9 +49,10 @@ const StoryDetail = ({
   subTitle,
   author,
   content,
+  category,
+  date,
   lang,
 }) => {
-  const date = "Dezember 2023"
   const imgInfo1 =
     "Charakteristisch für das Hôtel des Horlogers ist die avantgardistische, zickzackförmige Architektur, die der Topografie des Vallée de Joux folgt."
 
@@ -91,30 +101,21 @@ const StoryDetail = ({
         </Text>
         <div className="p-10 flex gap-10 items-center">
           <Text>{author}</Text>
-          <Text>{date}</Text>
+          <Text>{moment(date).format("MMMM YYYY")}</Text>
           <div className="max-sm:hidden">
             <Button primaryBtn={true} bgColor={"#000000"} width={120}>
-              concious
+              {category}
             </Button>
           </div>
         </div>
         <div className="sm:hidden">
           <Button primaryBtn={true} bgColor={"#000000"} width={120}>
-            concious
+            {category}
           </Button>
         </div>
       </div>
       <div className="lg:container w-full px-5 pt-10">
-        <Detail content={content} cardDescription={imgInfo1} size={"small"} />
-        <Text twClassName={"pt-10 pb-10 text-[24px]"}>
-          Die Unvergänglichkeit
-        </Text>
-        <Detail
-          content={content}
-          cardTitle={"SILVIA AFFOLTER"}
-          cardDescription={imgInfo1}
-          size={"large"}
-        />
+        <MarkdownText fontSize={22}>{content}</MarkdownText>
       </div>
       <div className="md:p-20 p-5 self-start max-md:self-center w-full">
         <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 lg:w-[750px] md:w-[508px] w-[335px]">

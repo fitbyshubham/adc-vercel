@@ -6,9 +6,12 @@ const Button = ({
   height,
   bgColor,
   textColor,
+  className,
   style,
 }) => {
-  const selectedStyle = primaryBtn ? "bg-black text-[#ffffff]" : "bg-[#EAEAEA]"
+  const selectedStyle = primaryBtn
+    ? "bg-black text-[#ffffff] " + className
+    : "bg-[#EAEAEA] " + className
 
   return (
     <button
