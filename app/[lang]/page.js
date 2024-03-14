@@ -42,11 +42,11 @@ export default function Home({ params }) {
       .catch(console.log)
   }, [])
 
-  const cardsClassName = [
-    "col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6",
-    "col-span-3 md:col-span-3 lg:col-span-3",
-    "col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5",
-  ]
+  // const cardsClassName = [
+  //   "col-span-6 md:col-start-5 md:col-span-8 lg:col-start-5 lg:col-span-6",
+  //   "col-span-3 md:col-span-3 lg:col-span-3",
+  //   "col-span-5 md:col-start-8 md:col-span-5 lg:col-start-8 lg:col-span-5",
+  // ]
 
   if (loading)
     return (
@@ -236,6 +236,7 @@ export default function Home({ params }) {
             title={pageData?.marquee2?.circularFlowButton?.title}
             subTitle={pageData?.marquee2?.circularFlowButton?.subTitle}
             url={pageData?.marquee2?.circularFlowButton?.url}
+            small
           >
             <MarqueeChildren
               content={pageData?.marquee2?.headline?.text}

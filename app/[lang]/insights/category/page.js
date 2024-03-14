@@ -7,6 +7,7 @@ import { notFound } from "next/navigation"
 import ArticlesLayout from "@/components/ArticlesLayout"
 import Api from "@/api"
 import { useEffect, useState } from "react"
+import Loading from "@/components/Loading"
 
 const mapPage = {
   all: {
@@ -50,37 +51,13 @@ const Category = ({ params }) => {
   const type = searchParams.get("type")
   const pageFixedData = mapPage[type]
 
-  const [insights, setInsights] = useState([
-    [
-      {
-        attributes: {
-          card: {
-            description: "",
-            featured: true,
-            position: "",
-            group: "",
-            image: {
-              visible: true,
-              path: {
-                data: {
-                  attributes: {
-                    url: "",
-                  },
-                },
-              },
-            },
-            size: "",
-            title: "",
-          },
-          content: "",
-        },
-        id: "",
-      },
-    ],
-  ])
+  const [insights, setInsights] = useState(null)
 
   const fetchInsights = async (type) => {
-    Api.getInsights(type === "all" ? "" : type, false)
+    Api.getInsights({
+      lang,
+      type: type === "all" ? null : type,
+    })
       .then((res) => {
         setInsights(res.data)
       })
@@ -94,6 +71,13 @@ const Category = ({ params }) => {
   if (!pageFixedData) {
     return notFound()
   }
+
+  if (!insights)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loading size="lg" />
+      </div>
+    )
 
   return (
     <div className="py-32">

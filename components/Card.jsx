@@ -29,12 +29,19 @@ const Card = ({
   imageStyle,
   name,
   nameStyle,
+  imageClassName,
 }) => {
   const large = size === "large" && !covered
   const coverCardAddedStyles = covered
     ? "bg-[#EAEAEA] w-[295px] min-w-[295px] rounded-xl p-8 justify-between " +
       className
     : className
+
+  const imgClassName = covered
+    ? "w-[105px] " + imageClassName
+    : large
+      ? "w-[400px] " + imageClassName
+      : "w-[200px] " + imageClassName
 
   const concatImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
@@ -55,9 +62,7 @@ const Card = ({
             alt="Card img"
             width={100}
             height={100}
-            className={
-              covered ? "w-[105px]" : large ? "w-[400px]" : "w-[200px]"
-            }
+            className={imgClassName}
             style={imageStyle}
           />
         ) : null}

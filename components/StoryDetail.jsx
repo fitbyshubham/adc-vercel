@@ -33,7 +33,15 @@ const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
   )
 }
 
-const StoryDetail = ({ back, imageUrl, title, subTitle, author, content }) => {
+const StoryDetail = ({
+  back,
+  imageUrl,
+  title,
+  subTitle,
+  author,
+  content,
+  lang,
+}) => {
   const date = "Dezember 2023"
   const imgInfo1 =
     "Charakteristisch für das Hôtel des Horlogers ist die avantgardistische, zickzackförmige Architektur, die der Topografie des Vallée de Joux folgt."
@@ -43,7 +51,7 @@ const StoryDetail = ({ back, imageUrl, title, subTitle, author, content }) => {
   const [articles, setArticles] = useState([])
 
   const fetchArticles = async (page = 1) => {
-    Api.getArticles(page, 8)
+    Api.getArticles({ page, pageSize: 8, lang })
       .then((res) => {
         setArticles(res.data)
         setLoading(false)
@@ -118,13 +126,14 @@ const StoryDetail = ({ back, imageUrl, title, subTitle, author, content }) => {
       </div>
 
       <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
-        {articles.map(({ attributes, id }, idx) => (
-          <Link key={idx} href={`/insights/article/${id}`}>
+        {articles.map(({ attributes, id }) => (
+          <Link key={id} href={`/${lang}/insights/article/${attributes.slug}`}>
             <Card
               description={attributes.header.title}
               size="small"
               imageUrl={attributes?.image?.path.data.attributes.url}
               componentStyle={{ width: 250, minHeight: 250 }}
+              imageClassName="md:w-[162px] md:h-[162px] w-[92px] h-[92px]"
             />
           </Link>
         ))}

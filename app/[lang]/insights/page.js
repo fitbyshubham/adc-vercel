@@ -378,18 +378,16 @@ const Insights = ({ params }) => {
                     size="small"
                     imageUrl={attributes?.image?.path.data.attributes.url}
                     componentStyle={{ width: 250, minHeight: 250 }}
-                    className={
-                      "w-[98px] sm:w-[105px] lg:w-[162px] aspect-square h-[98px] sm:h-[105px] lg:h-[162px]"
-                    }
+                    imageClassName="md:w-[162px] md:h-[162px] w-[92px] h-[92px]"
                   />
                 </Link>
               ))}
             </div>
           )}
           <div className="p-20">
-            <Button onButtonClick={() => {}} width={200}>
-              Show All Articles
-            </Button>
+            <Link href={`/${lang}/insights/category?type=all`}>
+              <Button width={200}>Show All Articles</Button>
+            </Link>
           </div>
         </div>
       </div>

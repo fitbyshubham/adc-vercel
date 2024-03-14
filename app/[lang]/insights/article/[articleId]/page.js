@@ -1,6 +1,7 @@
 "use client"
 import Api from "@/api"
 import Loading from "@/components/Loading"
+import StoryDetail from "@/components/StoryDetail"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -36,6 +37,7 @@ const Page = ({ params }) => {
       imageUrl={article.attributes.image.path.data.attributes.url}
       subTitle={article.attributes.header.subTitle}
       title={article.attributes.header.title}
+      lang={lang}
     />
   )
 }
