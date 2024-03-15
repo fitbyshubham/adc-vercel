@@ -83,7 +83,7 @@ const Category = ({ params }) => {
       <Text twClassName="text-center text-lg mt-8 max-w-[546px] mx-auto">
         {pageFixedData.subHeader}
       </Text>
-      <ArticlesLayout data={insights} />
+      <ArticlesLayout data={insights} lang={lang} />
     </div>
   )
 }

@@ -48,19 +48,34 @@ const CreativeDays = ({ params }) => {
     <div>
       <div className="creative-gradient-background flex flex-col h-[90rem]">
         <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
-          <MarqueeChildren
-            data={{ content: "Creative day 2024", visible: true }}
-          />
+          <MarqueeChildren content={pageData?.attributes?.marquee} />
         </Marquee>
         <div className="flex justify-center">
-          <div className=" container mx-auto px-4 pt-10 pb-10">
-            <div className="grid grid-cols-12 gap-4">
+          <div className=" container mx-auto px-4 pt-20 gap-[200px] pb-10">
+            <div className="flex flex-col">
               <Card
                 imageCard={false}
-                title={"Location: Schloss Sihlberg"}
-                width={230}
-                buttonText={"ZU google maps"}
+                title={data[0]?.attributes?.title}
+                width={390}
+                buttonText={data[0]?.attributes?.button.text}
                 btnWidth={165}
+                className="min-h-[250px] md:ml-[200px]"
+              />
+              <Card
+                imageCard={false}
+                title={data[0]?.attributes?.title}
+                width={390}
+                buttonText={data[0]?.attributes?.button.text}
+                btnWidth={165}
+                className="min-h-[250px] md:self-end"
+              />
+              <Card
+                imageCard={false}
+                title={data[0]?.attributes?.title}
+                width={390}
+                buttonText={data[0]?.attributes?.button.text}
+                btnWidth={165}
+                className="min-h-[250px]"
               />
             </div>
           </div>
@@ -74,6 +89,7 @@ const CreativeDays = ({ params }) => {
             description={pageData.attributes?.content}
             btnTitle={pageData.attributes?.button?.text}
             btnWidth={220}
+            descriptionFontSize={25}
             primaryBtn={true}
             btnBgColor={"#000000"}
             componentStyle={{ background: "none" }}

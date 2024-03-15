@@ -45,20 +45,38 @@ const AwardsPage = ({ params }) => {
     <div>
       <div className="awards-gradient-background flex flex-col h-[90rem]">
         <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
-          <MarqueeChildren
-            data={{ content: pageData.attributes?.marquee, visible: true }}
-          />
+          <MarqueeChildren content={pageData.attributes?.marquee} />
         </Marquee>
-        {cards.map(({ id, attributes }) => (
-          <Card
-            key={id}
-            imageCard={false}
-            title={attributes?.title}
-            width={230}
-            buttonText={attributes?.button?.text}
-            btnWidth={165}
-          />
-        ))}
+        <div className="flex justify-center">
+          <div className=" container mx-auto px-4 pt-20 gap-[200px] pb-10">
+            <div className="flex flex-col">
+              <Card
+                imageCard={false}
+                title={cards[0]?.attributes?.title}
+                width={390}
+                buttonText={cards[0]?.attributes?.button.text}
+                btnWidth={165}
+                className="min-h-[250px] md:ml-[200px]"
+              />
+              <Card
+                imageCard={false}
+                title={cards[0]?.attributes?.title}
+                width={390}
+                buttonText={cards[0]?.attributes?.button.text}
+                btnWidth={165}
+                className="min-h-[250px] md:self-end"
+              />
+              <Card
+                imageCard={false}
+                title={cards[0]?.attributes?.title}
+                width={390}
+                buttonText={cards[0]?.attributes?.button.text}
+                btnWidth={165}
+                className="min-h-[250px]"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col items-center mt-8">
         <Filters filters={awardsFilters(lang)} />
@@ -66,14 +84,15 @@ const AwardsPage = ({ params }) => {
           <Info
             description={pageData.attributes?.content}
             btnTitle={pageData.attributes?.button?.text}
+            descriptionFontSize={25}
             btnWidth={220}
             primaryBtn={true}
             btnBgColor={"#000000"}
             componentStyle={{ background: "none" }}
           />
         </div>
-        <Impressionen />
       </div>
+      <Impressionen />
     </div>
   )
 }

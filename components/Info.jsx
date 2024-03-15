@@ -26,16 +26,19 @@ const Info = ({
   btnWidth,
   btnTitle,
   btnBgColor,
+  descriptionFontSize,
   componentStyle,
 }) => {
   return (
     <div
-      className="bg-[#EAEAEA] pr-4 flex justify-center"
+      className="bg-[#EAEAEA] pr-4 flex justify-center p-5"
       style={componentStyle}
     >
-      <div className="w-[52rem] flex flex-col gap-10">
+      <div className="xl:w-[52rem] md:w-[40rem] w-[20rem] flex flex-col gap-[50px]">
         {title ? <div className="leading-3">{title.toUpperCase()}</div> : null}
-        <MarkdownText>{description}</MarkdownText>
+        <MarkdownText fontSize={descriptionFontSize}>
+          {description}
+        </MarkdownText>
         <div>
           <Button
             bgColor={btnBgColor || "#FFFFFF"}
