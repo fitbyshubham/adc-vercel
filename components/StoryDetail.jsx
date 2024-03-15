@@ -10,6 +10,7 @@ import Button from "./Button"
 import Card from "./Card"
 import MarkdownText from "./MarkdownText"
 import Text from "./Text"
+import ArticlesLayout from "./ArticlesLayout"
 
 const Detail = ({
   content,
@@ -53,11 +54,7 @@ const StoryDetail = ({
   date,
   lang,
 }) => {
-  const imgInfo1 =
-    "Charakteristisch für das Hôtel des Horlogers ist die avantgardistische, zickzackförmige Architektur, die der Topografie des Vallée de Joux folgt."
-
   const router = useRouter()
-
   const [articles, setArticles] = useState([])
 
   const fetchArticles = async (page = 1) => {
@@ -74,80 +71,75 @@ const StoryDetail = ({
   }, [])
 
   return (
-    <div className="flex flex-col gap-y-5 items-center ">
-      {back && (
-        <button className="pt-28" onClick={() => router.back()}>
-          BACK
-        </button>
-      )}
-      <Image
-        src={config.IMAGE_API_URL + imageUrl}
-        alt="Img"
-        width={200}
-        height={200}
-        className="w-[217px] h-[217px] sm:w-[387px] sm:h-[387px] object-cover"
-      />
-      <div className="text-center flex flex-col gap-y-5 items-center w-full">
-        <Text twClassName="lg:text-[120px] sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
-          {title}
-        </Text>
-        <Text
-          capitalize={true}
-          twClassName={
-            "md:text-[34px] text-[22px] w-[53rem] max-md:w-[41rem] max-sm:w-[335px] w-full"
-          }
-        >
-          {subTitle}
-        </Text>
-        <div className="p-10 flex gap-10 items-center">
-          <Text>{author}</Text>
-          <Text>{moment(date).format("MMMM YYYY")}</Text>
-          <div className="max-sm:hidden">
-            <Button primaryBtn={true} bgColor={"#000000"} width={120}>
-              {category}
-            </Button>
+    <div className="flex flex-col items-center ">
+      <div className="flex flex-col sm:gap-[100px] gap-[30px] xl:w-[1100px] lg:w-[1000px] md:w-[850px] sm:w-[559px] w-[335px]">
+        <div className="flex flex-col sm:gap-[100px] gap-[30px]  items-center">
+          <div className="flex flex-col gap-[30px]">
+            {back && (
+              <div className="flex justify-center pt-28 ">
+                <button onClick={() => router.back()}>BACK</button>
+              </div>
+            )}
+            <Image
+              src={config.IMAGE_API_URL + imageUrl}
+              alt="Img"
+              width={200}
+              height={200}
+              className="w-[217px] h-[217px] md:w-[752px] md:h-[752px] sm:w-[387px] sm:h-[387px] object-cover"
+            />
+          </div>
+          <div className="text-center flex flex-col sm:gap-[50px] gap-[20px] items-center md:w-[1144px] sm:w-[728px]">
+            <Text twClassName="lg:text-[120px] sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
+              {title}
+            </Text>
+            <Text
+              capitalize={true}
+              twClassName={
+                "md:text-[34px] text-[22px] max-md:w-[41rem] max-sm:w-[335px] md:w-[850px] w-full"
+              }
+            >
+              {subTitle}
+            </Text>
+            <div className="flex sm:gap-[50px] gap-[20px] items-center">
+              <Text>{author}</Text>
+              <Text>{moment(date).format("MMMM YYYY")}</Text>
+              <div className="max-sm:hidden">
+                <Button primaryBtn={true} bgColor={"#000000"} width={120}>
+                  {category}
+                </Button>
+              </div>
+            </div>
+            <div className="sm:hidden">
+              <Button primaryBtn={true} bgColor={"#000000"} width={120}>
+                {category}
+              </Button>
+            </div>
           </div>
         </div>
-        <div className="sm:hidden">
-          <Button primaryBtn={true} bgColor={"#000000"} width={120}>
-            {category}
-          </Button>
+        <div className="w-full">
+          <MarkdownText fontSize={24}>{content}</MarkdownText>
         </div>
-      </div>
-      <div className="lg:container w-full px-5 pt-10">
-        <MarkdownText fontSize={22}>{content}</MarkdownText>
-      </div>
-      <div className="md:p-20 p-5 self-start max-md:self-center w-full">
-        <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 lg:w-[750px] md:w-[508px] w-[335px]">
+        <div className="bg-[#EAEAEA] rounded-lg p-10 flex flex-col gap-5 lg:w-[750px] md:w-[508px] w-full">
           <Text>www.hoteldeshorlogers.com, DZ ab CHF 370</Text>
           <Button primaryBtn={true} bgColor={"#000000"} width={200}>
             ZUR HOTEL WEBSITE
           </Button>
         </div>
-      </div>
 
-      <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-24">
-        {articles.map(({ attributes, id }) => (
-          <Link key={id} href={`/${lang}/insights/article/${attributes.slug}`}>
-            <Card
-              description={attributes.header.title}
-              size="small"
-              imageUrl={attributes?.image?.path.data.attributes.url}
-              componentStyle={{ width: 250, minHeight: 250 }}
-              imageClassName="md:w-[162px] md:h-[162px] w-[92px] h-[92px]"
-            />
-          </Link>
-        ))}
-      </div>
-      <div className="p-20">
-        <Button
-          onButtonClick={() => {}}
-          width={200}
-          bgColor={"black"}
-          textColor={"white"}
-        >
-          weiter zu insights
-        </Button>
+        <div className="flex flex-col items-center gap-[50px]">
+          <Text>Weitere Artikel</Text>
+          <ArticlesLayout data={articles} lang={lang} />
+          <div className="pb-[100px]">
+            <Button
+              onButtonClick={() => {}}
+              width={200}
+              bgColor={"black"}
+              textColor={"white"}
+            >
+              weiter zu insights
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
