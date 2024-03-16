@@ -56,7 +56,8 @@ const AwardsPage = ({ params }) => {
                 width={390}
                 buttonText={cards[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[250px] md:ml-[200px]"
+                className="min-h-[200px] md:ml-[200px]"
+                titleClassName="text-[30px]"
               />
               <Card
                 imageCard={false}
@@ -64,7 +65,8 @@ const AwardsPage = ({ params }) => {
                 width={390}
                 buttonText={cards[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[250px] md:self-end"
+                className="min-h-[200px] md:self-end"
+                titleClassName="text-[30px]"
               />
               <Card
                 imageCard={false}
@@ -72,7 +74,8 @@ const AwardsPage = ({ params }) => {
                 width={390}
                 buttonText={cards[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[250px]"
+                className="min-h-[200px]"
+                titleClassName="text-[55px]"
               />
             </div>
           </div>

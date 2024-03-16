@@ -23,8 +23,8 @@ const config = {
   INSIGHTS: {
     BASE: "/insights",
   },
-  LEARNINGS: {
-    BASE: "/learnings",
+  LEARNING: {
+    BASE: "/learning-page",
   },
   CREATIVE_DAYS: {
     BASE: "/creative-days",

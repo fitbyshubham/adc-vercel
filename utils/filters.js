@@ -35,7 +35,7 @@ export const insightPageFilters = (lang) => [
 export const learningFilters = (lang) => [
   { id: "adc-school", text: "ADC school", path: `/${lang}/learning/` },
   { id: "adc-forward", text: "ADC forward", path: `/${lang}/learning/` },
-  { id: "adc-morning", text: "ADC mentoring", path: `/${lang}/learning/` },
+  { id: "adc-mentoring", text: "ADC mentoring", path: `/${lang}/learning/` },
   { id: "coffee-case", text: "coffee case", path: `/${lang}/learning/` },
 ]
 
@@ -65,8 +65,8 @@ export const creativeDaysFilters = (lang) => [
 ]
 
 export const awardsFilters = (lang) => [
-  { id: "winners", text: "WINNERS", path: `/${lang}/awards/group?type=` },
-  { id: "ranking", text: "Ranking", path: `/${lang}/awards/group?type=` },
+  { id: "winners", text: "WINNERS", path: `/${lang}/awards/` },
+  { id: "ranking", text: "Ranking", path: `/${lang}/awards/` },
   { id: "guidelines", text: "Guidelines", path: `/${lang}/awards/` },
   {
     id: "young-creatives",

@@ -264,18 +264,20 @@ const SpeakerFilter = () => {
     Die Platzzahl am Workshop ist limitiert: First come, first served.`
   return (
     <>
-      <div className="flex flex-col lg:flex-row md:p-[30px] p-[20px] gap-[102px]">
-        <div className="max-sm:text-left xl:pl-[103px] pl-0 w-full flex flex-col gap-y-8 ">
-          <Text twClassName="lg:text-[120px] sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
+      <div className="flex xl:px-[103px] flex-col md:p-[30px] p-[20px] gap-[102px]">
+        <div className=" w-full flex flex-col items-center gap-[50px]">
+          <Text twClassName="lg:text-[120px] text-center sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
             {header}
           </Text>
-          <Text>{date}</Text>
-          <p>{info}</p>
+          <Text twClassName="text-center">{date}</Text>
+          <Text capitalize={true} twClassName="text-center">
+            {info}
+          </Text>
           <Button primaryBtn={true} bgColor={"#000000"} width={187}>
             Jetzt anmelden
           </Button>
         </div>
-        <div className="flex lg:flex-col md:flex-row flex-col justify-start gap-8 lg:w-[382px] w-full flex-shrink-0">
+        <div className="flex justify-start gap-8 w-full">
           <Image
             src={speaker_img_not_found}
             alt="Speaker"
