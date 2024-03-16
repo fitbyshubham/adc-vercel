@@ -2,8 +2,8 @@
 import Filters from "@/components/Filters"
 import { notFound, useSearchParams } from "next/navigation"
 import { awardsFilters } from "@/utils/filters"
-import Ranking from "./Ranking"
-import Winners from "./Winners"
+import Ranking from "../[id]/Ranking"
+import Winners from "../[id]/Winners"
 
 const Category = ({ params }) => {
   const lang = params?.lang

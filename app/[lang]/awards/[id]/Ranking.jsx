@@ -6,9 +6,6 @@ const Ranking = ({ type }) => {
 
   return (
     <div className="flex flex-col md:gap-y-[100px] gap-y-[20px] md:pt-[100px]">
-      <Text twClassName="text-[120px] max-md:text-[55px] max-sm:text-[30px] leading-[120px] leading-none md:ml-[102px] px-5">
-        winners
-      </Text>
       <div className="xl:w-[1011px] w-full mx-auto md:p-8 p-5 flex flex-col md:gap-y-20 gap-y-[40px]">
         <div className="flex flex-col gap-y-4">
           <h3 className="text-xl">Gewichtetes Ranking</h3>

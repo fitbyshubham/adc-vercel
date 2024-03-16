@@ -210,21 +210,22 @@ export default function Home({ params }) {
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-14">
           {highlightedNewsEvents
             ? highlightedNewsEvents.map(({ id, attributes }) => (
-                <Card
+                <Link
                   key={id}
-                  title={attributes.title}
-                  heading={moment(attributes.date).format("DD.MM.YYYY")}
-                  covered={true}
-                  imageCard={Boolean(attributes?.image)}
-                  imageUrl={attributes?.image?.path.data?.attributes.url}
-                  buttonText="WEITERLESEN"
-                  btnWidth={150}
-                  btnBgColor={"#ffffff"}
-                  btnTextColor={"#000000"}
-                  onButtonClick={() =>
-                    router.push(`/${lang}/news-and-events/${id}`)
-                  }
-                />
+                  href={`/${lang}/news-and-events/${attributes?.slug}`}
+                >
+                  <Card
+                    title={attributes.title}
+                    heading={moment(attributes.date).format("DD.MM.YYYY")}
+                    covered={true}
+                    imageCard={Boolean(attributes?.image)}
+                    imageUrl={attributes?.image?.path?.data?.attributes.url}
+                    buttonText="WEITERLESEN"
+                    btnWidth={150}
+                    btnBgColor={"#ffffff"}
+                    btnTextColor={"#000000"}
+                  />
+                </Link>
               ))
             : null}
         </div>

@@ -7,7 +7,7 @@ const Impressionen = () => {
   return (
     <div className="relative">
       <div className="text-center text-white text-[24px] pointer-events-none absolute inset-0 flex items-center justify-center z-10">
-        <p>IMPRESSIONEN 2023</p>
+        <p>IMPRESSIONEN {new Date().getFullYear()}</p>
       </div>
       <div className="flex overflow-scroll no-scrollbar w-full">
         <div className="relative flex-1 sm:h-[288px] md:h-[537px] aspect-square">

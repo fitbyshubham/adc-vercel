@@ -7,7 +7,9 @@ import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import Api from "@/api"
 import config from "@/apiConfig"
-import Link from "next/link"
+import Loading from "@/components/Loading"
+import moment from "moment"
+import StoryDetail from "@/components/StoryDetail"
 
 const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
   return (
@@ -33,75 +35,43 @@ const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
   )
 }
 
-const StoryDetail = () => {
-  const imgInfo1 =
-    "Charakteristisch für das Hôtel des Horlogers ist die avantgardistische, zickzackförmige Architektur, die der Topografie des Vallée de Joux folgt."
-
-  const [data, setData] = useState({
-    id: "",
-    attributes: {
-      content: "",
-      date: "",
-      description: "",
-      title: "",
-      image: {
-        visible: true,
-        path: {
-          data: {
-            attributes: {
-              url: "",
-            },
-          },
-        },
-      },
-    },
-  })
-
-  const router = useRouter()
-
-  const params = useParams()
+const NewsAndEventsDetail = ({ params }) => {
+  const [data, setData] = useState(null)
   const id = params.filter
+  const lang = params.lang
 
-  const fetchNewsAndEvent = (id) => {
-    Api.getNewsAndEvent(id)
-      .then((res) => setData(res.data))
+  const fetchNewsAndEvent = (id, leading) => {
+    Api.getNewsAndEvent({ id, lang })
+      .then((res) => {
+        if (res.data && res.data.length > 0) {
+          setData(res.data[0])
+        }
+      })
       .catch((err) => console.log(err.message))
   }
 
   useEffect(() => {
-    fetchNewsAndEvent(id)
+    fetchNewsAndEvent(id, lang)
   }, [id])
 
+  if (!data) return <Loading size="lg" center />
+
   return (
-    <div className="p-[20px] pt-36 lg:p-[150px] flex flex-col lg:flex-row gap-8">
-      <div className="flex flex-col sm:gap-[50px] gap-[40px] order-2 lg:order-1">
-        <h1 className="lg:text-[120px] text-[55px] font-bold leading-none break-words">
-          {data.attributes.title}
-        </h1>
-        <div className="flex gap-[50px]">
-          <p>{data.attributes.authorName}</p>
-          <p>{data.attributes.date}</p>
-        </div>
-        <p className="sm:text-[34px] text-[22px] font-semibold">
-          {data.attributes.description}
-        </p>
-        <p>{data.attributes.content}</p>
-        <p>{data.attributes.content}</p>
-        <p>{data.attributes.content}</p>
-      </div>
-      <div className="lg:w-[360px] lg:h-[360px] sm:w-[387px] sm:h-[387px] w-[217px] h-[217px] aspect-square relative flex-shrink-0 order-1 lg:order-2">
-        <Image
-          src={
-            config.IMAGE_API_URL +
-            data.attributes.image.path.data.attributes.url
-          }
-          alt="image"
-          fill
-          className="object-cover"
-        />
-      </div>
+    <div className="flex justify-center">
+      <StoryDetail
+        back={true}
+        shareable={true}
+        imageUrl={data?.attributes?.image?.path.data.attributes.url}
+        title={data.attributes?.title}
+        subTitle={data?.attributes.description}
+        author={data.attributes.author}
+        content={data.attributes.content}
+        dateFormat="DD. MM.YYYY"
+        date={data.attributes?.date}
+        lang={lang}
+      />
     </div>
   )
 }
 
-export default StoryDetail
+export default NewsAndEventsDetail

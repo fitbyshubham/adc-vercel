@@ -3,6 +3,7 @@ import Image from "next/image"
 import no_image_found from "@/assets/images/bildschirmfoto.png"
 import Button from "./Button"
 import config from "@/apiConfig"
+import Text from "./Text"
 
 const Card = ({
   title,
@@ -27,6 +28,7 @@ const Card = ({
   columnSpan,
   className,
   imageStyle,
+  titleClassName,
   name,
   nameStyle,
   imageClassName,
@@ -41,7 +43,13 @@ const Card = ({
     ? "w-[105px] " + imageClassName
     : large
       ? "w-[400px] " + imageClassName
-      : "w-[200px] " + imageClassName
+      : "w-[200px] h-[200px] " + imageClassName
+
+  const twClassName = covered
+    ? "text-[26px] " + titleClassName
+    : large
+      ? "text-[55px] " + titleClassName
+      : "text-[30px] " + titleClassName
 
   const concatImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
@@ -74,14 +82,9 @@ const Card = ({
           </div>
         ) : null}
         {title ? (
-          <div
-            className={
-              covered ? "text-[26px]" : large ? "text-[55px]" : "text-[30px]"
-            }
-            style={titleStyle}
-          >
+          <Text twClassName={twClassName} style={titleStyle}>
             {title}
-          </div>
+          </Text>
         ) : null}
         {description ? (
           <div
