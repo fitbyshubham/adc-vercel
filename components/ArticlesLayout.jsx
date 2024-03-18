@@ -11,7 +11,7 @@ const ArticlesLayout = ({ headline, data, lang, handleClick }) => {
       <Text className={headline ? "" : "hidden"}>{headline}</Text>
       <div className="flex flex-col items-center gap-20 max-lg:hidden">
         {chunkArray(data).map((items, index) => (
-          <div key={index} className="flex gap-10 items-center">
+          <div key={index} className="flex items-start  gap-[100px]">
             {items.map((item, index) => (
               <Link
                 key={index}
@@ -19,12 +19,12 @@ const ArticlesLayout = ({ headline, data, lang, handleClick }) => {
               >
                 <Card
                   title={item?.attributes?.header?.title}
-                  titleClassName="text-[16px]"
+                  titleStyle={{ fontSize: "16px" }}
                   size={"small"}
                   imageUrl={
                     item?.attributes?.image?.path?.data?.attributes?.url
                   }
-                  className="w-[200px] md:w-[200px]"
+                  className="w-[261px] md:w-[200px]"
                   componentStyle={{ minHeight: "18rem" }}
                 />
               </Link>

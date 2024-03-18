@@ -134,6 +134,14 @@ export default {
         .catch((error) => reject(error))
     })
   },
+  getRankings({ lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.RANKINGS.BASE.concat(`?populate=deep&locale=${lang}`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
   getNewsAndEvent({ id, lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)

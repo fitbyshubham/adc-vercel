@@ -59,7 +59,7 @@ const CreativeDays = ({ params }) => {
                 width={400}
                 buttonText={data[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[200px] md:ml-[200px]"
+                className="min-h-[150px] md:ml-[200px]"
                 titleClassName="text-[30px] line-clamp-3"
               />
               <Card
@@ -68,7 +68,7 @@ const CreativeDays = ({ params }) => {
                 width={400}
                 buttonText={data[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[200px] md:self-end"
+                className="min-h-[150px] md:self-end"
                 titleClassName="text-[30px] line-clamp-3"
               />
               <Card
@@ -77,7 +77,7 @@ const CreativeDays = ({ params }) => {
                 width={400}
                 buttonText={data[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[200px]"
+                className="min-h-[150px]"
                 titleClassName="text-[55px] line-clamp-3"
               />
             </div>

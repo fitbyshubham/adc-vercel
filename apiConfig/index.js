@@ -38,6 +38,9 @@ const config = {
   AWARDS: {
     BASE: "/awards",
   },
+  RANKINGS: {
+    BASE: "/rankings",
+  },
 }
 
 export default config
