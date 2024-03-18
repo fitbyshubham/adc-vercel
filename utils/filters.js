@@ -53,12 +53,12 @@ export const creativeDaysFilters = (lang) => [
   {
     id: "program",
     text: "Program",
-    path: `/${lang}/creative-days/category?type=`,
+    path: `/${lang}/creative-days/`,
   },
   {
     id: "speakers",
     text: "Speakers",
-    path: `/${lang}/creative-days/category?type=`,
+    path: `/${lang}/creative-days/`,
   },
   { id: "tickets", text: "Tickets", path: `/${lang}/creative-days/` },
   { id: "location", text: "Location", path: `/${lang}/creative-days/` },

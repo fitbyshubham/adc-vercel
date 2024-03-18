@@ -46,10 +46,10 @@ const Card = ({
       : "w-[200px] h-[200px] " + imageClassName
 
   const twClassName = covered
-    ? "text-[26px] " + titleClassName
+    ? "text-[26px] uppercase " + titleClassName
     : large
-      ? "text-[55px] " + titleClassName
-      : "text-[30px] " + titleClassName
+      ? "text-[55px] uppercase  " + titleClassName
+      : "text-[30px] uppercase " + titleClassName
 
   const concatImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
@@ -82,9 +82,9 @@ const Card = ({
           </div>
         ) : null}
         {title ? (
-          <Text twClassName={twClassName} style={titleStyle}>
+          <div className={twClassName} style={titleStyle}>
             {title}
-          </Text>
+          </div>
         ) : null}
         {description ? (
           <div

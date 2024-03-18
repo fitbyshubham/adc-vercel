@@ -28,7 +28,7 @@ const Page = ({ params }) => {
       <Text twClassName="text-[120px] max-md:text-[55px] max-sm:text-[30px] leading-[120px] leading-none px-5 py-10">
         {pageInfo.text}
       </Text>
-      <Ranking type={pageInfo.id} />
+      <Ranking type={pageInfo.id} lang={lang} />
       <Winners type={pageInfo.id} />
     </div>
   )
