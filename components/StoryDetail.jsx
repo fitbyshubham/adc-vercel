@@ -68,10 +68,12 @@ const StoryDetail = ({
   return (
     <div className="flex flex-col items-center pb-[100px]">
       <div className="flex flex-col sm:gap-[100px] gap-[30px] xl:w-[1100px] lg:w-[1000px] md:w-[850px] sm:w-[559px] w-[335px]">
-        <div className="flex flex-col sm:gap-[100px] gap-[30px]  items-center">
+        <div
+          className={`flex flex-col ${imageUrl ? "sm:gap-[100px]" : ""} gap-[30px]  items-center`}
+        >
           <div className="flex flex-col gap-[30px]">
             {back && (
-              <div className="flex justify-center pt-28 ">
+              <div className={`flex justify-center pt-20`}>
                 <button onClick={() => router.back()}>BACK</button>
               </div>
             )}

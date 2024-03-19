@@ -1,7 +1,7 @@
 "use client"
 import StoryDetail from "@/components/StoryDetail"
 import Text from "@/components/Text"
-import { notFound, useParams } from "next/navigation"
+import { notFound } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import Api from "@/api"
 import { learningFilters } from "@/utils/filters"
