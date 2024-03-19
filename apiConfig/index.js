@@ -41,6 +41,15 @@ const config = {
   RANKINGS: {
     BASE: "/rankings",
   },
+  SPEAKERS: {
+    BASE: "/speakers",
+  },
+  ACTIVITY: {
+    BASE: "/activities",
+  },
+  PROGRAMS: {
+    BASE: "/programs",
+  },
 }
 
 export default config

@@ -1,66 +1,86 @@
+"use client"
 import Button from "@/components/Button"
 import Text from "@/components/Text"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import speaker_img_not_found from "@/assets/images/speaker.png"
+import moment from "moment"
 import { creativeDaysFilters } from "@/utils/filters"
 import Filters from "@/components/Filters"
+import Api from "@/api"
+import Loading from "@/components/Loading"
+import { clientUrl } from "@/config"
+import config from "@/apiConfig"
 
 const Speaker = ({ params }) => {
+  const [speaker, setSpeaker] = useState(null)
   const lang = params?.lang
   const speakerId = params?.speakerId
   const pages = creativeDaysFilters(lang)
-  const header = "CREATIVE SELFDIRECT ION"
-  const date = "DONNERSTAG, 8. JUNI, 13 – 16 UHR"
-  const info = `Schärfe dein berufliches Profil und entwickle deinen persönlichen Führungsstil im Workshop «Creative Selfdirection» von Pascal Geissbühler, Markenberater und Gründer von biographis.ch.
-    Du arbeitest in einer Seniorposition in der Kreation und willst deine Karriere auf das nächste Level bringen? Dann melde dich an bei ADC forward – dem massgeschneiderten Leadership-Programm für (bis zu) 20 weibliche High-Potentials.`
 
-  const speakerName = "PASCAL GEISSBÜHLER"
-  const speakerInfo =
-    "Brand Strategist, Creative Coach und Organisationsentwickler, Gründer und Inhaber von Biographis"
-  const speakerMoreInfo = `Profil schärfen und Positionierung stärken – Pascal Geissbühler zeigt, wie es geht. Als Markenberater, 
-    Coach und Geschäftsführer von Biographis verhilft er nicht nur Unternehmen zu einer eigenständigen Identität und einer 
-    schlagkräftigen Brand Strategy, sondern auch Einzelpersonen. In seinem Personal Coaching führt er Menschen auf den Weg zu einem 
-    erfüllten Berufsleben und unterstützt sie bei der Karriereentwicklung, dem Personal Branding und dem persönlichen Auftreten. Dabei 
-    greift Pascal Geissbühler auf seine umfangreiche Erfahrung aus seinem eigenen Weg zurück: Er war in der Geschäftsleitung einer 
-    Brand Consultancy tätig, leitete Strategie- und Kreativteams in Change-Projekten und arbeitete als Texter-Konzepter und
-    Medienjournalist. Nebenbei gibt er sein Wissen auch als Trainer und Dozent an der ETH Zürich, der ZHdK und an der Kalaidos
-    Hochschule weiter. Ein spannendes Berufsprofil!`
+  const fetchSpeaker = async (slug) => {
+    Api.getSpeaker({ lang, slug })
+      .then((res) => {
+        if (res.data && res.data.length > 0) {
+          setSpeaker(res.data[0])
+        }
+      })
+      .catch(console.error)
+  }
+
+  useEffect(() => {
+    fetchSpeaker(speakerId)
+  }, [speakerId])
+
+  if (!speaker) return <Loading size="lg" center />
+
   return (
     <div className="pt-20">
       <Filters filters={pages} />
       <div className="flex xl:px-[103px] flex-col md:p-[30px] p-[20px] gap-[102px]">
         <div className=" w-full flex flex-col items-center gap-[50px]">
           <Text twClassName="lg:text-[120px] text-center sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
-            {header}
+            {speaker?.attributes.header.title}
           </Text>
-          <Text twClassName="text-center">{date}</Text>
+          <Text twClassName="text-center">
+            {`${speaker.attributes?.location}, ${moment(speaker.attributes?.dateAndTime).format("DD, MMM")}`}
+          </Text>
           <Text capitalize={true} twClassName="text-center">
-            {info}
+            {speaker?.attributes.header.subTitle}
           </Text>
           <Button primaryBtn={true} bgColor={"#000000"} width={187}>
-            Jetzt anmelden
+            {speaker?.attributes.button?.text || "Jetzt anmelden"}
           </Button>
         </div>
         <div className="flex justify-start gap-8 w-full">
           <Image
-            src={speaker_img_not_found}
+            src={
+              config.IMAGE_API_URL +
+              speaker.attributes.image?.path.data.attributes.url
+            }
             alt="Speaker"
             className="xl:w-full w-[382px] aspect-square h-full"
+            height={200}
+            width={200}
           />
           <div className="flex flex-col gap-8">
             <Text fontSize={24} twClassName="leading-tight font-medium">
-              {speakerName}
+              {speaker.attributes.name}
             </Text>
             <Text capitalize={true} fontSize={16} twClassName={"font-medium"}>
-              {speakerInfo}
+              {speaker.attributes?.occupation}
             </Text>
-            <p className="text-[15px]">{speakerMoreInfo}</p>
+            <p className="text-[15px]">{speaker.attributes.description}</p>
             <div className="flex gap-3 text-[12px] pt-3">
-              <Link href="#">{"LinkedIn".toUpperCase()}</Link>
-              <Link href="#">{"website".toUpperCase()}</Link>
-              <Link href="#">{"Instagram".toUpperCase()}</Link>
+              <Link href={speaker.attributes?.linkedinLink}>
+                {"LinkedIn".toUpperCase()}
+              </Link>
+              <Link href={speaker.attributes?.websiteLink}>
+                {"website".toUpperCase()}
+              </Link>
+              <Link href={speaker.attributes?.instagramLink}>
+                {"Instagram".toUpperCase()}
+              </Link>
             </div>
           </div>
         </div>

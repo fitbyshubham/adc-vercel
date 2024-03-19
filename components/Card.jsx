@@ -46,7 +46,7 @@ const Card = ({
       : "w-[200px] h-[200px] " + imageClassName
 
   const twClassName = covered
-    ? "text-[26px] uppercase " + titleClassName
+    ? "text-[26px] uppercase line-clamp-4 " + titleClassName
     : large
       ? "text-[55px] uppercase  " + titleClassName
       : "text-[30px] uppercase " + titleClassName

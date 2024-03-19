@@ -118,6 +118,46 @@ export default {
         .catch((error) => reject(error))
     })
   },
+  getSpeakers({ lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.SPEAKERS.BASE.concat(`?populate=deep&locale=${lang}`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getSpeaker({ lang, slug }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.SPEAKERS.BASE.concat(
+            `?populate=deep&locale=${lang}&filters[slug][$eq]=${slug}`
+          )
+        )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getActivities({ lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.ACTIVITY.BASE.concat(`?populate=deep&locale=${lang}`))
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
+  getProgram({ slug, lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(
+          config.PROGRAMS.BASE.concat(
+            `?populate=deep&locale=${lang}&filters[slug][$eq]=${slug}`
+          )
+        )
+        .then((res) => resolve(res.data))
+        .catch((error) => reject(error))
+    })
+  },
   getAwardsPage({ lang }) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)
