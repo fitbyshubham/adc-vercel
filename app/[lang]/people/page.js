@@ -64,7 +64,7 @@ const People = ({ params }) => {
               onClick={() => handleExpend(i)}
               className="cursor-pointer"
             >
-              <div className="text-[55px] max-md:text-[24px]">
+              <div className="text-lg max-md:text-sm">
                 {item.attributes.name}
               </div>
               {expendDetail === i ? <ViewDetails /> : null}

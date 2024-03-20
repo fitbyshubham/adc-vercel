@@ -9,7 +9,7 @@ const ViewDetails = () => {
   return (
     <div className="flex flex-col items-center pt-5">
       <Image src={people} alt="People" width={200} height={200} />
-      <div className="pt-8 text-[22px]">
+      <div className="pt-8 text-sm">
         <div>VZ Vermögenszentrum</div>
         <div>dummy.ackermann@dummy.com</div>
         <div>+41 76 252 52 00</div>

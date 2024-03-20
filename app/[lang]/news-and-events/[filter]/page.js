@@ -16,7 +16,7 @@ const Detail = ({ content, img, cardTitle, cardDescription, size }) => {
     <div className="flex  max-sm:flex-col justify-between max-md:gap-5 max-sm:gap-10">
       <div
         className={
-          "text-[24px] max-md:text-[22px] w-[750px] max-md:w-[460px] max-sm:w-[335px]"
+          "text-sm max-md:text-sm w-[750px] max-md:w-[460px] max-sm:w-[335px]"
         }
       >
         {content}

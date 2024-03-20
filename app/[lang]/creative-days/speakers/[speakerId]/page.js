@@ -39,7 +39,7 @@ const Speaker = ({ params }) => {
       <Filters filters={pages} />
       <div className="flex xl:px-[103px] flex-col md:p-[30px] p-[20px] gap-[102px]">
         <div className=" w-full flex flex-col items-center gap-[50px]">
-          <Text twClassName="lg:text-[120px] text-center sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
+          <Text twClassName="lg:text-[120px] text-center sm:text-lg text-xm xl:leading-[120px] leading-none">
             {speaker?.attributes.header.title}
           </Text>
           <Text twClassName="text-center">
@@ -70,8 +70,8 @@ const Speaker = ({ params }) => {
             <Text capitalize={true} fontSize={16} twClassName={"font-medium"}>
               {speaker.attributes?.occupation}
             </Text>
-            <p className="text-[15px]">{speaker.attributes.description}</p>
-            <div className="flex gap-3 text-[12px] pt-3">
+            <p className="text-xs">{speaker.attributes.description}</p>
+            <div className="flex gap-3 text-xxs pt-3">
               <Link href={speaker.attributes?.linkedinLink}>
                 {"LinkedIn".toUpperCase()}
               </Link>

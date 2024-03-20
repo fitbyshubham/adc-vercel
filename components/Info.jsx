@@ -8,7 +8,7 @@ const Description = ({ data }) => {
     return (
       <div className="flex flex-col gap-5">
         {data.map((item, idx) => (
-          <p className="text-[24px]" key={idx}>
+          <p className="text-sm" key={idx}>
             {item}
           </p>
         ))}
@@ -16,7 +16,7 @@ const Description = ({ data }) => {
     )
   }
 
-  return <div className="text-[24px]">{data}</div>
+  return <div className="text-sm">{data}</div>
 }
 
 const Info = ({

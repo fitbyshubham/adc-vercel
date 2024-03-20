@@ -77,9 +77,7 @@ const Category = ({ params }) => {
   return (
     <div className="py-32">
       <Filters filters={insightPageFilters(lang)} activeFilter={type} />
-      <Text twClassName="text-center text-[55px] mt-8">
-        {pageFixedData.header}
-      </Text>
+      <Text twClassName="text-center text-lg mt-8">{pageFixedData.header}</Text>
       <Text twClassName="text-center text-lg mt-8 max-w-[546px] mx-auto">
         {pageFixedData.subHeader}
       </Text>

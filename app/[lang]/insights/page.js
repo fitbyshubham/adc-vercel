@@ -73,10 +73,12 @@ const Insights = ({ params }) => {
                         className="object-cover"
                       />
                     </div>
-                    <Text twClassName=" text-[30px] leading-none">
+                    <Text twClassName=" text-xm leading-none">
                       {insights[0].attributes?.header.title}
                     </Text>
-                    <p>{insights[0].attributes?.header.subTitle}</p>
+                    <p className="text-xs">
+                      {insights[0].attributes?.header.subTitle}
+                    </p>
                   </div>
                   <Link
                     href={`/${lang}/insights/article/${insights[0].attributes?.slug}`}
@@ -107,10 +109,12 @@ const Insights = ({ params }) => {
                         className="object-cover"
                       />
                     </div>
-                    <Text twClassName=" text-[30px] leading-none">
+                    <Text twClassName="text-lg leading-none">
                       {insights[1].attributes?.header.title}
                     </Text>
-                    <p>{insights[1].attributes?.header.subTitle}</p>
+                    <p className="text-md">
+                      {insights[1].attributes?.header.subTitle}
+                    </p>
                   </div>
                   <Link
                     href={`/${lang}/insights/article/${insights[1].attributes?.slug}`}
@@ -143,10 +147,12 @@ const Insights = ({ params }) => {
                         className="object-cover"
                       />
                     </div>
-                    <Text twClassName=" text-[30px] leading-none">
+                    <Text twClassName=" text-lg leading-none">
                       {insights[2].attributes?.header.title}
                     </Text>
-                    <p>{insights[2].attributes?.header.subTitle}</p>
+                    <p className="text-md">
+                      {insights[2].attributes?.header.subTitle}
+                    </p>
                   </div>
                   <Link
                     href={`/${lang}/insights/article/${insights[2].attributes?.slug}`}
@@ -175,10 +181,12 @@ const Insights = ({ params }) => {
                         className="object-cover"
                       />
                     </div>
-                    <Text twClassName=" text-[30px] leading-none">
+                    <Text twClassName=" text-xm leading-none">
                       {insights[3].attributes?.header.title}
                     </Text>
-                    <p>{insights[3].attributes?.header.subTitle}</p>
+                    <p className="text-xs">
+                      {insights[3].attributes?.header.subTitle}
+                    </p>
                   </div>
                   <Link
                     href={`/${lang}/insights/article/${insights[3].attributes?.slug}`}
@@ -207,10 +215,12 @@ const Insights = ({ params }) => {
                         className="object-cover"
                       />
                     </div>
-                    <Text twClassName=" text-[30px] leading-none">
+                    <Text twClassName="text-xm leading-none">
                       {insights[4].attributes?.header.title}
                     </Text>
-                    <p>{insights[4].attributes?.header.subTitle}</p>
+                    <p className="text-xs">
+                      {insights[4].attributes?.header.subTitle}
+                    </p>
                   </div>
                   <Link
                     href={`/${lang}/insights/article/${insights[4].attributes?.slug}`}
@@ -239,10 +249,12 @@ const Insights = ({ params }) => {
                         className="object-cover"
                       />
                     </div>
-                    <Text twClassName=" text-[30px] leading-none">
+                    <Text twClassName="text-xm leading-none">
                       {insights[5].attributes?.header.title}
                     </Text>
-                    <p>{insights[5].attributes?.header.subTitle}</p>
+                    <p className="text-xs">
+                      {insights[5].attributes?.header.subTitle}
+                    </p>
                   </div>
                   <Link
                     href={`/${lang}/insights/article/${insights[5].attributes?.slug}`}
@@ -267,12 +279,12 @@ const Insights = ({ params }) => {
               href={`/${lang}/insights/article/${attributes.slug}`}
             >
               <Card
-                title={attributes?.header?.title}
-                headline={attributes?.header?.subTitle}
+                title={attributes?.header?.subTitle}
                 heading={category[attributes?.category]}
                 covered={true}
                 imageCard={false}
                 buttonText={attributes?.button?.text}
+                titleClassName="text-xs capitalize"
                 btnWidth={150}
                 btnBgColor={"#ffffff"}
                 btnTextColor={"#000000"}

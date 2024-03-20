@@ -49,7 +49,7 @@ const Search = ({ text, setText, handleSearch }) => {
         <input
           placeholder="Search..."
           value={text}
-          className={`outline-none w-[478px] max-sm:w-[280px] text-[12px]`}
+          className={`outline-none w-[478px] max-sm:w-[280px] text-xxs`}
           onKeyPress={handleKeyPress}
           onChange={handleCurrentSearch}
         />

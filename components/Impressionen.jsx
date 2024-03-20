@@ -6,7 +6,7 @@ import i3 from "@/assets/images/i3.png"
 const Impressionen = () => {
   return (
     <div className="relative">
-      <div className="text-center text-white text-[24px] pointer-events-none absolute inset-0 flex items-center justify-center z-10">
+      <div className="text-center text-white text-sm pointer-events-none absolute inset-0 flex items-center justify-center z-10">
         <p>IMPRESSIONEN {new Date().getFullYear()}</p>
       </div>
       <div className="flex overflow-scroll no-scrollbar w-full">

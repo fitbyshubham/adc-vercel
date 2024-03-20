@@ -41,7 +41,7 @@ const Footer = ({ lang }) => {
             <div className="max-md:hidden">
               <ADCLogo isDarkMode={true} width={164} height={44} />
             </div>
-            <p className="text-sm text-white lg:text-start text-center">
+            <p className="text-xs text-white lg:text-start text-center md:pt-10">
               Get News & Insights directly to your inbox
             </p>
             <div className="px-4 py-2 rounded-full ring-1 ring-zinc-700 flex gap-x-2">
@@ -52,8 +52,8 @@ const Footer = ({ lang }) => {
                 className="bg-transparent outline-none focus:outline-none text-white placeholder:uppercase text-xs w-full"
                 placeholder="E-mail Address"
               />
-              <Button width={100} onButtonClick={() => {}}>
-                <p className="text-xs font-bold">Subscribe</p>
+              <Button width={110} onButtonClick={() => {}}>
+                <p className="text-xxs font-bold">Subscribe</p>
               </Button>
             </div>
           </div>

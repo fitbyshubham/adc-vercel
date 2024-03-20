@@ -15,7 +15,7 @@ const Button = ({
 
   return (
     <button
-      className={"uppercase  text-sm p-2 rounded-full " + selectedStyle}
+      className={"uppercase text-xxs p-2 rounded-full " + selectedStyle}
       style={{
         width,
         height,

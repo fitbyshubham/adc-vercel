@@ -46,7 +46,7 @@ const ArticlesLayout = ({ headline, data, lang, handleClick }) => {
                 imageUrl={item?.attributes?.image?.path?.data?.attributes?.url}
                 imageClassName="max-md:w-[105px] max-md:h-[105px]"
                 className="w-[250px] max-md:w-[136px]"
-                titleClassName="sm:text-[16px] text-[14px]"
+                titleClassName="sm:text-base text-[14px]"
               />
             </Link>
           ))}
