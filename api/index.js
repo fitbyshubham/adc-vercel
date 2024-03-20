@@ -41,6 +41,17 @@ export default {
         .catch((error) => reject(error))
     })
   },
+  getInsightsPage({ lang }) {
+    return new Promise((resolve, reject) => {
+      axiosInstance(config.token)
+        .get(config.INSIGHTS.BASE.concat(`?populate=deep&locale=${lang}`))
+        .then((res) => {
+          const pageRes = res.data
+          resolve(pageRes)
+        })
+        .catch((error) => reject(error))
+    })
+  },
   getPeoplePage(name, page, pageSize = 10) {
     return new Promise((resolve, reject) => {
       axiosInstance(config.token)

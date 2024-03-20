@@ -21,7 +21,7 @@ const config = {
     BASE: "/footer",
   },
   INSIGHTS: {
-    BASE: "/insights",
+    BASE: "/insight",
   },
   LEARNING: {
     BASE: "/learning-page",

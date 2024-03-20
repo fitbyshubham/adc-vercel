@@ -18,7 +18,7 @@ import "./style.css"
 export default function Home({ params }) {
   const lang = params?.lang
   const [pageData, setPageData] = useState(null)
-  const [insights, setInsights] = useState(null)
+  //   const [insights, setInsights] = useState(null)
   const [highlightedNewsEvents, setHighlightedNewsEvents] = useState(null)
   const { menuItems } = useContext(Context)
   const [loading, setLoading] = useState(true)
@@ -27,25 +27,21 @@ export default function Home({ params }) {
     Api.getHomePage({ lang })
       .then((res) => {
         const data = res.data.attributes
+        console.log(data)
         setPageData(data)
         Api.getNewsEvents({ lang, pageSize: 4 })
 
           .then((res) => {
             const data = res.data
             setHighlightedNewsEvents(data)
-            Api.getArticles({ lang })
-              .then((res) => {
-                setInsights(res.data)
-                setLoading(false)
-              })
-              .catch(console.log)
+            setLoading(false)
           })
           .catch(console.log)
       })
       .catch(console.log)
   }, [])
 
-  if (loading || !insights)
+  if (loading)
     return (
       <div className="h-screen flex justify-center items-center">
         <Loading size="lg" />
@@ -82,7 +78,8 @@ export default function Home({ params }) {
                     <Image
                       src={
                         config.IMAGE_API_URL +
-                        insights[0].attributes.image.path.data.attributes.url
+                        pageData.insight1.data.attributes.image.path.data
+                          .attributes.url
                       }
                       alt="image"
                       fill
@@ -90,15 +87,16 @@ export default function Home({ params }) {
                     />
                   </div>
                   <Text twClassName=" text-xm">
-                    {insights[0].attributes?.header.title}
+                    {pageData.insight1.data.attributes?.header.title}
                   </Text>
-                  <p>{insights[0].attributes?.header.subTitle}</p>
+                  <p>{pageData.insight1.data.attributes?.header.subTitle}</p>
                 </div>
                 <Link
-                  href={`/${lang}/insights/article/${insights[0].attributes?.slug}`}
+                  href={`/${lang}/insights/article/${pageData.insight1.data.attributes?.slug}`}
                 >
                   <Button width={120} className="text-xs">
-                    {insights[0].attributes?.button?.text || "Weiterlesen"}
+                    {pageData.insight1.data.attributes?.button?.text ||
+                      "Weiterlesen"}
                   </Button>
                 </Link>
               </div>
@@ -114,7 +112,8 @@ export default function Home({ params }) {
                     <Image
                       src={
                         config.IMAGE_API_URL +
-                        insights[1].attributes.image.path.data?.attributes.url
+                        pageData.insight2.data.attributes.image.path.data
+                          ?.attributes.url
                       }
                       alt="image"
                       fill
@@ -122,15 +121,16 @@ export default function Home({ params }) {
                     />
                   </div>
                   <Text twClassName="md:text-lg text-xm">
-                    {insights[1].attributes?.header.title}
+                    {pageData.insight2.data.attributes?.header.title}
                   </Text>
-                  <p>{insights[1].attributes?.header.subTitle}</p>
+                  <p>{pageData.insight2.data.attributes?.header.subTitle}</p>
                 </div>
                 <Link
-                  href={`/${lang}/insights/article/${insights[1].attributes?.slug}`}
+                  href={`/${lang}/insights/article/${pageData.insight2.data.attributes?.slug}`}
                 >
                   <Button width={120} className="text-xs">
-                    {insights[1].attributes?.button?.text || "Weiterlesen"}
+                    {pageData.insight2.data.attributes?.button?.text ||
+                      "Weiterlesen"}
                   </Button>
                 </Link>
               </div>
@@ -146,7 +146,8 @@ export default function Home({ params }) {
                     <Image
                       src={
                         config.IMAGE_API_URL +
-                        insights[2].attributes.image.path.data?.attributes.url
+                        pageData.insight3.data.attributes.image.path.data
+                          ?.attributes.url
                       }
                       alt="image"
                       fill
@@ -154,15 +155,16 @@ export default function Home({ params }) {
                     />
                   </div>
                   <Text twClassName=" text-xm">
-                    {insights[2].attributes?.header.title}
+                    {pageData.insight3.data.attributes?.header.title}
                   </Text>
-                  <p>{insights[2].attributes?.header.subTitle}</p>
+                  <p>{pageData.insight3.data.attributes?.header.subTitle}</p>
                 </div>
                 <Link
-                  href={`/${lang}/insights/article/${insights[2].attributes?.slug}`}
+                  href={`/${lang}/insights/article/${pageData.insight3.data.attributes?.slug}`}
                 >
                   <Button width={120} className="text-xs">
-                    {insights[2].attributes?.button?.text || "Weiterlesen"}
+                    {pageData.insight3.data.attributes?.button?.text ||
+                      "Weiterlesen"}
                   </Button>
                 </Link>
               </div>
