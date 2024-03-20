@@ -44,11 +44,11 @@ const AwardsPage = ({ params }) => {
   return (
     <div>
       <div className="awards-gradient-background flex flex-col h-[90rem]">
-        <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
+        <Marquee speed={200} style={{ marginTop: 80 }}>
           <MarqueeChildren content={pageData.attributes?.marquee} />
         </Marquee>
         <div className="flex justify-center">
-          <div className=" container mx-auto px-4 pt-20 gap-[200px] pb-10">
+          <div className=" container mx-auto px-4 pt-10 gap-[200px] pb-10">
             <div className="flex flex-col">
               <Card
                 imageCard={false}
@@ -56,8 +56,8 @@ const AwardsPage = ({ params }) => {
                 width={390}
                 buttonText={cards[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[195px] md:ml-[200px]"
-                titleClassName="text-[30px]"
+                className="min-h-[90px] md:ml-[200px]"
+                titleClassName="text-xm"
               />
               <Card
                 imageCard={false}
@@ -65,8 +65,8 @@ const AwardsPage = ({ params }) => {
                 width={390}
                 buttonText={cards[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[195px] md:self-end"
-                titleClassName="text-[30px]"
+                className="min-h-[90px] md:self-end"
+                titleClassName="text-xm"
               />
               <Card
                 imageCard={false}
@@ -74,8 +74,8 @@ const AwardsPage = ({ params }) => {
                 width={390}
                 buttonText={cards[0]?.attributes?.button.text}
                 btnWidth={165}
-                className="min-h-[195px]"
-                titleClassName="text-[55px]"
+                className="min-h-[90px]"
+                titleClassName="text-lg"
               />
             </div>
           </div>

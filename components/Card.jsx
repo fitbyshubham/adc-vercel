@@ -3,7 +3,6 @@ import Image from "next/image"
 import no_image_found from "@/assets/images/bildschirmfoto.png"
 import Button from "./Button"
 import config from "@/apiConfig"
-import Text from "./Text"
 
 const Card = ({
   title,
@@ -32,6 +31,7 @@ const Card = ({
   name,
   nameStyle,
   imageClassName,
+  buttonStyle,
 }) => {
   const large = size === "large" && !covered
   const coverCardAddedStyles = covered
@@ -46,10 +46,10 @@ const Card = ({
       : "w-[200px] h-[200px] " + imageClassName
 
   const twClassName = covered
-    ? "text-[26px] uppercase line-clamp-4 " + titleClassName
+    ? `${titleClassName ? titleClassName : "text-md "} uppercase line-clamp-4`
     : large
-      ? "text-[55px] uppercase  " + titleClassName
-      : "text-[30px] uppercase " + titleClassName
+      ? `${titleClassName ? titleClassName : "text-lg"} uppercase`
+      : `${titleClassName ? titleClassName : "text-xm"} uppercase`
 
   const concatImageUrl = imageUrl ? config.IMAGE_API_URL + imageUrl : imageUrl
   return (
@@ -60,7 +60,7 @@ const Card = ({
     >
       <div className="flex justify-between">
         {heading ? (
-          <div className="text-[12px] uppercase" style={headingStyle}>
+          <div className="text-xxs uppercase" style={headingStyle}>
             {heading}
           </div>
         ) : null}
@@ -77,7 +77,7 @@ const Card = ({
       </div>
       <div className="flex flex-col gap-5">
         {name ? (
-          <div className="text-[15px] uppercase" style={nameStyle}>
+          <div className="text-xs uppercase" style={nameStyle}>
             {name}
           </div>
         ) : null}
@@ -88,7 +88,7 @@ const Card = ({
         ) : null}
         {description ? (
           <div
-            className={large ? "text-[26px]" : "text-[15px]"}
+            className={large ? "text-md" : "text-xs"}
             style={descriptionStyle}
           >
             {description}
@@ -101,6 +101,7 @@ const Card = ({
             height={btnHeight}
             primaryBtn={primaryBtn}
             bgColor={btnBgColor}
+            style={buttonStyle}
             textColor={btnTextColor}
           >
             {buttonText}

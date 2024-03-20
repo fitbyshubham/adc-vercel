@@ -1,21 +1,20 @@
 "use client"
-import { useEffect, useState, useContext } from "react"
-import Link from "next/link"
+import Api from "@/api"
+import config from "@/apiConfig"
 import Button from "@/components/Button"
 import Card from "@/components/Card"
 import Filters from "@/components/Filters"
+import Loading from "@/components/Loading"
 import Marquee from "@/components/Marquee"
 import MarqueeChildren from "@/components/MarqueeChildren"
-import Api from "@/api"
-import "./style.css"
 import Text from "@/components/Text"
-import Loading from "@/components/Loading"
-import moment from "moment"
 import { getHomeFilters } from "@/utils/filters"
-import { Context } from "../../context"
+import moment from "moment"
 import Image from "next/image"
-import config from "@/apiConfig"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
+import { useContext, useEffect, useState } from "react"
+import { Context } from "../../context"
+import "./style.css"
 export default function Home({ params }) {
   const lang = params?.lang
   const [pageData, setPageData] = useState(null)
@@ -23,8 +22,6 @@ export default function Home({ params }) {
   const [highlightedNewsEvents, setHighlightedNewsEvents] = useState(null)
   const { menuItems } = useContext(Context)
   const [loading, setLoading] = useState(true)
-
-  const router = useRouter()
 
   useEffect(() => {
     Api.getHomePage({ lang })
@@ -61,7 +58,6 @@ export default function Home({ params }) {
         <div className="flex justify-center items-center h-[45rem]">
           <Marquee
             speed={200}
-            textSize={220}
             visible={pageData?.hero?.circularFloatingButton?.visible}
             title={pageData?.hero?.circularFloatingButton?.title}
             subTitle={pageData?.hero?.circularFloatingButton?.subTitle}
@@ -93,7 +89,7 @@ export default function Home({ params }) {
                       className="object-cover"
                     />
                   </div>
-                  <Text twClassName=" text-[30px]">
+                  <Text twClassName=" text-xm">
                     {insights[0].attributes?.header.title}
                   </Text>
                   <p>{insights[0].attributes?.header.subTitle}</p>
@@ -125,7 +121,7 @@ export default function Home({ params }) {
                       className="object-cover"
                     />
                   </div>
-                  <Text twClassName="md:text-[55px] text-[30px]">
+                  <Text twClassName="md:text-lg text-xm">
                     {insights[1].attributes?.header.title}
                   </Text>
                   <p>{insights[1].attributes?.header.subTitle}</p>
@@ -157,7 +153,7 @@ export default function Home({ params }) {
                       className="object-cover"
                     />
                   </div>
-                  <Text twClassName=" text-[30px]">
+                  <Text twClassName=" text-xm">
                     {insights[2].attributes?.header.title}
                   </Text>
                   <p>{insights[2].attributes?.header.subTitle}</p>
@@ -190,7 +186,7 @@ export default function Home({ params }) {
         <div className="p-1">
           <Marquee
             speed={200}
-            textSize={150}
+            size="sm"
             visible={pageData?.marquee1?.circularFloatingButton?.visible}
             title={pageData?.marquee1?.circularFloatingButton?.title}
             subTitle={pageData?.marquee1?.circularFloatingButton?.subTitle}
@@ -245,7 +241,7 @@ export default function Home({ params }) {
         <div className="p-1">
           <Marquee
             speed={200}
-            textSize={150}
+            size="sm"
             visible={pageData?.marquee2?.circularFloatingButton?.visible}
             title={pageData?.marquee2?.circularFloatingButton?.title}
             subTitle={pageData?.marquee2?.circularFloatingButton?.subTitle}
@@ -270,7 +266,7 @@ export default function Home({ params }) {
         <div className="p-1">
           <Marquee
             speed={200}
-            textSize={150}
+            size="sm"
             visible={pageData?.marquee3?.circularFloatingButton?.visible}
             title={pageData?.marquee3?.circularFloatingButton?.title}
             subTitle={pageData?.marquee3?.circularFloatingButton?.subTitle}

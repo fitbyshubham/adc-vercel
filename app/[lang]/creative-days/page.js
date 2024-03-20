@@ -47,38 +47,41 @@ const CreativeDays = ({ params }) => {
   return (
     <div>
       <div className="creative-gradient-background flex flex-col h-[90rem]">
-        <Marquee speed={200} textSize={220} style={{ marginTop: 80 }}>
+        <Marquee speed={200} style={{ marginTop: 80 }}>
           <MarqueeChildren content={pageData?.attributes?.marquee} />
         </Marquee>
         <div className="flex justify-center">
-          <div className=" container mx-auto px-4 pt-20 gap-[200px] pb-10">
+          <div className=" container mx-auto px-4 pt-10 gap-[200px] pb-10">
             <div className="flex flex-col">
               <Card
                 imageCard={false}
                 title={data[0]?.attributes?.title}
                 width={400}
                 buttonText={data[0]?.attributes?.button.text}
-                btnWidth={165}
-                className="min-h-[150px] md:ml-[200px]"
-                titleClassName="text-[30px] line-clamp-3"
+                btnWidth={100}
+                className="min-h-[90px] md:ml-[200px]"
+                titleClassName="text-xm line-clamp-3"
+                buttonStyle={{ padding: 4 }}
               />
               <Card
                 imageCard={false}
                 title={data[0]?.attributes?.title}
                 width={400}
                 buttonText={data[0]?.attributes?.button.text}
-                btnWidth={165}
-                className="min-h-[150px] md:self-end"
-                titleClassName="text-[30px] line-clamp-3"
+                btnWidth={100}
+                className="min-h-[90px] md:self-end"
+                titleClassName="text-xm line-clamp-3"
+                buttonStyle={{ padding: 4 }}
               />
               <Card
                 imageCard={false}
                 title={data[0]?.attributes?.title}
                 width={400}
                 buttonText={data[0]?.attributes?.button.text}
-                btnWidth={165}
-                className="min-h-[150px]"
-                titleClassName="text-[55px] line-clamp-3"
+                btnWidth={100}
+                className="min-h-[90px]"
+                titleClassName="text-lg line-clamp-3"
+                buttonStyle={{ padding: 4 }}
               />
             </div>
           </div>

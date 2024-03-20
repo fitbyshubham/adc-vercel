@@ -32,7 +32,7 @@ const Page = ({ params }) => {
   return (
     <div className="pt-24 flex flex-col gap-y-[40px]">
       <Filters filters={pages} />
-      <Text twClassName={"md:text-[90px] text-[55px] px-[30px]"}>
+      <Text twClassName={"md:text-[90px] text-lg px-[30px]"}>
         {pageInfo.text}
       </Text>
       <StoryDetail

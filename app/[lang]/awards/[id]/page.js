@@ -25,7 +25,7 @@ const Page = ({ params }) => {
   return (
     <div className="pt-36">
       <Filters filters={pages} />
-      <Text twClassName="text-[120px] max-md:text-[55px] max-sm:text-[30px] leading-[120px] leading-none px-5 py-10">
+      <Text twClassName="text-[120px] max-md:text-lg max-sm:text-xm leading-[120px] leading-none px-5 py-10">
         {pageInfo.text}
       </Text>
       <Ranking type={pageInfo.id} lang={lang} />

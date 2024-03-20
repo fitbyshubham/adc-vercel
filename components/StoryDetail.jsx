@@ -28,7 +28,7 @@ const Detail = ({
     <div className="flex  max-sm:flex-col justify-between max-md:gap-5 max-sm:gap-10">
       <div
         className={
-          "text-[24px] max-md:text-[22px] w-[750px] max-md:w-[460px] max-sm:w-[335px]"
+          "text-sm max-md:text-sm w-[750px] max-md:w-[460px] max-sm:w-[335px]"
         }
       >
         {content}
@@ -90,13 +90,13 @@ const StoryDetail = ({
             ) : null}
           </div>
           <div className="text-center flex flex-col sm:gap-[50px] gap-[20px] items-center md:w-[1144px] sm:w-[728px]">
-            <Text twClassName="lg:text-[120px] sm:text-[55px] text-[30px] xl:leading-[120px] leading-none">
+            <Text twClassName="lg:text-[120px] sm:text-lg text-xm xl:leading-[120px] leading-none">
               {title}
             </Text>
             <Text
               capitalize={true}
               twClassName={
-                "md:text-[34px] text-[22px] max-md:w-[41rem] max-sm:w-[335px] md:w-[850px] w-full"
+                "md:text-[34px] text-sm max-md:w-[41rem] max-sm:w-[335px] md:w-[850px] w-full"
               }
             >
               {subTitle}

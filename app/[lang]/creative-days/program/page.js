@@ -44,11 +44,11 @@ const ProgramView = ({ params }) => {
 const Program = ({ slug, title, time, lang }) => {
   return (
     <div className="flex gap-4  pb-5">
-      <Text twClassName="w-[96px] text-[12px] max-md:text-[9px]">{time}</Text>
+      <Text twClassName="w-[96px] text-xxs max-md:text-[9px]">{time}</Text>
       <div className="flex justify-between w-full">
         <Text
           twClassName={
-            "leading-tight w-[249px] max-md:w-[165px] text-[24px] max-md:text-[16px]"
+            "leading-tight w-[249px] max-md:w-[165px] text-sm max-md:text-base"
           }
         >
           {title}

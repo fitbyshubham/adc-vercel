@@ -58,7 +58,7 @@ const Learning = ({ params }) => {
               buttonText={page1Data.redirectButton?.text}
               imageUrl={page1Data.image?.path.data.attributes.url}
               titleStyle={{ fontSize: "16px" }}
-              titleClassName="text-[16px]"
+              titleClassName="text-base"
               className="w-[413px]"
               size="small"
             />
@@ -72,7 +72,7 @@ const Learning = ({ params }) => {
               imageUrl={page2Data.image?.path.data.attributes.url}
               titleStyle={{ fontSize: "16px" }}
               descriptionStyle={{ fontSize: "15px" }}
-              titleClassName="text-[16px]"
+              titleClassName="text-base"
               className="w-[413px]"
             />
           </div>
@@ -97,7 +97,7 @@ const Learning = ({ params }) => {
               imageUrl={page3Data.image?.path.data.attributes.url}
               titleStyle={{ fontSize: "16px" }}
               className="w-[413px]"
-              titleClassName="text-[16px]"
+              titleClassName="text-base"
               size="small"
             />
           </div>
