@@ -26,26 +26,29 @@ const Insights = ({ params }) => {
   const [articles, setArticles] = useState(null)
   const [insights, setInsights] = useState(null)
 
-  const fetchArticles = async (page = 1) => {
+  const fetchArticles = (page = 1) =>
     Api.getArticles({ lang, page, pageSize: 8 })
       .then((res) => {
         setArticles(res.data)
         setLoading(false)
       })
       .catch(console.log)
-  }
 
-  const fetchFeaturedArticles = async () => {
-    Api.getArticles({ lang, pageSize: 8, featured: true })
+  const fetchFeaturedInsights = () =>
+    Api.getInsightsPage({ lang })
       .then((res) => {
-        setInsights(res.data)
+        setInsights(res)
       })
       .catch(console.log)
+
+  const fetchAll = async () => {
+    await fetchArticles()
+    await fetchFeaturedInsights()
+    setLoading(false)
   }
 
   useEffect(() => {
-    fetchArticles()
-    fetchFeaturedArticles()
+    fetchAll()
   }, [])
 
   if (loading || !insights) return <Loading size="lg" center />
@@ -56,7 +59,7 @@ const Insights = ({ params }) => {
       <div className="flex justify-center">
         <div className="flex flex-col sm:gap-[100px] gap-[70px] lg:py-[100px] py-[20px] p-5">
           <div className="flex sm:flex-row flex-col lg:gap-[100px] gap-[50px]">
-            {insights[0] && (
+            {insights.data.attributes.featured1 && (
               <div className="md:w-[411px] w-full">
                 <div
                   className={`h-full w-full flex flex-col gap-y-4 md:justify-end justify-between md:pb-[60px] pb-0`}
@@ -66,7 +69,8 @@ const Insights = ({ params }) => {
                       <Image
                         src={
                           config.IMAGE_API_URL +
-                          insights[0].attributes.image.path.data.attributes.url
+                          insights.data.attributes.featured1.data.attributes
+                            .image.path.data.attributes.url
                         }
                         alt="image"
                         fill
@@ -74,23 +78,30 @@ const Insights = ({ params }) => {
                       />
                     </div>
                     <Text twClassName=" text-xm leading-none">
-                      {insights[0].attributes?.header.title}
+                      {
+                        insights.data.attributes.featured1.data.attributes
+                          ?.header.title
+                      }
                     </Text>
                     <p className="text-xs">
-                      {insights[0].attributes?.header.subTitle}
+                      {
+                        insights.data.attributes.featured1.data.attributes
+                          ?.header.subTitle
+                      }
                     </p>
                   </div>
                   <Link
-                    href={`/${lang}/insights/article/${insights[0].attributes?.slug}`}
+                    href={`/${lang}/insights/article/${insights.data.attributes.featured1.data.attributes?.slug}`}
                   >
                     <Button width={120} className="text-xs">
-                      {insights[0].attributes?.button?.text || "Weiterlesen"}
+                      {insights.data.attributes.featured1.data.attributes
+                        ?.button?.text || "Weiterlesen"}
                     </Button>
                   </Link>
                 </div>
               </div>
             )}
-            {insights[1] && (
+            {insights.data.attributes.featured2 && (
               <div className="w-full max-w-[720px] flex-1">
                 <div
                   className={`h-full w-full flex flex-col gap-y-4 justify-between`}
@@ -102,7 +113,8 @@ const Insights = ({ params }) => {
                       <Image
                         src={
                           config.IMAGE_API_URL +
-                          insights[1].attributes.image.path.data.attributes.url
+                          insights.data.attributes.featured2.data.attributes
+                            .image.path.data.attributes.url
                         }
                         alt="image"
                         fill
@@ -110,17 +122,24 @@ const Insights = ({ params }) => {
                       />
                     </div>
                     <Text twClassName="text-lg leading-none">
-                      {insights[1].attributes?.header.title}
+                      {
+                        insights.data.attributes.featured2.data.attributes
+                          ?.header.title
+                      }
                     </Text>
                     <p className="text-md">
-                      {insights[1].attributes?.header.subTitle}
+                      {
+                        insights.data.attributes.featured2.data.attributes
+                          ?.header.subTitle
+                      }
                     </p>
                   </div>
                   <Link
-                    href={`/${lang}/insights/article/${insights[1].attributes?.slug}`}
+                    href={`/${lang}/insights/article/${insights.data.attributes.featured2.data.attributes?.slug}`}
                   >
                     <Button width={120} className="text-xs">
-                      {insights[1].attributes?.button?.text || "Weiterlesen"}
+                      {insights.data.attributes.featured2.data.attributes
+                        ?.button?.text || "Weiterlesen"}
                     </Button>
                   </Link>
                 </div>
@@ -128,7 +147,7 @@ const Insights = ({ params }) => {
             )}
           </div>
           <div className="flex sm:gap-[100px] gap-[70px] sm:flex-row flex-col">
-            {insights[2] && (
+            {insights.data.attributes.featured3 && (
               <div className="w-full max-w-[720px] flex-1">
                 <div
                   className={`h-full w-full flex flex-col gap-y-4 justify-between`}
@@ -140,7 +159,8 @@ const Insights = ({ params }) => {
                       <Image
                         src={
                           config.IMAGE_API_URL +
-                          insights[2].attributes.image.path.data.attributes.url
+                          insights.data.attributes.featured3.data.attributes
+                            .image.path.data.attributes.url
                         }
                         alt="image"
                         fill
@@ -148,23 +168,30 @@ const Insights = ({ params }) => {
                       />
                     </div>
                     <Text twClassName=" text-lg leading-none">
-                      {insights[2].attributes?.header.title}
+                      {
+                        insights.data.attributes.featured3.data.attributes
+                          ?.header.title
+                      }
                     </Text>
                     <p className="text-md">
-                      {insights[2].attributes?.header.subTitle}
+                      {
+                        insights.data.attributes.featured3.data.attributes
+                          ?.header.subTitle
+                      }
                     </p>
                   </div>
                   <Link
-                    href={`/${lang}/insights/article/${insights[2].attributes?.slug}`}
+                    href={`/${lang}/insights/article/${insights.data.attributes.featured3.data.attributes?.slug}`}
                   >
                     <Button width={120} className="text-xs">
-                      {insights[2].attributes?.button?.text || "Weiterlesen"}
+                      {insights.data.attributes.featured3.data.attributes
+                        ?.button?.text || "Weiterlesen"}
                     </Button>
                   </Link>
                 </div>
               </div>
             )}
-            {insights[3] && (
+            {insights.data.attributes.featured4 && (
               <div className="md:w-[411px] w-full">
                 <div
                   className={`h-full w-full flex flex-col gap-y-4 sm:justify-start`}
@@ -174,7 +201,8 @@ const Insights = ({ params }) => {
                       <Image
                         src={
                           config.IMAGE_API_URL +
-                          insights[3].attributes.image.path.data.attributes.url
+                          insights.data.attributes.featured4.data.attributes
+                            .image.path.data.attributes.url
                         }
                         alt="image"
                         fill
@@ -182,17 +210,24 @@ const Insights = ({ params }) => {
                       />
                     </div>
                     <Text twClassName=" text-xm leading-none">
-                      {insights[3].attributes?.header.title}
+                      {
+                        insights.data.attributes.featured4.data.attributes
+                          ?.header.title
+                      }
                     </Text>
                     <p className="text-xs">
-                      {insights[3].attributes?.header.subTitle}
+                      {
+                        insights.data.attributes.featured4.data.attributes
+                          ?.header.subTitle
+                      }
                     </p>
                   </div>
                   <Link
-                    href={`/${lang}/insights/article/${insights[3].attributes?.slug}`}
+                    href={`/${lang}/insights/article/${insights.data.attributes.featured4.data.attributes?.slug}`}
                   >
                     <Button width={120} className="text-xs">
-                      {insights[3].attributes?.button?.text || "Weiterlesen"}
+                      {insights.data.attributes.featured4.data.attributes
+                        ?.button?.text || "Weiterlesen"}
                     </Button>
                   </Link>
                 </div>
@@ -200,7 +235,7 @@ const Insights = ({ params }) => {
             )}
           </div>
           <div className="flex sm:gap-[100px] gap-[70px] sm:flex-row flex-col md:mx-auto">
-            {insights[4] && (
+            {insights.data.attributes.featured5 && (
               <div className="md:w-[411px] w-full">
                 <div className={`h-full w-full flex flex-col gap-y-4`}>
                   <div className="flex flex-col gap-y-4">
@@ -208,7 +243,8 @@ const Insights = ({ params }) => {
                       <Image
                         src={
                           config.IMAGE_API_URL +
-                          insights[4].attributes.image.path.data.attributes.url
+                          insights.data.attributes.featured5.data.attributes
+                            .image.path.data.attributes.url
                         }
                         alt="image"
                         fill
@@ -216,23 +252,30 @@ const Insights = ({ params }) => {
                       />
                     </div>
                     <Text twClassName="text-xm leading-none">
-                      {insights[4].attributes?.header.title}
+                      {
+                        insights.data.attributes.featured5.data.attributes
+                          ?.header.title
+                      }
                     </Text>
                     <p className="text-xs">
-                      {insights[4].attributes?.header.subTitle}
+                      {
+                        insights.data.attributes.featured5.data.attributes
+                          ?.header.subTitle
+                      }
                     </p>
                   </div>
                   <Link
-                    href={`/${lang}/insights/article/${insights[4].attributes?.slug}`}
+                    href={`/${lang}/insights/article/${insights.data.attributes.featured5.data.attributes?.slug}`}
                   >
                     <Button width={120} className="text-xs">
-                      {insights[4].attributes?.button?.text || "Weiterlesen"}
+                      {insights.data.attributes.featured5.data.attributes
+                        ?.button?.text || "Weiterlesen"}
                     </Button>
                   </Link>
                 </div>
               </div>
             )}
-            {insights[5] && (
+            {insights.data.attributes.featured6 && (
               <div className="md:w-[411px] w-full ">
                 <div
                   className={`h-full w-full flex flex-col gap-y-4 sm:justify-end justify-between sm:mt-[6rem]`}
@@ -242,7 +285,8 @@ const Insights = ({ params }) => {
                       <Image
                         src={
                           config.IMAGE_API_URL +
-                          insights[5].attributes.image.path.data.attributes.url
+                          insights.data.attributes.featured6.data.attributes
+                            .image.path.data.attributes.url
                         }
                         alt="image"
                         fill
@@ -250,17 +294,24 @@ const Insights = ({ params }) => {
                       />
                     </div>
                     <Text twClassName="text-xm leading-none">
-                      {insights[5].attributes?.header.title}
+                      {
+                        insights.data.attributes.featured6.data.attributes
+                          ?.header.title
+                      }
                     </Text>
                     <p className="text-xs">
-                      {insights[5].attributes?.header.subTitle}
+                      {
+                        insights.data.attributes.featured6.data.attributes
+                          ?.header.subTitle
+                      }
                     </p>
                   </div>
                   <Link
-                    href={`/${lang}/insights/article/${insights[5].attributes?.slug}`}
+                    href={`/${lang}/insights/article/${insights.data.attributes.featured6.data.attributes?.slug}`}
                   >
                     <Button width={120} className="text-xs">
-                      {insights[5].attributes?.button?.text || "Weiterlesen"}
+                      {insights.data.attributes.featured6.data.attributes
+                        ?.button?.text || "Weiterlesen"}
                     </Button>
                   </Link>
                 </div>
